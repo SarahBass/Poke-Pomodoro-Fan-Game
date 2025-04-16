@@ -38,3 +38,15 @@ body, html {
   display: none; /* Start with the image hidden */
   z-index: 10;
 }
+
+.transparent-circle {
+  position: absolute;
+  top: 59px;
+  left: 231px;
+  width: 80px; /* diameter */
+  height: 80px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.3); /* white with transparency */
+  pointer-events: auto; /* clickable */
+  cursor: pointer;
+}
