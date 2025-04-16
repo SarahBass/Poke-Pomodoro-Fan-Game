@@ -1,0 +1,25 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  height: 100%;
+  background-color: #000; /* optional dark background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-wrapper {
+  width: 100%;
+  max-width: 1000px; /* Optional: cap it on desktop */
+  padding: 10px;
+}
+
+.responsive-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
