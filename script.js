@@ -23,30 +23,37 @@ class Pokemon {
   }
 }
 
-const user = {
-  goalType: "Study", // Choose from: Study, Read, Clean, PayBill, MakeCall, Computer, Write, Math
+const zubat = new Pokemon("zubat", "poison", "berry", "none", 1, 0, "Enter", 5, 41);
+user.team.push(zubat);
+
+const goalSelect = document.getElementById("goalSelect");
+const locationSelect = document.getElementById("locationSelect");
+
+// Load from localStorage if available
+let user = JSON.parse(localStorage.getItem("user")) || {
+  goalType: "",
   pokeball: 0,
   bonusPokeball: 5,
   candy: 0,
   location: "Taupe",
   berryPoints: 0,
-  team: [] // array of Pokémon objects
 };
 
-const zubat = new Pokemon("zubat", "poison", "berry", "none", 1, 0, "Enter", 5, 41);
-user.team.push(zubat);
+// Update dropdowns from saved data (if any)
+goalSelect.value = user.goalType || "";
+locationSelect.value = user.location || "Taupe";
+
+// Save data when dropdown changes
+goalSelect.addEventListener("change", () => {
+  user.goalType = goalSelect.value;
+  saveUserData();
+});
+
+locationSelect.addEventListener("change", () => {
+  user.location = locationSelect.value;
+  saveUserData();
+});
 
 function saveUserData() {
-  localStorage.setItem("pokeUserData", JSON.stringify(user));
+  localStorage.setItem("user", JSON.stringify(user));
 }
-
-function loadUserData() {
-  const data = localStorage.getItem("pokeUserData");
-  if (data) {
-    const loadedData = JSON.parse(data);
-    Object.assign(user, loadedData); // merge loaded data into user
-  }
-}
-
-loadUserData();
-saveUserData();
