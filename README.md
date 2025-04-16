@@ -1,5 +1,6 @@
 # Poke-Pomodoro-Fan-Game
-A simple web hosted Pomodoro game
+A simple web hosted Pomodoro game. 
+Press START to begin~!
 
 
 <a href="https://sarahbass.github.io/Poke-Pomodoro-Fan-Game/"><img src="https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/pokemongifs/press%20start.png?raw=true" alt="Watch out!" width="100%"></a>
