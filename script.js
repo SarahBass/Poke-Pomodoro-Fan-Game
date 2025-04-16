@@ -35,3 +35,18 @@ const user = {
 
 const zubat = new Pokemon("zubat", "poison", "berry", "none", 1, 0, "Enter", 5, 41);
 user.team.push(zubat);
+
+function saveUserData() {
+  localStorage.setItem("pokeUserData", JSON.stringify(user));
+}
+
+function loadUserData() {
+  const data = localStorage.getItem("pokeUserData");
+  if (data) {
+    const loadedData = JSON.parse(data);
+    Object.assign(user, loadedData); // merge loaded data into user
+  }
+}
+
+loadUserData();
+saveUserData();
