@@ -26,11 +26,13 @@ document.addEventListener("click", function () {
     
   } else if (clickCount ===2) {
     // Second click: show Earn Prizes info
+  pressStart.style.display = "none";
     welcome.style.display = "none";
     pomodoroInfo.style.display = "block";
  
     } else if (clickCount ===3) {
     // Second click: show Earn Prizes info
+     pressStart.style.display = "none";
     welcome.style.display = "none";
     pomodoroInfo.style.display = "none";
     earnPrizes.style.display = "block";
