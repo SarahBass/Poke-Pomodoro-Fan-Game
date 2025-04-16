@@ -43,8 +43,8 @@ body, html {
   position: absolute;
   top: 59px;
   left: 231px;
-  width: 80px; /* diameter */
-  height: 80px;
+  width: 20px; /* diameter */
+  height: 20px;
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.3); /* white with transparency */
   pointer-events: auto; /* clickable */
