@@ -9,6 +9,35 @@ document.addEventListener("mousemove", function (event) {
   console.log("X: " + event.clientX + " Y: " + event.clientY);
 });
 
+let clickCount = 0;
+
+document.addEventListener("click", function () {
+  clickCount++;
+
+  const pressStart = document.getElementById("pressStart");
+  const welcome = document.getElementById("welcome");
+  const pomodoroInfo = document.getElementById("pomodoroInfo");
+  const earnPrizes = document.getElementById("EarnPrizes");
+
+  if (clickCount === 1) {
+    // First click: show Pomodoro info
+   
+    welcome.style.display = "block";
+    
+  } else if (clickCount ===2) {
+    // Second click: show Earn Prizes info
+    welcome.style.display = "none";
+    pomodoroInfo.style.display = "block";
+ 
+    } else if (clickCount ===3) {
+    // Second click: show Earn Prizes info
+    welcome.style.display = "none";
+    pomodoroInfo.style.display = "none";
+    earnPrizes.style.display = "block";
+  }
+});
+
+
 class Pokemon {
   constructor(name, type, item1, item2, evolution, rarity, personalName = "Enter", hunger = 5, pokedexNumber = 0) {
     this.name = name;
