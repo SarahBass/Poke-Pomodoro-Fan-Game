@@ -36,6 +36,13 @@ document.addEventListener("click", function () {
     welcome.style.display = "none";
     pomodoroInfo.style.display = "none";
     earnPrizes.style.display = "block";
+  }else if (clickCount > 3){
+     cleanMenu.style.display = "none";
+     pressStart.style.display = "none";
+    welcome.style.display = "none";
+    pomodoroInfo.style.display = "none";
+    earnPrizes.style.display = "none";
+    TaupeCave.style.display = "block";
   }
 });
 
