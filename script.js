@@ -1,8 +1,8 @@
 const flashImg = document.getElementById('flashImg');
 setInterval(() => {
   const now = new Date();
-  const show = now.getSeconds() % 2 === 0; // Show every even second
-  flashImg.style.display = show ? 'block' : 'none'; // Show/hide based on condition
+  const show = now.getSeconds() % 2 === 0;
+  flashImg.style.display = show ? 'block' : 'none';
 }, 500);
 
 document.addEventListener("mousemove", function (event) {
@@ -15,19 +15,13 @@ class Pokemon {
     this.type = type;
     this.item1 = item1;
     this.item2 = item2;
-    this.evolution = evolution; // 1, 2, or 3
+    this.evolution = evolution;
     this.rarity = rarity;
     this.personalName = personalName;
     this.hunger = hunger;
     this.pokedexNumber = pokedexNumber;
   }
 }
-
-const zubat = new Pokemon("zubat", "poison", "berry", "none", 1, 0, "Enter", 5, 41);
-user.team.push(zubat);
-
-const goalSelect = document.getElementById("goalSelect");
-const locationSelect = document.getElementById("locationSelect");
 
 // Load from localStorage if available
 let user = JSON.parse(localStorage.getItem("user")) || {
@@ -37,13 +31,22 @@ let user = JSON.parse(localStorage.getItem("user")) || {
   candy: 0,
   location: "Taupe",
   berryPoints: 0,
+  team: []
 };
 
-// Update dropdowns from saved data (if any)
+// Example: add Zubat to team if not already there
+if (!user.team.some(p => p.name === "zubat")) {
+  const zubat = new Pokemon("zubat", "poison", "berry", "none", 1, 0, "Enter", 5, 41);
+  user.team.push(zubat);
+  saveUserData(); // Save immediately after adding
+}
+
+const goalSelect = document.getElementById("goalSelect");
+const locationSelect = document.getElementById("locationSelect");
+
 goalSelect.value = user.goalType || "";
 locationSelect.value = user.location || "Taupe";
 
-// Save data when dropdown changes
 goalSelect.addEventListener("change", () => {
   user.goalType = goalSelect.value;
   saveUserData();
