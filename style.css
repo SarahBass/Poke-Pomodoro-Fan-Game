@@ -18,6 +18,17 @@ body, html {
   display: block;
 }
 
+.disclaimer {
+  position: relative;
+  padding: 1em;
+  text-align: center;
+  font-size: 0.9em;
+  color: #555;
+  background-color: rgba(255, 255, 255, 0.8);
+  margin-top: 10px;
+  font-family: sans-serif;
+}
+
 .flash-image {
   position: absolute;
   top: 0;
