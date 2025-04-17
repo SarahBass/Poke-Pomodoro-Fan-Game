@@ -5,6 +5,7 @@ setInterval(() => {
   flashImg.style.display = show ? 'block' : 'none';
 }, 500);
 */
+
 document.addEventListener("mousemove", function (event) {
   console.log("X: " + event.clientX + " Y: " + event.clientY);
 });
@@ -18,6 +19,52 @@ document.addEventListener("click", function () {
   const welcome = document.getElementById("welcome");
   const pomodoroInfo = document.getElementById("pomodoroInfo");
   const earnPrizes = document.getElementById("EarnPrizes");
+  
+ let timerRunning = false;
+let countdownInterval;
+let elapsedTime = 0; // Track the elapsed time in seconds
+
+// Function to start the timer
+function startTimer() {
+  // Get the current time and calculate the end time (25 minutes from now)
+  const startTime = new Date();
+  const endTime = new Date(startTime.getTime() + 25 * 60 * 1000);  // 25 minutes
+
+  // Function to format time as HH:MM
+  function formatTime(date) {
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    return `${hours}:${minutes}`;
+  }
+
+  // Update the timer every second
+  countdownInterval = setInterval(function () {
+    const now = new Date();
+    const remainingTime = endTime - now; // Time remaining in milliseconds
+
+    if (remainingTime <= 0) {
+      clearInterval(countdownInterval);  // Stop the timer when time is up
+      document.getElementById("timerText").innerHTML = "Time's Up!";
+    } else {
+      const minutesRemaining = Math.floor(remainingTime / 60000); // Remaining minutes
+      const secondsRemaining = Math.floor((remainingTime % 60000) / 1000); // Remaining seconds
+
+      // Calculate the elapsed time in minutes and seconds
+      elapsedTime++;
+      const elapsedMinutes = Math.floor(elapsedTime / 60); // Elapsed minutes
+      const elapsedSeconds = elapsedTime % 60; // Elapsed seconds
+
+      // Dynamically update the timer display
+      document.getElementById("timerText").innerHTML = `
+        ${String(minutesRemaining).padStart(2, '0')}:${String(secondsRemaining).padStart(2, '0')} <br> 
+        Elapsed Time: ${String(elapsedMinutes).padStart(2, '0')}:${String(elapsedSeconds).padStart(2, '0')} <br> 
+        Time Start: ${formatTime(startTime)} <br> 
+        Time End: ${formatTime(endTime)}
+      `;
+    }
+  }, 1000);  // Update every second
+}
+  
   if (clickCount < 3) {
     goalSelect.style.display = "inline-block";
     locationSelect.style.display = "inline-block";
@@ -50,15 +97,26 @@ document.addEventListener("click", function () {
     pomodoroInfo.style.display = "none";
     earnPrizes.style.display = "none";
     TaupeCave.style.display = "block";
+    //zubatContainer.style.display = "block";
+
     
       // Update the goal label with user's selected goal
   const goalLabel = document.getElementById("goalLabel");
   goalLabel.innerHTML = `Goal selected: <b>${user.goalType}</b>`;
 const PokelocationID = document.getElementById("PokelocationID");
 PokelocationID.innerHTML = `Location selected: <b>${user.location}</b>`;
-  }
-});
+ // Make the timer text visible
+const timerText = document.getElementById("timerText");
+  timerText.style.display = "block";  // Make the timer text visible
 
+  // Start the timer once
+  if (!timerRunning) {
+    startTimer();
+    timerRunning = true;
+  }
+ 
+ }
+});
 
 
 class Pokemon {
@@ -112,3 +170,4 @@ locationSelect.addEventListener("change", () => {
 function saveUserData() {
   localStorage.setItem("user", JSON.stringify(user));
 }
+
