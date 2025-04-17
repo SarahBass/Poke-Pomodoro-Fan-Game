@@ -30,12 +30,17 @@ function startTimer() {
   const startTime = new Date();
   const endTime = new Date(startTime.getTime() + 25 * 60 * 1000);  // 25 minutes
 
-  // Function to format time as HH:MM
-  function formatTime(date) {
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    return `${hours}:${minutes}`;
-  }
+
+function formatTime(date) {
+  let hours = date.getHours();
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+
+  hours = hours % 12;
+  hours = hours ? hours : 12; // convert '0' to '12'
+
+  return `${hours}:${minutes} ${ampm}`;
+}
 
   // Update the timer every second
   countdownInterval = setInterval(function () {
