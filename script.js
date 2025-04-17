@@ -18,6 +18,13 @@ document.addEventListener("click", function () {
   const welcome = document.getElementById("welcome");
   const pomodoroInfo = document.getElementById("pomodoroInfo");
   const earnPrizes = document.getElementById("EarnPrizes");
+  if (clickCount < 3) {
+    goalSelect.style.display = "inline-block";
+    locationSelect.style.display = "inline-block";
+  } else {
+    goalSelect.style.display = "none";
+    locationSelect.style.display = "none";
+  }
 
   if (clickCount === 1) {
     // First click: show Pomodoro info
@@ -43,8 +50,15 @@ document.addEventListener("click", function () {
     pomodoroInfo.style.display = "none";
     earnPrizes.style.display = "none";
     TaupeCave.style.display = "block";
+    
+      // Update the goal label with user's selected goal
+  const goalLabel = document.getElementById("goalLabel");
+  goalLabel.innerHTML = `Goal selected: <b>${user.goalType}</b>`;
+const PokelocationID = document.getElementById("PokelocationID");
+PokelocationID.innerHTML = `Location selected: <b>${user.location}</b>`;
   }
 });
+
 
 
 class Pokemon {
@@ -63,11 +77,11 @@ class Pokemon {
 
 // Load from localStorage if available
 let user = JSON.parse(localStorage.getItem("user")) || {
-  goalType: "",
+  goalType: "Study",
   pokeball: 0,
   bonusPokeball: 5,
   candy: 0,
-  location: "Taupe",
+  location: "TaupeCave",
   berryPoints: 0,
   team: []
 };
