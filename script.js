@@ -15,6 +15,33 @@ const timerText = document.getElementById("timerText");
 const goalSelect = document.getElementById("goalSelect");
 const locationSelect = document.getElementById("locationSelect");
 
+
+//Game Data Management
+class Pokemon {
+  constructor(name, type, item1, item2, evolution, rarity, personalName = "Enter", hunger = 5, pokedexNumber = 0) {
+    this.name = name;
+    this.type = type;
+    this.item1 = item1;
+    this.item2 = item2;
+    this.evolution = evolution;
+    this.rarity = rarity;
+    this.personalName = personalName;
+    this.hunger = hunger;
+    this.pokedexNumber = pokedexNumber;
+  }
+}
+
+const GameState = {
+  phase: "start",
+  location: null,
+  studyType: null,
+  startTime: null,
+  endTime: null,
+  elapsedTime: 0,
+  pokemonCaught: [],
+  timerInterval: null,
+};
+
 class User {
   constructor(data = {}) {
     this.goalType = data.goalType || "Study";
@@ -143,35 +170,9 @@ locationSelect.addEventListener("change", () => {
   user.save(); // again, use the method inside the class
 });
 
-//Pokemon 
-
-class Pokemon {
-  constructor(name, type, item1, item2, evolution, rarity, personalName = "Enter", hunger = 5, pokedexNumber = 0) {
-    this.name = name;
-    this.type = type;
-    this.item1 = item1;
-    this.item2 = item2;
-    this.evolution = evolution;
-    this.rarity = rarity;
-    this.personalName = personalName;
-    this.hunger = hunger;
-    this.pokedexNumber = pokedexNumber;
-  }
-}
 
 
-//Game Management
 
-const GameState = {
-  phase: "start",
-  location: null,
-  studyType: null,
-  startTime: null,
-  endTime: null,
-  elapsedTime: 0,
-  pokemonCaught: [],
-  timerInterval: null,
-};
 //Start Screen 
 document.getElementById("startButton").addEventListener("click", () => {
   clickCount++;
