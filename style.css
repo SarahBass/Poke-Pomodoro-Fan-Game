@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Patrick+Hand+SC');
+
 body, html {
   margin: 0;
   padding: 0;
@@ -50,7 +52,6 @@ body, html {
   pointer-events: none;
 }
 
-@import url('https://fonts.googleapis.com/css?family=Patrick+Hand+SC');
 
 * {
   box-sizing: border-box;
