@@ -46,7 +46,6 @@ class User {
   constructor(data = {}) {
     this.goalType = data.goalType || "Study";
     this.pokeball = data.pokeball || 0;
-this.pokeball = data.pokeball || 0;
     this.bonusPokeball = data.bonusPokeball || 5;
     this.greatPokeball = data.greatPokeball || 0;
     this.ultraPokeball = data.ultraPokeball || 0;
@@ -289,7 +288,7 @@ function updatePomodoroUI() {
   document.getElementById("pomodoroTimerText").innerHTML = 
     `${minutes}:${seconds}<br>Time Start: ${startTimeStr}<br>Time End: ${endTimeStr}`;
 }
-
+/*
 function populateDropdowns(user) {
   const typeSelect = document.getElementById("pokeballTypeSelect");
   const amountSelect = document.getElementById("pokeballAmountSelect");
@@ -341,13 +340,7 @@ function generateWildPokemon(user, allWildPokemonList) {
   }
 }
 
-const ballType = {
-  bonusPokeball: 1,
-  pokeball: 1,
-  greatPokeball: 2,
-  ultraPokeball: 3,
-  masterPokeball: 20
-};
+
 
 function feedWildPokemon(user, pokeballType, amount, allWildPokemonList) {
   if (!user.wildPokemon || user.wildPokemon.hunger <= 0) return;
@@ -450,4 +443,4 @@ function showPokedexScreen() {
 
     container.appendChild(entry);
   });
-}
+}*/
