@@ -173,7 +173,7 @@ locationSelect.addEventListener("change", () => {
 
 
 //Start Screen 
-document.getElementById("startButton").addEventListener("click", () => {
+document.querySelector(".image-wrapper").addEventListener("click", () => {
   clickCount++;
 
   if (clickCount === 1) {
