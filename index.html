@@ -14,59 +14,41 @@
 <body>
 
 
-  
+
+
 <div class="image-wrapper">
-  <img  id="cleanMenu" class="responsive-image" src="https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/staticbackgrounds/cleanMenu.png?raw=true" alt="Background">
-  <img id="pressStart" class="overlay-img" src="https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/pokemongifs/press%20start.png?raw=true" alt="Press Start">
-
-  <img id="welcome" class="overlay-img" src="https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/infographics/Welcome.png?raw=true" alt="Welcome">
- 
- <img id="pomodoroInfo" class="overlay-img" src="https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/infographics/PomodoroExplained.PNG?raw=true" alt="Press Next" style="display: none;">
- 
-  <img id="TaupeCave" class="responsive-image" src="https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/staticbackgrounds/taupehollow.PNG?raw=true" alt="Press Next" style="display: none;">
- 
-<img id="EarnPrizes" class="overlay-img" src="https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/pokemongifs/playanimated.png?raw=true" alt="Let's Begin our Pokemon Journey!" style="display: none;">
-
+  <img
+    id="Pokedexpage"
+    class="overlay-img"
+    src="https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/staticbackgrounds/pokedex.PNG?raw=true"
+    alt="Let's Begin our Pokemon Journey!"
+    style="display: block;"
+  />
+  <img
+    id="pokedexImage"
+    class="flash-image"
+    src=""
+    alt="Pokemon Image"
+    style="display: block;"
+  />
+  
+</div>
+ <!-- CANDY DISPLAY -->
+  <div id="candyDisplay" class="candy-display">Candy: 0</div>
+</div>
+<div>
+  <label for="pokedexSelect">Pokedex:</label>
+  <select id="pokedexSelect"></select>
 </div>
 
-  <!-- Timer text -->
-  <div id="timerText" style="display: none; color: white; font-size: 12px; text-align: center; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10;">
-    25:00 <br> Time Start: Hour:Minute <br> Time End: Hour:Minute
-  </div>
 
 
-
-  <label id="goalLabel" for="goalSelect">Choose your <b> Goal </b>:</label>
-  <select id="goalSelect">
-    <option value="">--Select Goal--</option>
-    <option value="Study">Study</option>
-    <option value="Read">Read</option>
-    <option value="Clean">Clean</option>
-    <option value="PayBill">Pay Bill</option>
-    <option value="MakeCall">Make Call</option>
-    <option value="Computer">Computer</option>
-    <option value="Write">Write</option>
-    <option value="Math">Math</option>
-  </select>
-  <label id= "PokelocationID" for="locationSelect">Choose your <b>Focus</b> location:</label>
-  <select id="locationSelect">
-    <option value="">--Select Location--</option>
-    <option value="TaupeCave">Taupe Cave</option>
-    <option value="Locked">Locked Level</option>
-    <option value="Locked">Locked Level</option>
-    <option value="Locked"> Locked Level</option>
-  </select>
-
-
-    <!-- Disclaimer message -->
-  
-<div class="disclaimer">
-  <p>Disclaimer : This is a fan-made game and is not affiliated with or endorsed by Nintendo, The Pokémon Company, or Pomodoro.</p>
- 
+<div>
+ <label>Use Candy: </label>
+<button id="evolveButton">Can't Evolve</button>
+<div>
+  <label for="nameInput">Enter Name:</label>
+  <input type="text" id="nameInput" />
 </div>
-
-  
-
-  <script src="script.js"></script>
 </body>
 </html>
