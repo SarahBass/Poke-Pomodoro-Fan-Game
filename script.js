@@ -29,7 +29,7 @@ class User {
     this.greatPokeball = data.greatPokeball || 0;
     this.ultraPokeball = data.ultraPokeball || 0;
     this.masterPokeball = data.masterPokeball || 1;
-    this.candy = data.candy || 4;
+    this.candy = data.candy || 10;
     this.location = data.location || "TaupeCave";
     this.berryPoints = data.berryPoints || 0;
     this.team = data.team?.map(p => new Pokemon(...Object.values(p))) || User.defaultTeam();
@@ -43,6 +43,7 @@ class User {
       new Pokemon("specialzubat", "poison", "cookie", "none", 1, 1, "Enter", 5, 941, "specialzu", 6),
       new Pokemon("cloyster", "water", "berry", "cookie", 3, 1, "Enter", 10, 91, "cl", 11),
       new Pokemon("onix", "rock", "candy", "none", 3, 1, "Enter", 20, 95, "o", 11),
+     new Pokemon("geodude", "rock", "berry", "none", 1, 0, "Enter", 7, 74),
     ];
   }
 }
@@ -57,11 +58,28 @@ const wildPokemonPool = [
   new Pokemon("shellder", "water", "berry", "none", 1, 0, "Enter", 5, 90),
   new Pokemon("zubat", "poison", "berry", "none", 1, 1, "Enter", 5, 41, "zu", 7),
   new Pokemon("golbat", "poison", "berry", "cookie", 3, 1, "Enter", 10, 42, "gol", 7),
-  new Pokemon("specialzubat", "poison", "cookie", "none", 1, 1, "Enter", 5, 941, "specialzu", 6),
-  new Pokemon("specialgolbat", "cookie", "cookie", 3, 1, "Enter", 0, 942, "gol", 6),
+  new Pokemon("specialzubat", "poison", "berry","cookie", 1, 1, "Enter", 0, 941, "specialzu", 6),
+  new Pokemon("specialgolbat", "poison", "cookie", "cookie", 3, 0, "Enter", 0, 942, "gol", 6),
   new Pokemon("cloyster", "water", "berry", "cookie", 3, 1, "Enter", 10, 91, "cl", 11),
   new Pokemon("onix", "rock", "candy", "none", 3, 1, "Enter", 20, 95, "o", 11),
 ];
+
+function clonePokemon(template, personalName = "Enter") {
+  return new Pokemon(
+    template.name,
+    template.type,
+    template.item1,
+    template.item2,
+    template.evolution,
+    template.rarity,
+    personalName,
+    template.hunger,
+    template.pokedexNumber,
+    template.animationName,
+    template.animationNumber
+  );
+}
+
 
 const user = new User();
 document.getElementById('candyDisplay').textContent = "Candy: " + user.candy;
@@ -82,14 +100,15 @@ function evolvePokemon(index) {
   updateCandyDisplay();
 
   const holdName = pokemon.personalName;
-  const holdEvolutionNumber = pokemon.pokedexNumber + 1;
+  const holdEvolutionNumber = pokemon.pokedexNumber + 1;  // Increment pokedexNumber by 1 for evolution
 
   user.team.splice(index, 1);
 
-  const evolved = wildPokemonPool.find(p => p.pokedexNumber === holdEvolutionNumber);
+  // Try to find the evolved Pokémon by pokedexNumber
+  const evolvedTemplate = wildPokemonPool.find(p => p.pokedexNumber === holdEvolutionNumber);
 
-  if (evolved) {
-    evolved.personalName = holdName;
+  if (evolvedTemplate) {
+    const evolved = clonePokemon(evolvedTemplate, holdName);
     user.team.push(evolved);
     console.log(`${holdName} has evolved!`);
   } else {
@@ -98,7 +117,6 @@ function evolvePokemon(index) {
 
   updatePokedexMenu();
 }
-
 function updatePokedexMenu() {
   pokedexSelect.innerHTML = "";
 
@@ -109,8 +127,12 @@ function updatePokedexMenu() {
     pokedexSelect.appendChild(option);
   });
 
-  if (user.team.length > 0) {
-    const selectedIndex = parseInt(pokedexSelect.value) || 0;
+  // Ensure the selected index stays valid even after an evolution
+  const selectedIndex = parseInt(pokedexSelect.value) || 0;
+
+  // Ensure the new team length is considered and select a valid option
+  if (user.team.length > 0 && selectedIndex < user.team.length) {
+    pokedexSelect.value = selectedIndex;
     displayPokemonInfo(selectedIndex);
   }
 }
