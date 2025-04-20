@@ -2,9 +2,9 @@ const pokedexSelect = document.getElementById("pokedexSelect");
 const nameInput = document.getElementById("nameInput");
 const pokedexImage = document.getElementById("pokedexImage");
 const evolveButton = document.getElementById("evolveButton");
-const PokedexbasePath = "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/pokedex/";
-//const PokedexbasePath = "https://raw.githubusercontent.com/SarahBass/Poke-Pomodoro-Fan-Game/main/pokedex/";  // Fixed image path
+const PokedexbasePath = "https://raw.githubusercontent.com/SarahBass/Poke-Pomodoro-Fan-Game/main/pokedex/";  // Fixed image path
 pokedexImage.style.display = "block";
+
 class Pokemon {
   constructor(name, type, item1, item2, evolution, rarity, personalName = "Enter", hunger = 5, pokedexNumber = 0, animationName = "", animationNumber = 0) {
     this.name = name;
@@ -79,8 +79,6 @@ function evolvePokemon(index) {
   }
 
   user.candy -= 3;
-  
-  // Update the candy display after subtracting
   updateCandyDisplay();
 
   const holdName = pokemon.personalName;
@@ -112,15 +110,19 @@ function updatePokedexMenu() {
   });
 
   if (user.team.length > 0) {
-    displayPokemonInfo(parseInt(pokedexSelect.value) || 0);
+    const selectedIndex = parseInt(pokedexSelect.value) || 0;
+    displayPokemonInfo(selectedIndex);
   }
 }
 
-function displayPokemonInfo(index) {
+function displayPokemonVisuals(index) {
   const pokemon = user.team[index];
- pokedexImage.src = `${PokedexbasePath}${pokemon.name}.PNG`;
+  pokedexImage.src = `${PokedexbasePath}${pokemon.name}.PNG`;
   nameInput.value = pokemon.personalName;
+}
 
+function updateEvolveButton(index) {
+  const pokemon = user.team[index];
   if (pokemon.evolution >= 3 || user.candy < 3 || pokemon.evolution < 1) {
     evolveButton.textContent = "Can't Evolve";
     evolveButton.disabled = true;
@@ -128,6 +130,12 @@ function displayPokemonInfo(index) {
     evolveButton.textContent = "Evolve";
     evolveButton.disabled = false;
   }
+}
+
+// New refactored function that uses the two above
+function displayPokemonInfo(index) {
+  displayPokemonVisuals(index);
+  updateEvolveButton(index);
 }
 
 // Event: dropdown select
@@ -151,11 +159,10 @@ evolveButton.addEventListener("click", function () {
 // Initialize
 function initializePokedex() {
   if (user.team.length > 0) {
-    pokedexSelect.value = 0;  // Start with the first Pokemon if team is available
+    pokedexSelect.value = 0;
     updatePokedexMenu();
     displayPokemonInfo(0);
   }
 }
 
 initializePokedex();
-
