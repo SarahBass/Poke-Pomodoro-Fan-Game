@@ -2,7 +2,8 @@ const pokedexSelect = document.getElementById("pokedexSelect");
 const nameInput = document.getElementById("nameInput");
 const pokedexImage = document.getElementById("pokedexImage");
 const evolveButton = document.getElementById("evolveButton");
-const PokedexbasePath = "https://raw.githubusercontent.com/SarahBass/Poke-Pomodoro-Fan-Game/main/pokedex/";  // Fixed image path
+const PokedexbasePath = "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/pokedex/";
+//const PokedexbasePath = "https://raw.githubusercontent.com/SarahBass/Poke-Pomodoro-Fan-Game/main/pokedex/";  // Fixed image path
 pokedexImage.style.display = "block";
 class Pokemon {
   constructor(name, type, item1, item2, evolution, rarity, personalName = "Enter", hunger = 5, pokedexNumber = 0, animationName = "", animationNumber = 0) {
@@ -117,7 +118,7 @@ function updatePokedexMenu() {
 
 function displayPokemonInfo(index) {
   const pokemon = user.team[index];
-  pokedexImage.src = `${PokedexbasePath}${pokemon.name}.PNG?raw=true`;
+ pokedexImage.src = `${PokedexbasePath}${pokemon.name}.PNG`;
   nameInput.value = pokemon.personalName;
 
   if (pokemon.evolution >= 3 || user.candy < 3 || pokemon.evolution < 1) {
