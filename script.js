@@ -2,8 +2,8 @@ const pokedexSelect = document.getElementById("pokedexSelect");
 const nameInput = document.getElementById("nameInput");
 const pokedexImage = document.getElementById("pokedexImage");
 const evolveButton = document.getElementById("evolveButton");
-const PokedexbasePath = "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/pokedex/";
-
+const PokedexbasePath = "https://raw.githubusercontent.com/SarahBass/Poke-Pomodoro-Fan-Game/main/pokedex/";  // Fixed image path
+pokedexImage.style.display = "block";
 class Pokemon {
   constructor(name, type, item1, item2, evolution, rarity, personalName = "Enter", hunger = 5, pokedexNumber = 0, animationName = "", animationNumber = 0) {
     this.name = name;
@@ -56,7 +56,7 @@ const wildPokemonPool = [
   new Pokemon("shellder", "water", "berry", "none", 1, 0, "Enter", 5, 90),
   new Pokemon("zubat", "poison", "berry", "none", 1, 1, "Enter", 5, 41, "zu", 7),
   new Pokemon("golbat", "poison", "berry", "cookie", 3, 1, "Enter", 10, 42, "gol", 7),
-  new Pokemon("specialzubat", "poison", "cookie", 1, 1, "Enter", 5, 941, "specialzu", 6),
+  new Pokemon("specialzubat", "poison", "cookie", "none", 1, 1, "Enter", 5, 941, "specialzu", 6),
   new Pokemon("specialgolbat", "cookie", "cookie", 3, 1, "Enter", 0, 942, "gol", 6),
   new Pokemon("cloyster", "water", "berry", "cookie", 3, 1, "Enter", 10, 91, "cl", 11),
   new Pokemon("onix", "rock", "candy", "none", 3, 1, "Enter", 20, 95, "o", 11),
@@ -115,8 +115,6 @@ function updatePokedexMenu() {
   }
 }
 
-
-
 function displayPokemonInfo(index) {
   const pokemon = user.team[index];
   pokedexImage.src = `${PokedexbasePath}${pokemon.name}.PNG?raw=true`;
@@ -129,7 +127,6 @@ function displayPokemonInfo(index) {
     evolveButton.textContent = "Evolve";
     evolveButton.disabled = false;
   }
-
 }
 
 // Event: dropdown select
@@ -149,10 +146,15 @@ evolveButton.addEventListener("click", function () {
   const selectedIndex = parseInt(pokedexSelect.value);
   evolvePokemon(selectedIndex);
 });
-pokedexImage.style.display = "block";
 
 // Initialize
-updatePokedexMenu();
-pokedexSelect.value = user.team.length - 1;
-displayPokemonInfo(user.team.length - 1);
+function initializePokedex() {
+  if (user.team.length > 0) {
+    pokedexSelect.value = 0;  // Start with the first Pokemon if team is available
+    updatePokedexMenu();
+    displayPokemonInfo(0);
+  }
+}
+
+initializePokedex();
 
