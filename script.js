@@ -1,165 +1,158 @@
-@import url('https://fonts.googleapis.com/css?family=Patrick+Hand+SC');
+const pokedexSelect = document.getElementById("pokedexSelect");
+const nameInput = document.getElementById("nameInput");
+const pokedexImage = document.getElementById("pokedexImage");
+const evolveButton = document.getElementById("evolveButton");
+const PokedexbasePath = "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/pokedex/";
 
-body, html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
-  overflow: scroll;
-}
-
-.image-wrapper {
-  position: top;
-  width: 100%;
-  height: 100%;
-  pointer-events: none
-}
-
-.responsive-image {
-  width: 100%;
-  height: auto;
-  display: block;
-  pointer-events: none
-  z-index: 2;
-}
-
-.disclaimer {
-  position: relative;
-  padding: 1em;
-  text-align: center;
-  font-size: 0.9em;
-  color: #555;
-  background-color: rgba(255, 255, 255, 0.8);
-  margin-top: 10px;
-  font-family: sans-serif;
-}
-
-.flash-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
-  display: none; /* Start with the image hidden */
-  z-index: 10;
-}
-
-.overlay-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
-  pointer-events: none;
-}
-
-
-* {
-  box-sizing: border-box;
-}
-html, body {
-  width: 100%;
-  min-height: 100%;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background: #F0F0D8;
-  font-family: 'Patrick Hand SC', cursive;
-}
-h1 {
-  margin-top: -5rem;
-  text-align: center;
-  color: #41403E;
-  font-size: 3rem;
-}
-section {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 100%;
-  min-height: 100%;
-  margin-bottom: 3rem;
-}
-section button {
-  align-self: center;
-  background: transparent;
-  padding: 1rem 1rem;
-  margin: 0 1rem;
-  transition: all .5s ease;
-  color: #41403E;
-  font-size: 2rem;
-  letter-spacing: 1px;
-  outline: none;
-  box-shadow: 20px 38px 34px -26px hsla(0,0%,0%,.2);
-  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
-}
-section button:hover {
-  box-shadow: 2px 8px 4px -6px hsla(0,0%,0%,.3);
-}
-button.lined.thick {
-  border: solid 7px #41403E;
-}
-button.dotted.thick {
-  border: dotted 5px #41403E;
-}
-button.dashed.thick {
-  border: dashed 5px #41403E;
-}
-button.lined.thin {
-  border: solid 2px #41403E;
-}
-button.dotted.thin {
-  border: dotted 2px #41403E;
-}
-button.dashed.thin {
-  border: dashed 2px #41403E;
-}
-
-@media (max-width: 620px) {
-  h1 {
-    margin-top: 2rem;
-  }
-  section {
-    flex-direction: column;
-    margin-bottom: 1rem;
-  }
-  section button {
-    align-self: center;
-    margin-bottom: 2rem;
+class Pokemon {
+  constructor(name, type, item1, item2, evolution, rarity, personalName = "Enter", hunger = 5, pokedexNumber = 0, animationName = "", animationNumber = 0) {
+    this.name = name;
+    this.type = type;
+    this.item1 = item1;
+    this.item2 = item2;
+    this.evolution = evolution;
+    this.rarity = rarity;
+    this.personalName = personalName;
+    this.hunger = hunger;
+    this.pokedexNumber = pokedexNumber;
+    this.animationName = animationName;
+    this.animationNumber = animationNumber;
   }
 }
 
-.circular-button {
-  position: absolute;
-  top: 80%; /* adjust for where you want it */
-  left: 50%;
-  transform: translate(-40%, -60%);
-  width: 280px;
-  height: 240px;
-  border-radius: 50%;
-  font-size: 0.8rem;
-  background: transparent;
-  border: dotted 5px #41403E;
-  color: #41403E;
-  box-shadow: 4px 6px 8px rgba(0, 0, 0, 0.2);
-  z-index: 10; /* make sure it's on top */
-}
-.candy-display {
-  position: relative;
-  top: -65%;
-  right: -20%;
-  color: #FFCC00;
-  font-size: 3rem;
-  font-family: 'Patrick Hand SC', cursive;
-  text-shadow: 2px 2px #000;
-  z-index: 20;
-  padding: 0.5em 1em;
- 
-}
-@media (max-width: 768px) {
-  .candy-display {
-    font-size: 10vw; /* Make the font bigger on smaller screens */
+class User {
+  constructor(data = {}) {
+    this.goalType = data.goalType || "Study";
+    this.pokeball = data.pokeball || 0;
+    this.bonusPokeball = data.bonusPokeball || 5;
+    this.greatPokeball = data.greatPokeball || 0;
+    this.ultraPokeball = data.ultraPokeball || 0;
+    this.masterPokeball = data.masterPokeball || 1;
+    this.candy = data.candy || 4;
+    this.location = data.location || "TaupeCave";
+    this.berryPoints = data.berryPoints || 0;
+    this.team = data.team?.map(p => new Pokemon(...Object.values(p))) || User.defaultTeam();
+  }
 
+  static defaultTeam() {
+    return [
+      new Pokemon("zubat", "poison", "berry", "none", 1, 1, "Enter", 5, 41, "zu", 7),
+      new Pokemon("golbat", "poison", "berry", "cookie", 3, 1, "Enter", 10, 42, "gol", 7),
+      new Pokemon("zubat", "poison", "berry", "none", 1, 1, "Enter", 5, 41, "zu", 7),
+      new Pokemon("specialzubat", "poison", "cookie", "none", 1, 1, "Enter", 5, 941, "specialzu", 6),
+      new Pokemon("cloyster", "water", "berry", "cookie", 3, 1, "Enter", 10, 91, "cl", 11),
+      new Pokemon("onix", "rock", "candy", "none", 3, 1, "Enter", 20, 95, "o", 11),
+    ];
   }
 }
+
+const wildPokemonPool = [
+  new Pokemon("geodude", "rock", "berry", "none", 1, 0, "Enter", 7, 74),
+  new Pokemon("graveler", "rock", "berry", "berry", 2, 0, "Enter", 14, 75),
+  new Pokemon("golem", "rock", "cookie", "cookie", 3, 0, "Enter", 20, 76),
+  new Pokemon("caterpie", "bug", "berry", "none", 1, 0, "Enter", 5, 10),
+  new Pokemon("metapod", "bug", "berry", "berry", 2, 0, "Enter", 10, 11),
+  new Pokemon("butterfree", "bug", "berry", "cookie", 3, 0, "Enter", 15, 12),
+  new Pokemon("shellder", "water", "berry", "none", 1, 0, "Enter", 5, 90),
+  new Pokemon("zubat", "poison", "berry", "none", 1, 1, "Enter", 5, 41, "zu", 7),
+  new Pokemon("golbat", "poison", "berry", "cookie", 3, 1, "Enter", 10, 42, "gol", 7),
+  new Pokemon("specialzubat", "poison", "cookie", 1, 1, "Enter", 5, 941, "specialzu", 6),
+  new Pokemon("specialgolbat", "cookie", "cookie", 3, 1, "Enter", 0, 942, "gol", 6),
+  new Pokemon("cloyster", "water", "berry", "cookie", 3, 1, "Enter", 10, 91, "cl", 11),
+  new Pokemon("onix", "rock", "candy", "none", 3, 1, "Enter", 20, 95, "o", 11),
+];
+
+const user = new User();
+document.getElementById('candyDisplay').textContent = "Candy: " + user.candy;
+
+function updateCandyDisplay() {
+  document.getElementById('candyDisplay').textContent = "Candy: " + user.candy;
+}
+
+function evolvePokemon(index) {
+  const pokemon = user.team[index];
+
+  if (!pokemon || pokemon.evolution >= 3 || user.candy < 3) {
+    console.log("Can't evolve.");
+    return;
+  }
+
+  user.candy -= 3;
+  
+  // Update the candy display after subtracting
+  updateCandyDisplay();
+
+  const holdName = pokemon.personalName;
+  const holdEvolutionNumber = pokemon.pokedexNumber + 1;
+
+  user.team.splice(index, 1);
+
+  const evolved = wildPokemonPool.find(p => p.pokedexNumber === holdEvolutionNumber);
+
+  if (evolved) {
+    evolved.personalName = holdName;
+    user.team.push(evolved);
+    console.log(`${holdName} has evolved!`);
+  } else {
+    console.log("No evolved form found.");
+  }
+
+  updatePokedexMenu();
+}
+
+function updatePokedexMenu() {
+  pokedexSelect.innerHTML = "";
+
+  user.team.forEach((pokemon, index) => {
+    const option = document.createElement("option");
+    option.value = index;
+    option.textContent = `#${pokemon.pokedexNumber} ${pokemon.name}`;
+    pokedexSelect.appendChild(option);
+  });
+
+  if (user.team.length > 0) {
+    displayPokemonInfo(parseInt(pokedexSelect.value) || 0);
+  }
+}
+
+
+
+function displayPokemonInfo(index) {
+  const pokemon = user.team[index];
+  pokedexImage.src = `${PokedexbasePath}${pokemon.name}.PNG?raw=true`;
+  nameInput.value = pokemon.personalName;
+
+  if (pokemon.evolution >= 3 || user.candy < 3 || pokemon.evolution < 1) {
+    evolveButton.textContent = "Can't Evolve";
+    evolveButton.disabled = true;
+  } else {
+    evolveButton.textContent = "Evolve";
+    evolveButton.disabled = false;
+  }
+
+}
+
+// Event: dropdown select
+pokedexSelect.addEventListener("change", function () {
+  const selectedIndex = parseInt(this.value);
+  displayPokemonInfo(selectedIndex);
+});
+
+// Event: rename input
+nameInput.addEventListener("input", function () {
+  const selectedIndex = parseInt(pokedexSelect.value);
+  user.team[selectedIndex].personalName = this.value;
+});
+
+// Event: evolve button
+evolveButton.addEventListener("click", function () {
+  const selectedIndex = parseInt(pokedexSelect.value);
+  evolvePokemon(selectedIndex);
+});
+pokedexImage.style.display = "block";
+
+// Initialize
+updatePokedexMenu();
+pokedexSelect.value = user.team.length - 1;
+displayPokemonInfo(user.team.length - 1);
+
