@@ -160,6 +160,4 @@ button.dashed.thin {
 @media (max-width: 768px) {
   .candy-display {
     font-size: 10vw; /* Make the font bigger on smaller screens */
-
-  }
-}
+ }}
