@@ -221,4 +221,3 @@ displayPokemonInfo(user.team.length - 1);
   save() {
     localStorage.setItem("user", JSON.stringify(this));
   }
-
