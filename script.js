@@ -3,6 +3,11 @@ const nameInput = document.getElementById("nameInput");
 const pokedexImage = document.getElementById("pokedexImage");
 const evolveButton = document.getElementById("evolveButton");
 const PokedexbasePath = "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/pokedex/";
+let timerRunning = false;
+let countdownInterval;
+let elapsedTime = 0;
+
+//------------------Pokemon and User LOCAL Data Management ----------------//
 
 class Pokemon {
   constructor(name, type, item1, item2, evolution, rarity, personalName = "Enter", hunger = 5, pokedexNumber = 0, animationName = "", animationNumber = 0) {
@@ -100,6 +105,8 @@ function evolvePokemon(index) {
   updatePokedexMenu();
 }
 
+//---------------Update Pokedex -------------------//
+
 function updatePokedexMenu() {
   pokedexSelect.innerHTML = "";
 
@@ -114,8 +121,6 @@ function updatePokedexMenu() {
     displayPokemonInfo(parseInt(pokedexSelect.value) || 0);
   }
 }
-
-
 
 function displayPokemonInfo(index) {
   const pokemon = user.team[index];
@@ -150,6 +155,62 @@ evolveButton.addEventListener("click", function () {
   evolvePokemon(selectedIndex);
 });
 pokedexImage.style.display = "block";
+
+//------------Animation Functions --------------------------------------------------//
+
+const basePath = "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/pokemongifs/";
+const imageElement = document.getElementById("cloyster");
+const preloadedFrames = {};
+
+function preloadAllAnimations() {
+  user.team.forEach(pokemon => {
+    const key = pokemon.pokedexNumber;
+    if (!preloadedFrames[key]) {
+      const frames = [];
+
+      const blank = new Image();
+      blank.src = `${basePath}blank.png?raw=true`;
+      frames.push(blank);
+
+      for (let i = 1; i <= pokemon.animationNumber; i++) {
+        const img = new Image();
+        img.src = `${basePath}${pokemon.animationName}${i}.png?raw=true`;
+        frames.push(img);
+      }
+
+      preloadedFrames[key] = frames;
+    }
+  });
+}
+
+const fps = 6;
+const frameDuration = 1000 / fps;
+
+let currentPokemonIndex = 0;
+let currentFrameIndex = 0;
+let currentAnimationFrames = [];
+let animationLoop;
+
+function loadAnimationFrames(pokemon) {
+  const key = pokemon.pokedexNumber;
+  return preloadedFrames[key] || [];
+}
+
+function playNextFrame() {
+  if (currentFrameIndex < currentAnimationFrames.length) {
+    imageElement.src = currentAnimationFrames[currentFrameIndex].src;
+    currentFrameIndex++;
+  } else {
+    clearInterval(animationLoop);
+    setTimeout(() => {
+      currentPokemonIndex = (currentPokemonIndex + 1) % user.team.length;
+      const nextPokemon = user.team[currentPokemonIndex];
+      currentAnimationFrames = loadAnimationFrames(nextPokemon);
+      currentFrameIndex = 0;
+      animationLoop = setInterval(playNextFrame, frameDuration);
+    },0 ); // 500ms pause before next Pokémon
+  }
+}
 
 // Initialize
 updatePokedexMenu();
