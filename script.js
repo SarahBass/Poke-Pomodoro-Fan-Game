@@ -63,19 +63,32 @@ class User {
       new Pokemon("specialzubat", "poison", "cookie", "none", 1, 1, "Enter", 5, 941, "specialzu", 6),
       new Pokemon("cloyster", "water", "berry", "cookie", 3, 1, "Enter", 10, 91, "cl", 11),
       new Pokemon("onix", "rock", "candy", "none", 3, 1, "Enter", 20, 95, "o", 11),
-      
+      new Pokemon("gastly", "ghost", "berry", "none", 1, 0, "Enter", 7, 92,"gastly", 7),
+       new Pokemon("caterpie", "bug", "berry", "none", 1, 0, "Enter", 5, 10, "ca", 7),
+        new Pokemon("krabby", "water", "berry", "none", 1, 0, "Enter", 5, 99, "crab",7),
     ];
   }
 }
 
 const wildPokemonPool = [
+ new Pokemon("krabby", "water", "berry", "none", 1, 0, "Enter", 5, 99, "crab",7),
+  new Pokemon("kingler", "water", "berry", "berry", 3, 0, "Enter", 5, 100, "king",6),
+new Pokemon("omanyte", "water", "berry", "none", 1, 0, "Enter", 5, 138, "omanyte",7),
+new Pokemon("omastar", "water", "berry", "cookie", 3, 0, "Enter", 5, 139, "omastar",4),
+new Pokemon("paras", "bug", "berry", "none", 1, 0, "Enter", 7, 46,"paras", 5),
+new Pokemon("parasect", "bug", "berry", "berry", 3, 0, "Enter", 7, 47,"parasect", 1),
+new Pokemon("venonat", "bug", "berry", "none", 1, 0, "Enter", 7, 48,"venonaut", 9),
+new Pokemon("venomoth", "bug", "berry", "berry", 3, 0, "Enter", 7, 49,"venomoth", 7),
+   new Pokemon("gastly", "ghost", "berry", "none", 1, 0, "Enter", 7, 92,"gastly", 7),
+   new Pokemon("haunter", "ghost", "berry", "berry", 2, 0, "Enter", 7, 93,"haunt", 5),
+   new Pokemon("gengar", "ghost", "cookie", "cookie", 3, 0, "Enter", 7, 94,"gengar", 5),
    new Pokemon("geodude", "rock", "berry", "none", 1, 0, "Enter", 7, 74,"geo", 7),
   new Pokemon("graveler", "rock", "berry", "berry", 2, 0, "Enter", 14, 75, "grav",7),
   new Pokemon("golem", "rock", "cookie", "cookie", 3, 0, "Enter", 20, 76, "golem",11),
   new Pokemon("caterpie", "bug", "berry", "none", 1, 0, "Enter", 5, 10, "ca", 7),
-  new Pokemon("metapod", "bug", "berry", "berry", 2, 0, "Enter", 10, 11, "me", 7),
-  new Pokemon("butterfree", "bug", "berry", "cookie", 3, 0, "Enter", 15, 12, "bu",7),
-  new Pokemon("shellder", "water", "berry", "none", 1, 0, "Enter", 5, 90, "shel",7),
+  new Pokemon("metapod", "bug", "berry", "berry", 2, 0, "Enter", 10, 11, "meta", 6),
+  new Pokemon("butterfree", "bug", "berry", "cookie", 3, 0, "Enter", 15, 12, "butter",11),
+  new Pokemon("shellder", "water", "berry", "none", 1, 0, "Enter", 5, 90, "shel",8),
   new Pokemon("zubat", "poison", "berry", "none", 1, 1, "Enter", 5, 41, "zu", 7),
   new Pokemon("golbat", "poison", "berry", "cookie", 3, 1, "Enter", 10, 42, "gol", 7),
   new Pokemon("specialzubat", "poison", "berry","cookie", 1, 1, "Enter", 0, 941, "specialzu", 6),
