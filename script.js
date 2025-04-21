@@ -328,15 +328,32 @@ function formatTime(seconds) {
 
 function getCurrentTimeFormatted() {
   const now = new Date();
-  return `${now.getHours()}:${String(now.getMinutes()).padStart(2, '0')}`;
+  let hours = now.getHours();
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+  hours = hours % 12;
+  hours = hours ? hours : 12; // 0 becomes 12
+  return `${hours}:${minutes} ${ampm}`;
 }
 
 function startTimer() {
   if (timerRunning) return;
 
-  const startTime = getCurrentTimeFormatted();
+  // Format current time in 12-hour format with AM/PM
+  const now = new Date();
+  let startHours = now.getHours();
+  const startMinutes = String(now.getMinutes()).padStart(2, '0');
+  const startAMPM = startHours >= 12 ? 'PM' : 'AM';
+  startHours = startHours % 12 || 12;
+  const startTimeFormatted = `${startHours}:${startMinutes} ${startAMPM}`;
+
+  // Calculate and format end time in 12-hour format with AM/PM
   const endTime = new Date(Date.now() + totalDuration * 1000);
-  const endTimeFormatted = `${endTime.getHours()}:${String(endTime.getMinutes()).padStart(2, '0')}`;
+  let endHours = endTime.getHours();
+  const endMinutes = String(endTime.getMinutes()).padStart(2, '0');
+  const endAMPM = endHours >= 12 ? 'PM' : 'AM';
+  endHours = endHours % 12 || 12;
+  const endTimeFormatted = `${endHours}:${endMinutes} ${endAMPM}`;
 
   const timerTextDiv = document.getElementById("timerText");
   timerTextDiv.style.display = "block";
@@ -349,9 +366,11 @@ function startTimer() {
       clearInterval(countdownInterval);
       timerRunning = false;
     }
+    
+    
 
     const timeRemaining = totalDuration - elapsedTime;
-    timerTextDiv.innerHTML = `${formatTime(timeRemaining)}<br>Time Start: ${startTime}<br>Time End: ${endTimeFormatted}`;
+    timerTextDiv.innerHTML = `${formatTime(timeRemaining)}<br>Time Start: ${startTimeFormatted}<br>Time End: ${endTimeFormatted}`;
     elapsedTime++;
   }, 1000);
 }
