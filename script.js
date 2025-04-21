@@ -21,9 +21,10 @@ const preloadedFrames = {};
 navToggle.addEventListener('click', () => {
   navMenu.classList.toggle('collapsed');
 });
-// ==================== CONSTANTS ====================
+// ==================== Graphic CONSTANTS ====================
 const PokedexbasePath = "https://raw.githubusercontent.com/SarahBass/Poke-Pomodoro-Fan-Game/main/pokedex/";
-const TaupeCave = document.getElementById("TaupeCave");
+const LocationPathway = "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/staticbackgrounds/"; 
+
 // ==================== DATA CLASSES ====================
 class Pokemon {
   constructor(name, type, item1, item2, evolution, rarity, personalName = "Enter", hunger = 5, pokedexNumber = 0, animationName = "", animationNumber = 0) {
@@ -50,7 +51,7 @@ class User {
     this.ultraPokeball = data.ultraPokeball || 0;
     this.masterPokeball = data.masterPokeball || 1;
     this.candy = data.candy || 10;
-    this.location = data.location || "TaupeCave";
+    this.location = data.location || "taupecave";
     this.berryPoints = data.berryPoints || 0;
     this.team = data.team?.map(p => new Pokemon(...Object.values(p))) || User.defaultTeam();
   }
@@ -229,13 +230,23 @@ function evolvePokemon(index) {
 }
 
 // ==================== NAVIGATION LOGIC ====================
+function setLocation(location) {
+  const locationImage = document.getElementById("LocationPath");
+  if (locationImage) {
+    locationImage.src = `${LocationPathway}${location}.PNG?raw=true`;
+    locationImage.style.display = "block";
+  }
+}
+
+
 function hideAllPhases() {
   document.querySelectorAll(".phase").forEach(p => p.style.display = "none");
-  document.getElementById("pokedexContainer").style.display = "none";  // Hide Pokedex explicitly here
+  document.getElementById("pokedexContainer").style.display = "none";  // Hide Pokedex explicitly 
+  
 document.getElementById("pokedexImage").style.display = "none";
   document.getElementById("Pokedexpage").style.display = "none";  // Hide Pokedex images here
   document.getElementById("cloyster").style.display = "none";
-    TaupeCave.style.display = "none";
+   // LocationPath.style.display = "none";
     clearInterval(animationLoop);
 }
 
@@ -247,9 +258,11 @@ function showStartPhase() {
 function showPomodoroPhase() {
   hideAllPhases();
      clearInterval(animationLoop);
-  document.querySelector(".PomodoroWrapper").style.display = "block";
-  TaupeCave.style.display = "block";
+ document.querySelector(".PomodoroWrapper").style.display = "block";
+ setLocation(user.location);
+   // document.getElementById(".locationImage").style.display = "block";
   document.getElementById("cloyster").style.display = "block";
+ 
  preloadAllAnimations();
 currentAnimationFrames = loadAnimationFrames(user.team[currentPokemonIndex]);
 animationLoop = setInterval(playNextFrame, frameDuration);
