@@ -1,10 +1,14 @@
+// ==================== GLOBAL DOM REFERENCES ====================
 const pokedexSelect = document.getElementById("pokedexSelect");
 const nameInput = document.getElementById("nameInput");
 const pokedexImage = document.getElementById("pokedexImage");
 const evolveButton = document.getElementById("evolveButton");
-const PokedexbasePath = "https://raw.githubusercontent.com/SarahBass/Poke-Pomodoro-Fan-Game/main/pokedex/";  // Fixed image path
-pokedexImage.style.display = "block";
+const navButtons = document.querySelectorAll('.navigationButton');
 
+// ==================== CONSTANTS ====================
+const PokedexbasePath = "https://raw.githubusercontent.com/SarahBass/Poke-Pomodoro-Fan-Game/main/pokedex/";
+
+// ==================== DATA CLASSES ====================
 class Pokemon {
   constructor(name, type, item1, item2, evolution, rarity, personalName = "Enter", hunger = 5, pokedexNumber = 0, animationName = "", animationNumber = 0) {
     this.name = name;
@@ -43,7 +47,7 @@ class User {
       new Pokemon("specialzubat", "poison", "cookie", "none", 1, 1, "Enter", 5, 941, "specialzu", 6),
       new Pokemon("cloyster", "water", "berry", "cookie", 3, 1, "Enter", 10, 91, "cl", 11),
       new Pokemon("onix", "rock", "candy", "none", 3, 1, "Enter", 20, 95, "o", 11),
-     new Pokemon("geodude", "rock", "berry", "none", 1, 0, "Enter", 7, 74),
+      new Pokemon("geodude", "rock", "berry", "none", 1, 0, "Enter", 7, 74),
     ];
   }
 }
@@ -64,77 +68,11 @@ const wildPokemonPool = [
   new Pokemon("onix", "rock", "candy", "none", 3, 1, "Enter", 20, 95, "o", 11),
 ];
 
-function clonePokemon(template, personalName = "Enter") {
-  return new Pokemon(
-    template.name,
-    template.type,
-    template.item1,
-    template.item2,
-    template.evolution,
-    template.rarity,
-    personalName,
-    template.hunger,
-    template.pokedexNumber,
-    template.animationName,
-    template.animationNumber
-  );
-}
-
-
 const user = new User();
-document.getElementById('candyDisplay').textContent = "Candy: " + user.candy;
 
+// ==================== DISPLAY UPDATES ====================
 function updateCandyDisplay() {
   document.getElementById('candyDisplay').textContent = "Candy: " + user.candy;
-}
-
-function evolvePokemon(index) {
-  const pokemon = user.team[index];
-
-  if (!pokemon || pokemon.evolution >= 3 || user.candy < 3) {
-    console.log("Can't evolve.");
-    return;
-  }
-
-  user.candy -= 3;
-  updateCandyDisplay();
-
-  const holdName = pokemon.personalName;
-  const holdEvolutionNumber = pokemon.pokedexNumber + 1;  // Increment pokedexNumber by 1 for evolution
-
-  user.team.splice(index, 1);
-
-  // Try to find the evolved Pokémon by pokedexNumber
-  const evolvedTemplate = wildPokemonPool.find(p => p.pokedexNumber === holdEvolutionNumber);
-
-  if (evolvedTemplate) {
-    const evolved = clonePokemon(evolvedTemplate, holdName);
-    user.team.push(evolved);
-    console.log(`${holdName} has evolved!`);
-  } else {
-    console.log("No evolved form found.");
-  }
-
-  updatePokedexMenu();
-}
-function updatePokedexMenu() {
-  pokedexSelect.innerHTML = "";
-
-  user.team.forEach((pokemon, index) => {
-    const option = document.createElement("option");
-    option.value = index;
-    option.textContent = `#${pokemon.pokedexNumber} ${pokemon.name}`;
-    pokedexSelect.appendChild(option);
-  });
-
-  // Ensure the selected index stays valid even after an evolution
-  const selectedIndex = parseInt(pokedexSelect.value) || 0;
-
-  // Ensure the new team length is considered and select a valid option
-  if (user.team.length > 0 && selectedIndex < user.team.length) {
-    pokedexSelect.value = selectedIndex;
-    displayPokemonInfo(selectedIndex);
-  }
 }
 
 function displayPokemonVisuals(index) {
@@ -154,37 +92,136 @@ function updateEvolveButton(index) {
   }
 }
 
-// New refactored function that uses the two above
 function displayPokemonInfo(index) {
   displayPokemonVisuals(index);
   updateEvolveButton(index);
 }
 
-// Event: dropdown select
+function updatePokedexMenu() {
+  pokedexSelect.innerHTML = "";
+
+  user.team.forEach((pokemon, index) => {
+    const option = document.createElement("option");
+    option.value = index;
+    option.textContent = `#${pokemon.pokedexNumber} ${pokemon.name}`;
+    pokedexSelect.appendChild(option);
+  });
+
+  const selectedIndex = parseInt(pokedexSelect.value) || 0;
+  if (user.team.length > 0 && selectedIndex < user.team.length) {
+    pokedexSelect.value = selectedIndex;
+    displayPokemonInfo(selectedIndex);
+  }
+}
+
+// ==================== FUNCTIONAL ACTIONS ====================
+function clonePokemon(template, personalName = "Enter") {
+  return new Pokemon(
+    template.name,
+    template.type,
+    template.item1,
+    template.item2,
+    template.evolution,
+    template.rarity,
+    personalName,
+    template.hunger,
+    template.pokedexNumber,
+    template.animationName,
+    template.animationNumber
+  );
+}
+
+function evolvePokemon(index) {
+  const pokemon = user.team[index];
+  if (!pokemon || pokemon.evolution >= 3 || user.candy < 3) {
+    console.log("Can't evolve.");
+    return;
+  }
+
+  user.candy -= 3;
+  updateCandyDisplay();
+
+  const holdName = pokemon.personalName;
+  const holdEvolutionNumber = pokemon.pokedexNumber + 1;
+  user.team.splice(index, 1);
+
+  const evolvedTemplate = wildPokemonPool.find(p => p.pokedexNumber === holdEvolutionNumber);
+  if (evolvedTemplate) {
+    const evolved = clonePokemon(evolvedTemplate, holdName);
+    user.team.push(evolved);
+    console.log(`${holdName} has evolved!`);
+  } else {
+    console.log("No evolved form found.");
+  }
+
+  updatePokedexMenu();
+}
+
+// ==================== NAVIGATION LOGIC ====================
+function hideAllPhases() {
+  document.querySelectorAll(".phase").forEach(p => p.style.display = "none");
+  document.getElementById("pokedexContainer").style.display = "none";  // Hide Pokedex explicitly here
+document.getElementById("pokedexImage").style.display = "none";
+  document.getElementById("Pokedexpage").style.display = "none";  // Hide Pokedex images here
+}
+
+function showStartPhase() {
+  hideAllPhases();
+  document.querySelector(".StartWrapper").style.display = "block";
+}
+
+function showPomodoroPhase() {
+  hideAllPhases();
+  document.querySelector(".PomodoroWrapper").style.display = "block";
+}
+
+function showCatchPhase() {
+  hideAllPhases();
+  document.querySelector(".CatchWrapper").style.display = "block";
+}
+
+function showPokedexPhase() {
+  hideAllPhases();
+  document.getElementById("pokedexContainer").style.display = "block";  // Show Pokedex explicitly here
+  document.getElementById("Pokedexpage").style.display = "block";
+  document.getElementById("pokedexImage").style.display = "block";
+  initializePokedex();
+}
+
+// ==================== EVENT LISTENERS ====================
+navButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    navButtons.forEach(btn => btn.classList.remove('selected'));
+    button.classList.add('selected');
+  });
+});
+
+document.querySelector(".StartWrapper button").addEventListener("click", showStartPhase);
+document.querySelector(".PomodoroWrapper button").addEventListener("click", showPomodoroPhase);
+document.querySelector(".CatchWrapper button").addEventListener("click", showCatchPhase);
+document.querySelector(".PokedexWrapper button").addEventListener("click", showPokedexPhase);
+
 pokedexSelect.addEventListener("change", function () {
   const selectedIndex = parseInt(this.value);
   displayPokemonInfo(selectedIndex);
 });
 
-// Event: rename input
 nameInput.addEventListener("input", function () {
   const selectedIndex = parseInt(pokedexSelect.value);
   user.team[selectedIndex].personalName = this.value;
 });
 
-// Event: evolve button
 evolveButton.addEventListener("click", function () {
   const selectedIndex = parseInt(pokedexSelect.value);
   evolvePokemon(selectedIndex);
 });
 
-// Initialize
+// ==================== INITIALIZATION ====================
 function initializePokedex() {
   if (user.team.length > 0) {
-    pokedexSelect.value = 0;
     updatePokedexMenu();
     displayPokemonInfo(0);
   }
 }
 
-initializePokedex();
+updateCandyDisplay();
