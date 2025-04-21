@@ -190,3 +190,17 @@ button.dashed.thin {
 
   }
 }
+
+/* Initial visible state */
+#navMenu {
+  max-height: 500px;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  padding: 10px 0;
+}
+
+/* Collapsed state */
+#navMenu.collapsed {
+  max-height: 0;
+  padding: 0;
+}
