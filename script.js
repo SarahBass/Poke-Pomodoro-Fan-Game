@@ -273,6 +273,8 @@ function showPomodoroPhase() {
  preloadAllAnimations();
 currentAnimationFrames = loadAnimationFrames(user.team[currentPokemonIndex]);
 animationLoop = setInterval(playNextFrame, frameDuration);
+
+  startTimer();
 }
 
 function showCatchPhase() {
@@ -315,6 +317,44 @@ evolveButton.addEventListener("click", function () {
   const selectedIndex = parseInt(pokedexSelect.value);
   evolvePokemon(selectedIndex);
 });
+
+const totalDuration = 25 * 60; // 25 minutes in seconds
+
+function formatTime(seconds) {
+  const mins = Math.floor(seconds / 60);
+  const secs = seconds % 60;
+  return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+}
+
+function getCurrentTimeFormatted() {
+  const now = new Date();
+  return `${now.getHours()}:${String(now.getMinutes()).padStart(2, '0')}`;
+}
+
+function startTimer() {
+  if (timerRunning) return;
+
+  const startTime = getCurrentTimeFormatted();
+  const endTime = new Date(Date.now() + totalDuration * 1000);
+  const endTimeFormatted = `${endTime.getHours()}:${String(endTime.getMinutes()).padStart(2, '0')}`;
+
+  const timerTextDiv = document.getElementById("timerText");
+  timerTextDiv.style.display = "block";
+
+  timerRunning = true;
+  elapsedTime = 0;
+
+  countdownInterval = setInterval(() => {
+    if (elapsedTime >= totalDuration) {
+      clearInterval(countdownInterval);
+      timerRunning = false;
+    }
+
+    const timeRemaining = totalDuration - elapsedTime;
+    timerTextDiv.innerHTML = `${formatTime(timeRemaining)}<br>Time Start: ${startTime}<br>Time End: ${endTimeFormatted}`;
+    elapsedTime++;
+  }, 1000);
+}
 
 // ==================== INITIALIZATION ====================
 function initializePokedex() {
