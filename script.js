@@ -4,7 +4,12 @@ const nameInput = document.getElementById("nameInput");
 const pokedexImage = document.getElementById("pokedexImage");
 const evolveButton = document.getElementById("evolveButton");
 const navButtons = document.querySelectorAll('.navigationButton');
+const navToggle = document.getElementById('navToggle');
+const navMenu = document.getElementById('navMenu');
 
+navToggle.addEventListener('click', () => {
+  navMenu.classList.toggle('collapsed');
+});
 // ==================== CONSTANTS ====================
 const PokedexbasePath = "https://raw.githubusercontent.com/SarahBass/Poke-Pomodoro-Fan-Game/main/pokedex/";
 
