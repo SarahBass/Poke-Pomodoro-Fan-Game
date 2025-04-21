@@ -23,7 +23,7 @@ navToggle.addEventListener('click', () => {
 });
 // ==================== CONSTANTS ====================
 const PokedexbasePath = "https://raw.githubusercontent.com/SarahBass/Poke-Pomodoro-Fan-Game/main/pokedex/";
-
+const TaupeCave = document.getElementById("TaupeCave");
 // ==================== DATA CLASSES ====================
 class Pokemon {
   constructor(name, type, item1, item2, evolution, rarity, personalName = "Enter", hunger = 5, pokedexNumber = 0, animationName = "", animationNumber = 0) {
@@ -222,6 +222,7 @@ function hideAllPhases() {
 document.getElementById("pokedexImage").style.display = "none";
   document.getElementById("Pokedexpage").style.display = "none";  // Hide Pokedex images here
   document.getElementById("cloyster").style.display = "none";
+    TaupeCave.style.display = "none";
 }
 
 function showStartPhase() {
@@ -232,6 +233,7 @@ function showStartPhase() {
 function showPomodoroPhase() {
   hideAllPhases();
   document.querySelector(".PomodoroWrapper").style.display = "block";
+  TaupeCave.style.display = "block";
   document.getElementById("cloyster").style.display = "block";
  preloadAllAnimations();
 currentAnimationFrames = loadAnimationFrames(user.team[currentPokemonIndex]);
