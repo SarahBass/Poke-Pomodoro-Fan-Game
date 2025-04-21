@@ -223,6 +223,7 @@ document.getElementById("pokedexImage").style.display = "none";
   document.getElementById("Pokedexpage").style.display = "none";  // Hide Pokedex images here
   document.getElementById("cloyster").style.display = "none";
     TaupeCave.style.display = "none";
+    clearInterval(animationLoop);
 }
 
 function showStartPhase() {
