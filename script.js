@@ -57,25 +57,25 @@ class User {
 
   static defaultTeam() {
     return [
-      new Pokemon("zubat", "poison", "berry", "none", 1, 1, "Enter", 5, 41, "zu", 7),
+      new Pokemon("geodude", "rock", "berry", "none", 1, 0, "Enter", 7, 74,"geo", 7),
       new Pokemon("golbat", "poison", "berry", "cookie", 3, 1, "Enter", 10, 42, "gol", 7),
       new Pokemon("zubat", "poison", "berry", "none", 1, 1, "Enter", 5, 41, "zu", 7),
       new Pokemon("specialzubat", "poison", "cookie", "none", 1, 1, "Enter", 5, 941, "specialzu", 6),
       new Pokemon("cloyster", "water", "berry", "cookie", 3, 1, "Enter", 10, 91, "cl", 11),
       new Pokemon("onix", "rock", "candy", "none", 3, 1, "Enter", 20, 95, "o", 11),
-      new Pokemon("geodude", "rock", "berry", "none", 1, 0, "Enter", 7, 74),
+      
     ];
   }
 }
 
 const wildPokemonPool = [
-  new Pokemon("geodude", "rock", "berry", "none", 1, 0, "Enter", 7, 74),
-  new Pokemon("graveler", "rock", "berry", "berry", 2, 0, "Enter", 14, 75),
-  new Pokemon("golem", "rock", "cookie", "cookie", 3, 0, "Enter", 20, 76),
-  new Pokemon("caterpie", "bug", "berry", "none", 1, 0, "Enter", 5, 10),
-  new Pokemon("metapod", "bug", "berry", "berry", 2, 0, "Enter", 10, 11),
-  new Pokemon("butterfree", "bug", "berry", "cookie", 3, 0, "Enter", 15, 12),
-  new Pokemon("shellder", "water", "berry", "none", 1, 0, "Enter", 5, 90),
+   new Pokemon("geodude", "rock", "berry", "none", 1, 0, "Enter", 7, 74,"geo", 7),
+  new Pokemon("graveler", "rock", "berry", "berry", 2, 0, "Enter", 14, 75, "grav",7),
+  new Pokemon("golem", "rock", "cookie", "cookie", 3, 0, "Enter", 20, 76, "golem",11),
+  new Pokemon("caterpie", "bug", "berry", "none", 1, 0, "Enter", 5, 10, "ca", 7),
+  new Pokemon("metapod", "bug", "berry", "berry", 2, 0, "Enter", 10, 11, "me", 7),
+  new Pokemon("butterfree", "bug", "berry", "cookie", 3, 0, "Enter", 15, 12, "bu",7),
+  new Pokemon("shellder", "water", "berry", "none", 1, 0, "Enter", 5, 90, "shel",7),
   new Pokemon("zubat", "poison", "berry", "none", 1, 1, "Enter", 5, 41, "zu", 7),
   new Pokemon("golbat", "poison", "berry", "cookie", 3, 1, "Enter", 10, 42, "gol", 7),
   new Pokemon("specialzubat", "poison", "berry","cookie", 1, 1, "Enter", 0, 941, "specialzu", 6),
