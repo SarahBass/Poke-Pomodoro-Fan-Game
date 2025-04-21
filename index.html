@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Poke Pomodoro</title>
+  <title>Poké Pomodoro</title>
   
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Patrick+Hand+SC" rel="stylesheet">
@@ -31,21 +31,24 @@
     />
   </div>
 
-  <!-- Navigation Buttons -->
-  <div class="main-ui">
-    <div class="StartWrapper">
-      <button class="navigationButton selected">Start</button>
-    </div>
-    <div class="PomodoroWrapper">
-      <button class="navigationButton">Pomodoro</button>
-    </div>
-    <div class="CatchWrapper">
-      <button class="navigationButton">Catch</button>
-    </div>
-    <div class="PokedexWrapper">
-      <button class="navigationButton">Pokedex</button>
-    </div>
+  <!-- Toggle Button -->
+<button id="navToggle" class="nav-toggle"  style="font-family: 'Patrick Hand SC', cursive;">☰ Pokémon Pomodoro</button>
+
+<!-- Navigation Buttons -->
+<div class="main-ui" id="navMenu">
+  <div class="StartWrapper">
+    <button class="navigationButton selected">Start</button>
   </div>
+  <div class="PomodoroWrapper">
+    <button class="navigationButton">Pomodoro</button>
+  </div>
+  <div class="CatchWrapper">
+    <button class="navigationButton">Catch</button>
+  </div>
+  <div class="PokedexWrapper">
+    <button class="navigationButton">Pokedex</button>
+  </div>
+</div>
 
   <!-- Pokedex Menus (hidden by default) -->
   <div id="pokedexContainer" style="display: none;">
@@ -55,7 +58,7 @@
 
     <!-- Pokedex Select -->
     <div>
-      <label for="pokedexSelect">Pokedex:</label>
+      <label for="pokedexSelect">Pokédex:</label>
       <select id="pokedexSelect"></select>
     </div>
 
@@ -74,6 +77,5 @@
 <script src="script.js"></script>
 </body>
 </html>
-
 
 
