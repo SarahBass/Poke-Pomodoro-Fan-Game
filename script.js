@@ -233,6 +233,7 @@ function showStartPhase() {
 
 function showPomodoroPhase() {
   hideAllPhases();
+     clearInterval(animationLoop);
   document.querySelector(".PomodoroWrapper").style.display = "block";
   TaupeCave.style.display = "block";
   document.getElementById("cloyster").style.display = "block";
