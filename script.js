@@ -221,6 +221,8 @@ function hideAllPhases() {
   document.getElementById("pokedexContainer").style.display = "none";  // Hide Pokedex explicitly here
 document.getElementById("pokedexImage").style.display = "none";
   document.getElementById("Pokedexpage").style.display = "none";  // Hide Pokedex images here
+    document.querySelector(".PomodoroWrapper").style.display = "none";
+  document.getElementById("cloyster").style.display = "none";
 }
 
 function showStartPhase() {
