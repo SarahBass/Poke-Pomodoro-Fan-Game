@@ -24,7 +24,12 @@ navToggle.addEventListener('click', () => {
 // ==================== Graphic CONSTANTS ====================
 const PokedexbasePath = "https://raw.githubusercontent.com/SarahBass/Poke-Pomodoro-Fan-Game/main/pokedex/";
 const LocationPathway = "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/staticbackgrounds/"; 
-
+//Menu for Location Selector
+document.getElementById("locationSelect").addEventListener("change", function() {
+  const selectedLocation = this.value;
+  user.location = selectedLocation;
+  setLocation(user.location);
+});
 // ==================== DATA CLASSES ====================
 class Pokemon {
   constructor(name, type, item1, item2, evolution, rarity, personalName = "Enter", hunger = 5, pokedexNumber = 0, animationName = "", animationNumber = 0) {
@@ -242,7 +247,7 @@ function setLocation(location) {
 function hideAllPhases() {
   document.querySelectorAll(".phase").forEach(p => p.style.display = "none");
   document.getElementById("pokedexContainer").style.display = "none";  // Hide Pokedex explicitly 
-  
+ document.getElementById("LocationPath").style.display = "none";
 document.getElementById("pokedexImage").style.display = "none";
   document.getElementById("Pokedexpage").style.display = "none";  // Hide Pokedex images here
   document.getElementById("cloyster").style.display = "none";
@@ -253,6 +258,8 @@ document.getElementById("pokedexImage").style.display = "none";
 function showStartPhase() {
   hideAllPhases();
   document.querySelector(".StartWrapper").style.display = "block";
+  document.getElementById("locationSelectorWrapper").style.display = "block";
+
 }
 
 function showPomodoroPhase() {
