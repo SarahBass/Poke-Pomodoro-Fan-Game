@@ -6,7 +6,18 @@ const evolveButton = document.getElementById("evolveButton");
 const navButtons = document.querySelectorAll('.navigationButton');
 const navToggle = document.getElementById('navToggle');
 const navMenu = document.getElementById('navMenu');
-
+const basePath = "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/pokemongifs/";
+const imageElement = document.getElementById("cloyster");
+const fps = 6;
+const frameDuration = 1000 / fps;
+let currentPokemonIndex = 0;
+let currentFrameIndex = 0;
+let currentAnimationFrames = [];
+let animationLoop;
+let timerRunning = false;
+let countdownInterval;
+let elapsedTime = 0;
+const preloadedFrames = {};
 navToggle.addEventListener('click', () => {
   navMenu.classList.toggle('collapsed');
 });
@@ -119,6 +130,48 @@ function updatePokedexMenu() {
   }
 }
 
+function preloadAllAnimations() {
+  user.team.forEach(pokemon => {
+    const key = pokemon.pokedexNumber;
+    if (!preloadedFrames[key]) {
+      const frames = [];
+
+      const blank = new Image();
+      blank.src = `${basePath}blank.png?raw=true`;
+      frames.push(blank);
+
+      for (let i = 1; i <= pokemon.animationNumber; i++) {
+        const img = new Image();
+        img.src = `${basePath}${pokemon.animationName}${i}.png?raw=true`;
+        frames.push(img);
+      }
+
+      preloadedFrames[key] = frames;
+    }
+  });
+}
+
+function loadAnimationFrames(pokemon) {
+  const key = pokemon.pokedexNumber;
+  return preloadedFrames[key] || [];
+}
+
+function playNextFrame() {
+  if (currentFrameIndex < currentAnimationFrames.length) {
+    imageElement.src = currentAnimationFrames[currentFrameIndex].src;
+    currentFrameIndex++;
+  } else {
+    clearInterval(animationLoop);
+    setTimeout(() => {
+      currentPokemonIndex = (currentPokemonIndex + 1) % user.team.length;
+      const nextPokemon = user.team[currentPokemonIndex];
+      currentAnimationFrames = loadAnimationFrames(nextPokemon);
+      currentFrameIndex = 0;
+      animationLoop = setInterval(playNextFrame, frameDuration);
+    },0 ); // 500ms pause before next Pokémon
+  }
+}
+
 // ==================== FUNCTIONAL ACTIONS ====================
 function clonePokemon(template, personalName = "Enter") {
   return new Pokemon(
@@ -178,6 +231,10 @@ function showStartPhase() {
 function showPomodoroPhase() {
   hideAllPhases();
   document.querySelector(".PomodoroWrapper").style.display = "block";
+  document.getElementById("cloyster").style.display = "block";
+ preloadAllAnimations();
+currentAnimationFrames = loadAnimationFrames(user.team[currentPokemonIndex]);
+animationLoop = setInterval(playNextFrame, frameDuration);
 }
 
 function showCatchPhase() {
