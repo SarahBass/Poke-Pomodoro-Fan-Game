@@ -1,58 +1,79 @@
 <!DOCTYPE html>
- <html lang="en">
- <head>
-   <meta charset="UTF-8" />
-   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <title>Poke Pomodoro</title>
-   <link rel="stylesheet" href="style.css" />
- </head>
- <body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Poke Pomodoro</title>
   
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Patrick+Hand+SC" rel="stylesheet">
+  
   <!-- stylesheet -->
   <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
-
-
+  <!-- Background + Overlay Images -->
   <div class="image-wrapper">
     <img
       id="Pokedexpage"
       class="overlay-img"
       src="https://raw.githubusercontent.com/SarahBass/Poke-Pomodoro-Fan-Game/main/staticbackgrounds/pokedex.PNG"
       alt="Let's Begin our Pokemon Journey!"
-      style="display: block;"
+      style="display: none;"
     />
     <img
       id="pokedexImage"
       class="flash-image"
       src=""
       alt="Pokemon Image"
-      style="display: block;"
+      style="display: none;"
     />
   </div>
-  
-  <!-- CANDY DISPLAY -->
-  <div id="candyDisplay" class="candy-display">Candy: 0</div>
 
-  <!-- Pokedex Select -->
-  <div>
-    <label for="pokedexSelect">Pokedex:</label>
-    <select id="pokedexSelect"></select>
+  <!-- Navigation Buttons -->
+  <div class="main-ui">
+    <div class="StartWrapper">
+      <button class="navigationButton selected">Start</button>
+    </div>
+    <div class="PomodoroWrapper">
+      <button class="navigationButton">Pomodoro</button>
+    </div>
+    <div class="CatchWrapper">
+      <button class="navigationButton">Catch</button>
+    </div>
+    <div class="PokedexWrapper">
+      <button class="navigationButton">Pokedex</button>
+    </div>
   </div>
 
-  <!-- Candy Button -->
-<div>
-  <span id="candyDisplay">Candy: </span>
-  <button id="evolveButton">Can't Evolve</button>
-</div>
-  
-  <!-- Name Input -->
-  <div>
-    <label for="nameInput">Enter Name:</label>
-    <input type="text" id="nameInput" />
+  <!-- Pokedex Menus (hidden by default) -->
+  <div id="pokedexContainer" style="display: none;">
+
+    <!-- Candy Display -->
+    <div id="candyDisplay" class="candy-display">Candy: 0</div>
+
+    <!-- Pokedex Select -->
+    <div>
+      <label for="pokedexSelect">Pokedex:</label>
+      <select id="pokedexSelect"></select>
+    </div>
+
+    <!-- Evolve Button -->
+    <div>
+      <button id="evolveButton">Can't Evolve</button>
+    </div>
+
+    <!-- Name Input -->
+    <div>
+      <label for="nameInput">Enter Name:</label>
+      <input type="text" id="nameInput" />
+    </div>
+
   </div>
 <script src="script.js"></script>
- </body>
- </html>
+</body>
+</html>
+
+
 
