@@ -133,7 +133,7 @@ new Pokemon("venomoth", "bug", "berry", "berry", 3, 0, "Enter", 7, 49,"venomoth"
     new Pokemon("kingler", "water", "berry", "berry", 3, 0, "Enter", 5, 100, "king",6),
      new Pokemon("lapas", "water", "cookie", "none", 3, 0, "Enter", 5, 131, "lapas",6),
   new Pokemon("pikachu", "electric", "cookie", "none", 1, 0, "Enter", 5, 25, "pika",6),
-   new Pokemon("garados", "water", "candy", "none", 3, 0, "Enter", 5, 130, "gara",7),
+   new Pokemon("gyarados", "water", "candy", "none", 3, 0, "Enter", 5, 130, "gara",7),
      new Pokemon("omanyte", "water", "berry", "none", 1, 0, "Enter", 5, 138, "omanyte",7),
       
   ]
