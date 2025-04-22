@@ -110,11 +110,11 @@ const teamsByLocation = {
   new Pokemon("SpecialPokemon", "normal", "candy", "none", 3, 1, "Enter", 10, 777, "kang", 10),
   ],
   indigocity: [
-   new Pokemon("pikachu", "electric", "berry", "none", 1, 0, "Enter", 5, 25, "pika",6),
+   new Pokemon("pikachu", "electric", "berry", "none", 1, 0, "Enter", 5, 25, "pika",7),
    new Pokemon("venomoth", "bug", "berry", "berry", 3, 0, "Enter", 7, 49,"venomoth", 7),
-     new Pokemon("raichu", "electric", "cookie", "berry", 3, 0, "Enter", 5, 26, "raichu",6),],
+     new Pokemon("raichu", "electric", "berry", "berry", 3, 0, "Enter", 5, 26, "raichu",4),],
   forestlight: [
-   new Pokemon( "pikachu", "electric", "berry", "none", 1, 0, "Enter", 5, 25, "pika",6),
+   new Pokemon( "pikachu", "electric", "berry", "none", 1, 0, "Enter", 5, 25, "pika",7),
   new Pokemon("paras", "bug", "berry", "none", 1, 0, "Enter", 7, 46,"paras", 5),
    new Pokemon("venonat", "bug", "berry", "none", 1, 0, "Enter", 7, 48,"venonaut", 9),
 new Pokemon("venomoth", "bug", "berry", "berry", 3, 0, "Enter", 7, 49,"venomoth", 7),
@@ -123,7 +123,7 @@ new Pokemon("venomoth", "bug", "berry", "berry", 3, 0, "Enter", 7, 49,"venomoth"
   ],
   greengrass: [
 
- new Pokemon( "pikachu", "electric", "berry", "none", 1, 0, "Enter", 5, 25, "pika",6),
+ new Pokemon( "pikachu", "electric", "berry", "none", 1, 0, "Enter", 5, 25, "pika",7),
       new Pokemon("caterpie", "bug", "berry", "none", 1, 0, "Enter", 5, 10, "ca", 7),
       
   ],
@@ -132,7 +132,7 @@ new Pokemon("venomoth", "bug", "berry", "berry", 3, 0, "Enter", 7, 49,"venomoth"
    new Pokemon("specialkrabby", "water", "candy", "none", 3, 0, "Enter", 5, 899, "specialcrab",9),
     new Pokemon("kingler", "water", "berry", "berry", 3, 0, "Enter", 5, 100, "king",6),
      new Pokemon("lapas", "water", "cookie", "none", 3, 0, "Enter", 5, 131, "lapas",6),
-  new Pokemon("pikachu", "electric", "cookie", "none", 1, 0, "Enter", 5, 25, "pika",6),
+  new Pokemon("pikachu", "electric", "cookie", "none", 1, 0, "Enter", 5, 25, "pika",7),
    new Pokemon("gyarados", "water", "candy", "none", 3, 0, "Enter", 5, 130, "gara",7),
      new Pokemon("omanyte", "water", "berry", "none", 1, 0, "Enter", 5, 138, "omanyte",7),
       
@@ -146,11 +146,12 @@ const wildPokemonPool = [
       new Pokemon("charizard", "fire", "berry", "cookie", 3, 0, "Enter", 10, 6, "charizard", 6),
   new Pokemon("specialpokemon", "normal", "candy", "none", 3, 1, "Enter", 10, 777, "kang", 10),
 new Pokemon("moltres", "fire", "candy", "none", 3, 1, "Enter", 20, 6, "moltres", 6),
- new Pokemon("pikachu", "electric", "cookie", "none", 1, 0, "Enter", 5, 25, "pika",6),
+ new Pokemon("pikachu", "electric", "berry", "none", 1, 0, "Enter", 5, 25, "pika",7),
+  new Pokemon("raichu", "electric", "berry", "berry", 3, 0, "Enter", 10, 26, "raichu",4),
  new Pokemon("garados", "water", "candy", "none", 3, 0, "Enter", 5, 130, "gara",7),
  new Pokemon("mew", "psychic", "candy", "none", 3, 1, "Enter", 5, 151, "mew",6),
   new Pokemon("specialkrabby", "water", "candy", "none", 1, 0, "Enter", 5, 899, "specialcrab",9),
-  new Pokemon("Kangaskhan", "normal", "berry", "berry", 3, 0, "Enter", 5, 115, "specialkang",4),
+  new Pokemon("kangaskhan", "normal", "berry", "berry", 3, 0, "Enter", 5, 115, "specialkang",4),
  new Pokemon("krabby", "water", "berry", "none", 1, 0, "Enter", 5, 99, "crab",9),
   new Pokemon("kingler", "water", "berry", "berry", 3, 0, "Enter", 5, 100, "king",6),
 new Pokemon("omanyte", "water", "berry", "none", 1, 0, "Enter", 5, 138, "omanyte",7),
