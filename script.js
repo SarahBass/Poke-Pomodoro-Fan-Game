@@ -97,16 +97,24 @@ const teamsByLocation = {
   forestlight: [/* default Crystal Woods team */],
   greengrass: [/* default Green Grass team */],
   cyanbeach: [
-  new Pokemon("krabby", "water", "berry", "none", 1, 0, "Enter", 5, 99, "crab",7),
-  new Pokemon("shellder", "water", "berry", "none", 1, 0, "Enter", 5, 90, "shel",8),
-  new Pokemon("omanyte", "water", "berry", "none", 1, 0, "Enter", 5, 138, "omanyte",7),
+   new Pokemon("krabby", "water", "berry", "none", 1, 0, "Enter", 5, 99, "crab",9),
+   new Pokemon("specialkrabby", "water", "candy", "none", 3, 0, "Enter", 5, 899, "specialcrab",9),
     new Pokemon("kingler", "water", "berry", "berry", 3, 0, "Enter", 5, 100, "king",6),
+     new Pokemon("lapas", "water", "cookie", "none", 3, 0, "Enter", 5, 131, "lapas",6),
+  new Pokemon("pikachu", "electric", "cookie", "none", 1, 0, "Enter", 5, 25, "pika",6),
+   new Pokemon("garados", "water", "candy", "none", 3, 0, "Enter", 5, 130, "gara",7),
+     new Pokemon("omanyte", "water", "berry", "none", 1, 0, "Enter", 5, 138, "omanyte",7),
+      
   ]
 };
 
 
 const wildPokemonPool = [
- new Pokemon("krabby", "water", "berry", "none", 1, 0, "Enter", 5, 99, "crab",7),
+ new Pokemon("garados", "water", "candy", "none", 3, 0, "Enter", 5, 130, "gara",7),
+ new Pokemon("mew", "psychic", "candy", "none", 3, 1, "Enter", 5, 151, "mew",6),
+  new Pokemon("specialkrabby", "water", "candy", "none", 1, 0, "Enter", 5, 899, "specialcrab",9),
+  new Pokemon("Kangaskhan", "water", "berry", "none", 3, 0, "Enter", 5, 115, "specialkang",4),
+ new Pokemon("krabby", "water", "berry", "none", 1, 0, "Enter", 5, 99, "crab",9),
   new Pokemon("kingler", "water", "berry", "berry", 3, 0, "Enter", 5, 100, "king",6),
 new Pokemon("omanyte", "water", "berry", "none", 1, 0, "Enter", 5, 138, "omanyte",7),
 new Pokemon("omastar", "water", "berry", "cookie", 3, 0, "Enter", 5, 139, "omastar",4),
