@@ -103,6 +103,8 @@ const teamsByLocation = {
    new Pokemon("gengar", "ghost", "cookie", "cookie", 3, 0, "Enter", 7, 94,"gengar", 5),
   ],
   MagmaCamp: [ new Pokemon("Kangaskhan", "water", "berry", "none", 3, 0, "Enter", 5, 115, "specialkang",4),
+    new Pokemon("onix", "rock", "candy", "none", 3, 1, "Enter", 20, 95, "o", 11),
+       new Pokemon("geodude", "rock", "berry", "none", 1, 0, "Enter", 7, 74,"geo", 7),
   ],
   indigocity: [
    new Pokemon("pikachu", "electric", "cookie", "none", 1, 0, "Enter", 5, 25, "pika",6),
@@ -117,10 +119,10 @@ new Pokemon("venomoth", "bug", "berry", "berry", 3, 0, "Enter", 7, 49,"venomoth"
       new Pokemon("caterpie", "bug", "berry", "none", 1, 0, "Enter", 5, 10, "ca", 7),
   ],
   greengrass: [
+
  new Pokemon( "pikachu", "electric", "cookie", "none", 1, 0, "Enter", 5, 25, "pika",6),
-  new Pokemon("paras", "bug", "berry", "none", 1, 0, "Enter", 7, 46,"paras", 5),
-    new Pokemon("butterfree", "bug", "berry", "cookie", 3, 0, "Enter", 15, 12, "butter",11),
       new Pokemon("caterpie", "bug", "berry", "none", 1, 0, "Enter", 5, 10, "ca", 7),
+      
   ],
   cyanbeach: [
    new Pokemon("krabby", "water", "berry", "none", 1, 0, "Enter", 5, 99, "crab",9),
