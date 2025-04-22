@@ -29,6 +29,11 @@ document.getElementById("locationSelect").addEventListener("change", function() 
   const selectedLocation = this.value;
   user.location = selectedLocation;
   setLocation(user.location);
+  user.team = teamsByLocation[selectedLocation] 
+              ? teamsByLocation[selectedLocation].map(p => new Pokemon(...Object.values(p)))
+              : User.defaultTeam();
+
+  setLocation(user.location);
 });
 // ==================== DATA CLASSES ====================
 class Pokemon {
@@ -76,6 +81,30 @@ class User {
   }
 }
 
+const teamsByLocation = {
+  taupecave: [
+    new Pokemon("geodude", "rock", "berry", "none", 1, 0, "Enter", 7, 74,"geo", 7),
+    new Pokemon("golbat", "poison", "berry", "cookie", 3, 1, "Enter", 10, 42, "gol", 7),
+    new Pokemon("zubat", "poison", "berry", "none", 1, 1, "Enter", 5, 41, "zu", 7),
+    new Pokemon("specialzubat", "poison", "cookie", "none", 1, 1, "Enter", 5, 941, "specialzu", 6),
+    new Pokemon("cloyster", "water", "berry", "cookie", 3, 1, "Enter", 10, 91, "cl", 11),
+    new Pokemon("onix", "rock", "candy", "none", 3, 1, "Enter", 20, 95, "o", 11),
+    new Pokemon("gastly", "ghost", "berry", "none", 1, 0, "Enter", 7, 92,"gastly", 7),
+  ],
+  NightCamp: [/* default Moon Forest team here */],
+  MagmaCamp: [/* default Volcano Camp team */],
+  indigocity: [/* default Indigo City team */],
+  forestlight: [/* default Crystal Woods team */],
+  greengrass: [/* default Green Grass team */],
+  cyanbeach: [
+  new Pokemon("krabby", "water", "berry", "none", 1, 0, "Enter", 5, 99, "crab",7),
+  new Pokemon("shellder", "water", "berry", "none", 1, 0, "Enter", 5, 90, "shel",8),
+  new Pokemon("omanyte", "water", "berry", "none", 1, 0, "Enter", 5, 138, "omanyte",7),
+    new Pokemon("kingler", "water", "berry", "berry", 3, 0, "Enter", 5, 100, "king",6),
+  ]
+};
+
+
 const wildPokemonPool = [
  new Pokemon("krabby", "water", "berry", "none", 1, 0, "Enter", 5, 99, "crab",7),
   new Pokemon("kingler", "water", "berry", "berry", 3, 0, "Enter", 5, 100, "king",6),
@@ -106,6 +135,30 @@ new Pokemon("venomoth", "bug", "berry", "berry", 3, 0, "Enter", 7, 49,"venomoth"
 const user = new User();
 
 // ==================== DISPLAY UPDATES ====================
+function switchLocation(newLocation) {
+  // Save current team to teamsByLocation for the current location
+  if (user.location) {
+    teamsByLocation[user.location] = user.team;
+  }
+
+  // Update location
+  user.location = newLocation;
+
+  // Load existing team from the new location, or fallback to default
+  user.team = teamsByLocation[newLocation] || User.defaultTeam();
+}
+function saveTeamsToStorage() {
+  localStorage.setItem("teamsByLocation", JSON.stringify(teamsByLocation));
+}
+
+function loadTeamsFromStorage() {
+  const saved = localStorage.getItem("teamsByLocation");
+  if (saved) {
+    const raw = JSON.parse(saved);
+    // You’ll need to reconstruct Pokemon objects if needed here
+  }
+}
+
 function updateCandyDisplay() {
   document.getElementById('candyDisplay').textContent = "Candy: " + user.candy;
 }
