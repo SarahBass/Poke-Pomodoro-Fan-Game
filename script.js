@@ -112,7 +112,8 @@ const teamsByLocation = {
   indigocity: [
    new Pokemon("pikachu", "electric", "berry", "none", 1, 0, "Enter", 5, 25, "pika",7),
    new Pokemon("venomoth", "bug", "berry", "berry", 3, 0, "Enter", 7, 49,"venomoth", 7),
-     new Pokemon("raichu", "electric", "berry", "berry", 3, 0, "Enter", 5, 26, "raichu",4),],
+     new Pokemon("raichu", "electric", "berry", "berry", 3, 0, "Enter", 5, 26, "raichu",4), 
+],
   forestlight: [
    new Pokemon( "pikachu", "electric", "berry", "none", 1, 0, "Enter", 5, 25, "pika",7),
   new Pokemon("paras", "bug", "berry", "none", 1, 0, "Enter", 7, 46,"paras", 5),
