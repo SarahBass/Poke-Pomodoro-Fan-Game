@@ -102,16 +102,19 @@ const teamsByLocation = {
    new Pokemon("haunter", "ghost", "berry", "berry", 2, 0, "Enter", 7, 93,"haunt", 5),
    new Pokemon("gengar", "ghost", "cookie", "cookie", 3, 0, "Enter", 7, 94,"gengar", 5),
   ],
-  MagmaCamp: [ new Pokemon("Kangaskhan", "water", "berry", "none", 3, 0, "Enter", 5, 115, "specialkang",4),
-    new Pokemon("onix", "rock", "candy", "none", 3, 1, "Enter", 20, 95, "o", 11),
-       new Pokemon("geodude", "rock", "berry", "none", 1, 0, "Enter", 7, 74,"geo", 7),
+  MagmaCamp: [ 
+  new Pokemon("geodude", "rock", "berry", "none", 1, 0, "Enter", 7, 74,"geo", 7),
+   new Pokemon("onix", "rock", "candy", "none", 3, 1, "Enter", 20, 95, "o", 11),
+   new Pokemon("charmander", "fire", "berry", "none", 1, 0, "Enter", 5, 4, "charmander", 10),
+   new Pokemon("charmeleon", "fire", "berry", "berry", 2, 0, "Enter", 10, 5, "charmeleon", 8),
+  new Pokemon("SpecialPokemon", "normal", "candy", "none", 3, 1, "Enter", 10, 777, "kang", 10),
   ],
   indigocity: [
-   new Pokemon("pikachu", "electric", "cookie", "none", 1, 0, "Enter", 5, 25, "pika",6),
+   new Pokemon("pikachu", "electric", "berry", "none", 1, 0, "Enter", 5, 25, "pika",6),
    new Pokemon("venomoth", "bug", "berry", "berry", 3, 0, "Enter", 7, 49,"venomoth", 7),
-  ],
+     new Pokemon("raichu", "electric", "cookie", "berry", 3, 0, "Enter", 5, 26, "raichu",6),],
   forestlight: [
-   new Pokemon( "pikachu", "electric", "cookie", "none", 1, 0, "Enter", 5, 25, "pika",6),
+   new Pokemon( "pikachu", "electric", "berry", "none", 1, 0, "Enter", 5, 25, "pika",6),
   new Pokemon("paras", "bug", "berry", "none", 1, 0, "Enter", 7, 46,"paras", 5),
    new Pokemon("venonat", "bug", "berry", "none", 1, 0, "Enter", 7, 48,"venonaut", 9),
 new Pokemon("venomoth", "bug", "berry", "berry", 3, 0, "Enter", 7, 49,"venomoth", 7),
@@ -120,7 +123,7 @@ new Pokemon("venomoth", "bug", "berry", "berry", 3, 0, "Enter", 7, 49,"venomoth"
   ],
   greengrass: [
 
- new Pokemon( "pikachu", "electric", "cookie", "none", 1, 0, "Enter", 5, 25, "pika",6),
+ new Pokemon( "pikachu", "electric", "berry", "none", 1, 0, "Enter", 5, 25, "pika",6),
       new Pokemon("caterpie", "bug", "berry", "none", 1, 0, "Enter", 5, 10, "ca", 7),
       
   ],
@@ -138,11 +141,16 @@ new Pokemon("venomoth", "bug", "berry", "berry", 3, 0, "Enter", 7, 49,"venomoth"
 
 
 const wildPokemonPool = [
+ new Pokemon("charmander", "fire", "berry", "none", 1, 0, "Enter", 5, 4, "charmander", 10),
+   new Pokemon("charmeleon", "fire", "berry", "berry", 2, 0, "Enter", 10, 5, "charmeleon", 8),
+      new Pokemon("charizard", "fire", "berry", "cookie", 3, 0, "Enter", 10, 6, "charizard", 6),
+  new Pokemon("specialpokemon", "normal", "candy", "none", 3, 1, "Enter", 10, 777, "kang", 10),
+new Pokemon("moltres", "fire", "candy", "none", 3, 1, "Enter", 20, 6, "moltres", 6),
  new Pokemon("pikachu", "electric", "cookie", "none", 1, 0, "Enter", 5, 25, "pika",6),
  new Pokemon("garados", "water", "candy", "none", 3, 0, "Enter", 5, 130, "gara",7),
  new Pokemon("mew", "psychic", "candy", "none", 3, 1, "Enter", 5, 151, "mew",6),
   new Pokemon("specialkrabby", "water", "candy", "none", 1, 0, "Enter", 5, 899, "specialcrab",9),
-  new Pokemon("Kangaskhan", "water", "berry", "none", 3, 0, "Enter", 5, 115, "specialkang",4),
+  new Pokemon("Kangaskhan", "normal", "berry", "berry", 3, 0, "Enter", 5, 115, "specialkang",4),
  new Pokemon("krabby", "water", "berry", "none", 1, 0, "Enter", 5, 99, "crab",9),
   new Pokemon("kingler", "water", "berry", "berry", 3, 0, "Enter", 5, 100, "king",6),
 new Pokemon("omanyte", "water", "berry", "none", 1, 0, "Enter", 5, 138, "omanyte",7),
@@ -156,7 +164,8 @@ new Pokemon("venomoth", "bug", "berry", "berry", 3, 0, "Enter", 7, 49,"venomoth"
    new Pokemon("gengar", "ghost", "cookie", "cookie", 3, 0, "Enter", 7, 94,"gengar", 5),
    new Pokemon("geodude", "rock", "berry", "none", 1, 0, "Enter", 7, 74,"geo", 7),
   new Pokemon("graveler", "rock", "berry", "berry", 2, 0, "Enter", 14, 75, "grav",7),
-  new Pokemon("golem", "rock", "cookie", "cookie", 3, 0, "Enter", 20, 76, "golem",11),
+  new Pokemon("golem", "rock", "cookie", "cookie", 3, 0, "Enter", 20, 76, 
+  "gol",7),
   new Pokemon("caterpie", "bug", "berry", "none", 1, 0, "Enter", 5, 10, "ca", 7),
   new Pokemon("metapod", "bug", "berry", "berry", 2, 0, "Enter", 10, 11, "meta", 6),
   new Pokemon("butterfree", "bug", "berry", "cookie", 3, 0, "Enter", 15, 12, "butter",11),
