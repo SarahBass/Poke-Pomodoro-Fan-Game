@@ -64,6 +64,7 @@ class User {
     this.location = data.location || "taupecave";
     this.berryPoints = data.berryPoints || 0;
     this.team = data.team?.map(p => new Pokemon(...Object.values(p))) || User.defaultTeam();
+    this.catch = new Pokemon("caterpie", "bug", "berry", "none", 1, 0, "Enter", 5, 10, "ca", 7);
   }
 
   static defaultTeam() {
@@ -147,6 +148,7 @@ new Pokemon("venomoth", "bug", "berry", "berry", 3, 0, "Enter", 7, 49,"venomoth"
         new Pokemon("NaughtySquirtle", "water", "berry", "cookie", 3, 0, " Prankster", 5, 504, "squirt", 12),
   ]
 };
+
 
 const BeachPokemonPool = [
     new Pokemon("SquirtleThinker",  "water", "berry", "cookie", 3, 0, " Thinker",   5, 501, "squirt", 12),
@@ -320,6 +322,32 @@ function preloadAllAnimations() {
   });
 }
 
+function preloadCatchAnimations() {
+  const pokemon = user.catch;
+  const key = pokemon.pokedexNumber;
+
+  if (!preloadedFrames[key]) {
+    const frames = [];
+
+    const blank = new Image();
+    blank.src = `${basePath}blank.png?raw=true`;
+    frames.push(blank);
+
+
+    for (let i = 1; i <= pokemon.animationNumber; i++) {
+      const img = new Image();
+      img.src = `${basePath}${pokemon.animationName}${i}.png?raw=true`;
+      frames.push(img);
+    }
+
+    preloadedFrames[key] = frames;
+  }
+
+  // Set up the animation for this single Pokémon
+  currentAnimationFrames = preloadedFrames[key];
+  currentFrameIndex = 0;
+}
+
 function loadAnimationFrames(pokemon) {
   const key = pokemon.pokedexNumber;
   return preloadedFrames[key] || [];
@@ -401,6 +429,7 @@ function hideAllPhases() {
 document.getElementById("pokedexImage").style.display = "none";
   document.getElementById("Pokedexpage").style.display = "none";  // Hide Pokedex images here
   document.getElementById("cloyster").style.display = "none";
+   document.getElementById("catchPage").style.display = "none";
    // LocationPath.style.display = "none";
     clearInterval(animationLoop);
 }
@@ -419,6 +448,7 @@ function showPomodoroPhase() {
  setLocation(user.location);
    // document.getElementById(".locationImage").style.display = "block";
   document.getElementById("cloyster").style.display = "block";
+
  
  preloadAllAnimations();
 currentAnimationFrames = loadAnimationFrames(user.team[currentPokemonIndex]);
@@ -429,7 +459,17 @@ animationLoop = setInterval(playNextFrame, frameDuration);
 
 function showCatchPhase() {
   hideAllPhases();
+   clearInterval(animationLoop);
   document.querySelector(".CatchWrapper").style.display = "block";
+ document.getElementById("catchPage").style.display = "block";
+ 
+ document.getElementById("cloyster").style.display = "block";
+
+ preloadCatchAnimations();
+// preloadAllAnimations();
+
+animationLoop = setInterval(playNextFrame, frameDuration);
+
 }
 
 function showPokedexPhase() {
@@ -467,6 +507,8 @@ evolveButton.addEventListener("click", function () {
   const selectedIndex = parseInt(pokedexSelect.value);
   evolvePokemon(selectedIndex);
 });
+
+// ==================== TIME LISTENERS ====================
 
 const totalDuration = 25 * 60; // 25 minutes in seconds
 
@@ -534,3 +576,7 @@ function initializePokedex() {
 }
 
 updateCandyDisplay();
+
+
+
+
