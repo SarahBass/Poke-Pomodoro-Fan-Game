@@ -149,83 +149,86 @@ new Pokemon("venomoth", "bug", "berry", "berry", 3, 0, "Enter", 7, 49,"venomoth"
 };
 
 const BeachPokemonPool = [
- new Pokemon("SquirtleThinker", "water", "berry", "cookie", 3, 0, " Thinker", 5, 501, "squirt", 12),
-     new Pokemon("SquirtleScout", "water", "berry", "cookie", 3, 0, " Scout", 5, 502, "squirt", 12),
-        new Pokemon("SquirtleHeavy", "water", "berry", "cookie", 3, 0, " Heavy", 5, 503, "squirt", 12),
-   new Pokemon("NaughtySquirtle", "water", "berry", "cookie", 3, 0, " Prankster", 5, 504, "squirt", 12),  
-      new Pokemon("SquirtleBoss", "water", "berry", "cookie", 3, 0, "Boss", 5, 505, "squirt", 12),
- new Pokemon("magicarp", "water", "none", "none", 1, 0, "Enter", 5, 129, "magi", 7),
- new Pokemon("garados", "water", "candy", "none", 3, 0, "Enter", 15, 130, "gara",7),
- new Pokemon("krabby", "water", "berry", "none", 1, 0, "Enter", 5, 99, "crab",9),
-  new Pokemon("kingler", "water", "berry", "berry", 3, 0, "Enter", 5, 100, "king",6),
-  new Pokemon("shellder", "water", "berry", "none", 1, 0, "Enter", 5, 90, "shel",8),
-  new Pokemon("cloyster", "water", "berry", "cookie", 3, 0, "Enter", 10, 91, "cl", 11),
-  new Pokemon("staryu", "water", "berry", "none", 1, 0, "Enter", 5, 120, "staryu",6),
-  new Pokemon("starmie", "water", "berry", "berry", 1, 0, "Enter", 5, 121, "starme",5),
-  new Pokemon("SpecialMeowth", "normal", "berry", "berry", 3, 0, "Enter", 3, 333,  "meowth",8),
-new Pokemon("pikachu", "electric", "berry", "none", 1, 0, "Enter", 5, 25, "pika",7),
-  new Pokemon("electabuzz", "electric", "berry", "berry", 3, 0, "Enter", 10, 125, "electra",7),
-  new Pokemon("kangaskhan", "normal", "berry", "berry", 3, 0, "Enter", 5, 115, "specialkang",4),
+    new Pokemon("SquirtleThinker",  "water", "berry", "cookie", 3, 0, " Thinker",   5, 501, "squirt", 12),
+    new Pokemon("SquirtleScout",    "water", "berry", "cookie", 3, 0, " Scout",     5, 502, "squirt", 12),
+    new Pokemon("SquirtleHeavy",    "water", "berry", "cookie", 3, 0, " Heavy",     5, 503, "squirt", 12),
+    new Pokemon("NaughtySquirtle",  "water", "berry", "cookie", 3, 0, " Prankster", 5, 504, "squirt", 12),
+    new Pokemon("SquirtleBoss",     "water", "berry", "cookie", 3, 0, "Boss",       5, 505, "squirt", 12),
+    new Pokemon("magicarp",         "water", "none",  "none",   1, 0, "Enter",      5, 129, "magi",   7),
+    new Pokemon("gyarados",         "water", "candy", "none",   3, 0, "Enter",      5, 130, "gara",   7),
+    new Pokemon("krabby",           "water", "berry", "none",   1, 0, "Enter",      5,  99, "crab",   9),
+    new Pokemon("kingler",          "water", "berry", "berry",  3, 0, "Enter",      5, 100, "king",   6),
+    new Pokemon("shellder",         "water", "berry", "none",   1, 0, "Enter",      5,  90, "shel",   8),
+    new Pokemon("cloyster",         "water", "berry", "cookie", 3, 0, "Enter",      5,  91, "cl",    11),
+    new Pokemon("staryu",           "water", "berry", "none",   1, 0, "Enter",      5, 120, "staryu", 6),
+    new Pokemon("starmie",          "water", "berry", "berry",  1, 0, "Enter",      5, 121, "starme", 5),
+    new Pokemon("SpecialMeowth",    "normal","berry", "berry",  3, 0, "Enter",      3, 333, "meowth", 8),
+    new Pokemon("pikachu",          "electric", "berry", "none", 1, 0, "Enter",     5,  25, "pika",   7),
+    new Pokemon("electabuzz",       "electric", "berry", "berry", 3, 0, "Enter",   10, 125, "electra",7),
+    new Pokemon("kangaskhan",       "normal", "berry", "berry",  3, 0, "Enter",     5, 115, "specialkang", 4)
 ];
 
 
 const wildPokemonPool = [
- new Pokemon("bulbasaur", "grass", "berry", "none", 1, 0, "Enter", 5, 1, "bulba", 10),
-   new Pokemon("ivysaur", "grass", "berry", "berry", 2, 0, "Enter", 10, 2, "ivy", 7),
-    new Pokemon("venusaur", "grass", "berry", "cookie", 3, 0, "Enter", 15, 3, "venus", 10),
-  
-  new Pokemon("charmander", "fire", "berry", "none", 1, 0, "Enter", 5, 4, "charmander", 10),
-   new Pokemon("charmeleon", "fire", "berry", "berry", 2, 0, "Enter", 10, 5, "charmeleon", 8),
-      new Pokemon("charizard", "fire", "berry", "cookie", 3, 0, "Enter", 10, 6, "charizard", 6),
-   
-   new Pokemon("SquirtleThinker", "water", "berry", "cookie", 3, 0, " Thinker", 5, 501, "squirt", 12),
-     new Pokemon("SquirtleScout", "water", "berry", "cookie", 3, 0, " Scout", 5, 502, "squirt", 12),
-        new Pokemon("SquirtleHeavy", "water", "berry", "cookie", 3, 0, " Heavy", 5, 503, "squirt", 12),
-   new Pokemon("NaughtySquirtle", "water", "berry", "cookie", 3, 0, " Prankster", 5, 504, "squirt", 12),  
-      new Pokemon("SquirtleBoss", "water", "berry", "cookie", 3, 0, "Boss", 5, 505, "squirt", 12),
-  
-  new Pokemon("specialpokemon", "normal", "candy", "none", 3, 0, "Enter", 10, 777, "kang", 10),
-   new Pokemon("specialcrabby", "water", "candy", "none", 1, 0, "Enter", 5, 899, "specialcrab",9),
-  new Pokemon("SpecialMeowth", "normal", "berry", "berry", 3, 0, "Enter", 3, 333,  "meowth",8),
+    new Pokemon("bulbasaur",      "grass",    "berry", "none",   1, 0, "Enter",  5,   1, "bulba",     10),
+    new Pokemon("ivysaur",        "grass",    "berry", "berry",  2, 0, "Enter",  5,   2, "ivy",        7),
+    new Pokemon("venusaur",       "grass",    "berry", "cookie", 3, 0, "Enter",  5,   3, "venus",     10),
 
- 
- new Pokemon("magicarp", "water", "none", "none", 1, 0, "Enter", 5, 129, "magi", 7),
- new Pokemon("garados", "water", "candy", "none", 3, 0, "Enter", 15, 130, "gara",7),
+    new Pokemon("charmander",     "fire",     "berry", "none",   1, 0, "Enter",  5,   4, "charmander",10),
+    new Pokemon("charmeleon",     "fire",     "berry", "berry",  2, 0, "Enter",  5,   5, "charmeleon", 8),
+    new Pokemon("charizard",      "fire",     "berry", "cookie", 3, 0, "Enter",  5,   6, "charizard",  6),
 
- new Pokemon("pikachu", "electric", "berry", "none", 1, 0, "Enter", 5, 25, "pika",7),
-  new Pokemon("raichu", "electric", "berry", "berry", 3, 0, "Enter", 10, 26, "raichu",4),
-  new Pokemon("electabuzz", "electric", "berry", "berry", 3, 0, "Enter", 10, 125, "electra",7),
+    new Pokemon("SquirtleThinker","water",    "berry", "cookie", 3, 0, " Thinker", 5, 501, "squirt",  12),
+    new Pokemon("SquirtleScout",  "water",    "berry", "cookie", 3, 0, " Scout",   5, 502, "squirt",  12),
+    new Pokemon("SquirtleHeavy",  "water",    "berry", "cookie", 3, 0, " Heavy",   5, 503, "squirt",  12),
+    new Pokemon("NaughtySquirtle","water",    "berry", "cookie", 3, 0, " Prankster",5,504, "squirt",  12),
+    new Pokemon("SquirtleBoss",   "water",    "berry", "cookie", 3, 0, "Boss",     5, 505, "squirt",  12),
 
-  new Pokemon("kangaskhan", "normal", "berry", "berry", 3, 0, "Enter", 5, 115, "specialkang",4),
- new Pokemon("krabby", "water", "berry", "none", 1, 0, "Enter", 5, 99, "crab",9),
-  new Pokemon("kingler", "water", "berry", "berry", 3, 0, "Enter", 5, 100, "king",6),
-new Pokemon("omanyte", "water", "berry", "none", 1, 0, "Enter", 5, 138, "omanyte",7),
-new Pokemon("omastar", "water", "berry", "cookie", 3, 0, "Enter", 5, 139, "omastar",4),
-new Pokemon("paras", "bug", "berry", "none", 1, 0, "Enter", 7, 46,"paras", 5),
-new Pokemon("parasect", "bug", "berry", "berry", 3, 0, "Enter", 7, 47,"parasect", 5),
-new Pokemon("venonat", "bug", "berry", "none", 1, 0, "Enter", 7, 48,"venonaut", 9),
-new Pokemon("venomoth", "bug", "berry", "berry", 3, 0, "Enter", 7, 49,"venomoth", 7),
-   new Pokemon("gastly", "ghost", "berry", "none", 1, 0, "Enter", 7, 92,"gastly", 7),
-   new Pokemon("haunter", "ghost", "berry", "berry", 2, 0, "Enter", 7, 93,"haunt", 5),
-   new Pokemon("gengar", "ghost", "cookie", "cookie", 3, 0, "Enter", 7, 94,"gengar", 5),
-   new Pokemon("geodude", "rock", "berry", "none", 1, 0, "Enter", 7, 74,"geo", 7),
-  new Pokemon("graveler", "rock", "berry", "berry", 2, 0, "Enter", 14, 75, "grav",7),
-  new Pokemon("golem", "rock", "cookie", "cookie", 3, 0, "Enter", 20, 76, 
-  "gol",7),
-  new Pokemon("caterpie", "bug", "berry", "none", 1, 0, "Enter", 5, 10, "ca", 7),
-  new Pokemon("metapod", "bug", "berry", "berry", 2, 0, "Enter", 10, 11, "meta", 6),
-  new Pokemon("butterfree", "bug", "berry", "cookie", 3, 0, "Enter", 15, 12, "butter",11),
-  new Pokemon("shellder", "water", "berry", "none", 1, 0, "Enter", 5, 90, "shel",8),
-  new Pokemon("zubat", "poison", "berry", "none", 1, 1, "Enter", 5, 41, "zu", 7),
-  new Pokemon("golbat", "poison", "berry", "cookie", 3, 1, "Enter", 10, 42, "gol", 7),
-  new Pokemon("specialzubat", "poison", "berry","cookie", 1, 1, "Enter", 0, 941, "specialzu", 6),
-  new Pokemon("specialgolbat", "poison", "cookie", "cookie", 3, 1, "Enter", 0, 942, "gol", 6),
-  new Pokemon("cloyster", "water", "berry", "cookie", 3, 0, "Enter", 10, 91, "cl", 11),
-  new Pokemon("onix", "rock", "candy", "none", 3, 1, "Enter", 20, 95, "o", 11),
-  new Pokemon("staryu", "water", "berry", "none", 1, 0, "Enter", 5, 120, "staryu",6),
-  new Pokemon("starmie", "water", "berry", "berry", 1, 0, "Enter", 5, 121, "starme",5),
+    new Pokemon("specialpokemon", "normal",   "candy", "none",   3, 0, "Enter",  5, 777, "kang",      10),
+    new Pokemon("specialcrabby",  "water",    "candy", "none",   1, 0, "Enter",  5, 899, "specialcrab",9),
+    new Pokemon("SpecialMeowth",  "normal",   "berry", "berry",  3, 0, "Enter",  5, 333, "meowth",     8),
+
+    new Pokemon("magicarp",       "water",    "none",  "none",   1, 0, "Enter",  5, 129, "magi",       7),
+    new Pokemon("gyarados",       "water",    "candy", "none",   3, 0, "Enter",  5, 130, "gara",       7),
+
+    new Pokemon("pikachu",        "electric", "berry", "none",   1, 0, "Enter",  5,  25, "pika",       7),
+    new Pokemon("raichu",         "electric", "berry", "berry",  3, 0, "Enter",  5,  26, "raichu",     4),
+    new Pokemon("electabuzz",     "electric", "berry", "berry",  3, 0, "Enter",  5, 125, "electra",    7),
+
+    new Pokemon("kangaskhan",     "normal",   "berry", "berry",  3, 0, "Enter",  5, 115, "specialkang",4),
+
+    new Pokemon("krabby",         "water",    "berry", "none",   1, 0, "Enter",  5,  99, "crab",       9),
+    new Pokemon("kingler",        "water",    "berry", "berry",  3, 0, "Enter",  5, 100, "king",       6),
+
+    new Pokemon("omanyte",        "water",    "berry", "none",   1, 0, "Enter",  5, 138, "omanyte",    7),
+    new Pokemon("omastar",        "water",    "berry", "cookie", 3, 0, "Enter",  5, 139, "omastar",    4),
+
+    new Pokemon("paras",          "bug",      "berry", "none",   1, 0, "Enter",  5,  46, "paras",      5),
+    new Pokemon("parasect",       "bug",      "berry", "berry",  3, 0, "Enter",  5,  47, "parasect",   5),
+    new Pokemon("venonat",        "bug",      "berry", "none",   1, 0, "Enter",  5,  48, "venonaut",   9),
+    new Pokemon("venomoth",       "bug",      "berry", "berry",  3, 0, "Enter",  5,  49, "venomoth",   7),
+
+    new Pokemon("gastly",         "ghost",    "berry", "none",   1, 0, "Enter",  5,  92, "gastly",     7),
+    new Pokemon("haunter",        "ghost",    "berry", "berry",  2, 0, "Enter",  5,  93, "haunt",      5),
+    new Pokemon("gengar",         "ghost",    "cookie","cookie", 3, 0, "Enter",  5,  94, "gengar",     5),
+
+    new Pokemon("geodude",        "rock",     "berry", "none",   1, 0, "Enter",  5,  74, "geo",        7),
+    new Pokemon("graveler",       "rock",     "berry", "berry",  2, 0, "Enter",  5,  75, "grav",       7),
+    new Pokemon("golem",          "rock",     "cookie","cookie", 3, 0, "Enter",  5,  76, "gol",        7),
+
+    new Pokemon("caterpie",       "bug",      "berry", "none",   1, 0, "Enter",  5,  10, "ca",         7),
+    new Pokemon("metapod",        "bug",      "berry", "berry",  2, 0, "Enter",  5,  11, "meta",       6),
+    new Pokemon("butterfree",     "bug",      "berry", "cookie", 3, 0, "Enter",  5,  12, "butter",    11),
+
+    new Pokemon("shellder",       "water",    "berry", "none",   1, 0, "Enter",  5,  90, "shel",       8),
+
+    new Pokemon("zubat",          "poison",   "berry", "none",   1, 1, "Enter",  5,  41, "zu",         7),
+    new Pokemon("golbat",         "poison",   "berry", "cookie", 3, 1, "Enter",  5,  42, "gol",        7),
+    new Pokemon("specialzubat",   "poison",   "berry", "cookie", 1, 1, "Enter",  5, 941, "specialzu",  6),
+    new Pokemon("specialgolbat",  "poison",   "cookie","cookie", 3, 1, "Enter",  5, 942, "gol",        6),
+    
+    new Pokemon("cloyster",       "water",    "berry", "cookie", 3, 0, "Enter",  5,  91, "cl",        11)
 ];
-
 const user = new User();
 
 // ==================== DISPLAY UPDATES ====================
