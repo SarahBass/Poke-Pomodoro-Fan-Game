@@ -328,24 +328,34 @@ function preloadCatchAnimations() {
 
   if (!preloadedFrames[key]) {
     const frames = [];
-
     const blank = new Image();
     blank.src = `${basePath}blank.png?raw=true`;
     frames.push(blank);
 
+    let loadedImages = 0;
 
+    // Function to check if all images are loaded
+    const checkImagesLoaded = () => {
+      loadedImages++;
+      if (loadedImages === pokemon.animationNumber + 1) { // +1 for the blank image
+        preloadedFrames[key] = frames;
+        console.log("All frames preloaded");
+      }
+    };
+
+    // Preload each frame
     for (let i = 1; i <= pokemon.animationNumber; i++) {
       const img = new Image();
       img.src = `${basePath}${pokemon.animationName}${i}.png?raw=true`;
+      img.onload = checkImagesLoaded; // Increment when each image is loaded
       frames.push(img);
     }
 
-    preloadedFrames[key] = frames;
+    // Add extra blank frames after all other frames are loaded
+    blank.onload = checkImagesLoaded;
+    frames.push(blank);
+    frames.push(blank); // Two blank frames at the end for looping
   }
-
-  // Set up the animation for this single Pokémon
-  currentAnimationFrames = preloadedFrames[key];
-  currentFrameIndex = 0;
 }
 
 function loadAnimationFrames(pokemon) {
