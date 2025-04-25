@@ -37,6 +37,7 @@
     />
     
     
+    
         <img id="LocationPath" class="responsive-image" src="" alt="Error: Location Not Set" 
         style="display: none; position: absolute; top: 0; left: 0; width: 100%; z-index: 1;"
   />
@@ -44,9 +45,16 @@
     <img id="cloyster" class="responsive-image" src="" 
     alt="Pokemon Animation Frame Error"  style="display: none; "/>
   </div>
-  
   </div>
   
+          <div class="image-wrapper">
+    <img id="catchThis" class="responsive-image" src="" 
+    alt="Wild Pokemon Generating ... "  style="display: none; "/>
+  </div>
+      <div class="image-wrapper">
+    <img id="selectedCookie"  class="responsive-image" src="" 
+    alt="Cookie Display Error"  style="display: none; "/>
+  </div> 
 
   <!-- Toggle Button -->
 <button id="navToggle" class="nav-toggle"  style="font-family: 'Patrick Hand SC', cursive;">☰ Pokémon Pomodoro</button>
@@ -103,16 +111,17 @@
   </select>
 </div>
 
-<div id="feedSection" style="display: none;">
-  <h3>Feed the Pokémon</h3>
-  <label for="cookieSelect">Choose Cookie:</label>
+ <div id="cookieSelectorWrapper" class="phase" style="display: none;">
+  <label for="cookieSelect">Select Cookie:</label>
   <select id="cookieSelect">
-    <option value="bonusPokeball">Bonus Cookie</option>
-    <option value="pokeball">Poke Cookie</option>
-    <option value="greatPokeball">Great Cookie</option>
-    <option value="ultraPokeball">Ultra Cookie</option>
-    <option value="masterPokeball">Master Cookie</option>
+    <option value="bonus">Bonus Cookie</option>
+    <option value="great">Great Cookie</option>
+    <option value="master">Master Cookie</option>
+    <option value="ultra">Ultra Cookie</option>
+    <option value="pokeball">Poké Cookie</option>
   </select>
+
+
   <button id="useButton">Use</button>
   <p id="feedStatus"></p>
 </div>
