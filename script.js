@@ -7,7 +7,9 @@ const navButtons = document.querySelectorAll('.navigationButton');
 const navToggle = document.getElementById('navToggle');
 const navMenu = document.getElementById('navMenu');
 const basePath = "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/pokemongifs/";
+const CookiebasePath = "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/";
 const imageElement = document.getElementById("cloyster");
+const imageElement2 = document.getElementById("catchThis");
 const fps = 6;
 const frameDuration = 1000 / fps;
 let currentPokemonIndex = 0;
@@ -21,6 +23,7 @@ const preloadedFrames = {};
 navToggle.addEventListener('click', () => {
   navMenu.classList.toggle('collapsed');
 });
+
 // ==================== Graphic CONSTANTS ====================
 const PokedexbasePath = "https://raw.githubusercontent.com/SarahBass/Poke-Pomodoro-Fan-Game/main/pokedex/";
 const LocationPathway = "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/staticbackgrounds/"; 
@@ -34,6 +37,12 @@ document.getElementById("locationSelect").addEventListener("change", function() 
               : User.defaultTeam();
 
   setLocation(user.location);
+});
+
+
+document.getElementById("cookieSelect").addEventListener("change", () => {
+  const selectedCookie = document.getElementById("cookieSelect").value;
+  const cookieImageUrl = `${CookiebasePath}${selectedCookie}.png?raw=true`;
 });
 // ==================== DATA CLASSES ====================
 class Pokemon {
@@ -66,6 +75,8 @@ class User {
     this.team = data.team?.map(p => new Pokemon(...Object.values(p))) || User.defaultTeam();
     this.catch = new Pokemon("caterpie", "bug", "berry", "none", 1, 0, "Enter", 5, 10, "ca", 7);
   }
+  
+  
 
   static defaultTeam() {
     return [
@@ -80,6 +91,8 @@ class User {
         new Pokemon("krabby", "water", "berry", "none", 1, 0, "Enter", 5, 99, "crab",7),
     ];
   }
+  
+  
 }
 
 const teamsByLocation = {
@@ -356,7 +369,10 @@ function preloadCatchAnimations() {
     frames.push(blank);
     frames.push(blank); // Two blank frames at the end for looping
   }
+  
 }
+
+
 
 function loadAnimationFrames(pokemon) {
   const key = pokemon.pokedexNumber;
@@ -422,6 +438,14 @@ function evolvePokemon(index) {
   updatePokedexMenu();
 }
 
+function updateUserCatch(user, pool = wildPokemonPool) {
+  const randIndex = Math.floor(Math.random() * pool.length);
+  user.catch = clonePokemon(pool[randIndex]);
+  console.log("New user.catch:", user.catch);
+}
+
+
+
 // ==================== NAVIGATION LOGIC ====================
 function setLocation(location) {
   const locationImage = document.getElementById("LocationPath");
@@ -441,6 +465,8 @@ document.getElementById("pokedexImage").style.display = "none";
   document.getElementById("cloyster").style.display = "none";
    document.getElementById("catchPage").style.display = "none";
    // LocationPath.style.display = "none";
+   document.getElementById("selectedCookie").style.display = "none"; 
+   document.getElementById("cookieSelectorWrapper").style.display = "none"; 
     clearInterval(animationLoop);
 }
 
@@ -469,16 +495,32 @@ animationLoop = setInterval(playNextFrame, frameDuration);
 
 function showCatchPhase() {
   hideAllPhases();
-   clearInterval(animationLoop);
+  clearInterval(animationLoop);
+   updateUserCatch(user);
   document.querySelector(".CatchWrapper").style.display = "block";
  document.getElementById("catchPage").style.display = "block";
  
- document.getElementById("cloyster").style.display = "block";
+ //document.getElementById("cloyster").style.display = "block";
 
  preloadCatchAnimations();
-// preloadAllAnimations();
 
 animationLoop = setInterval(playNextFrame, frameDuration);
+document.getElementById("cookieSelectorWrapper").style.display = "block"; 
+//document.getElementById("selectedCookie").style.display = "block"; 
+const CookiebasePath = "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/";
+const cookieSelect = document.getElementById("cookieSelect");
+const selectedCookie = cookieSelect.value;
+const cookieImage = document.getElementById("selectedCookie");
+
+cookieImage.src = `${CookiebasePath}${selectedCookie}.png?raw=true`;
+cookieImage.style.display = "block";
+
+cookieSelect.addEventListener("change", function () {
+  const selectedCookie = this.value;
+  cookieImage.src = `${CookiebasePath}${selectedCookie}.png?raw=true`;
+  cookieImage.style.display = "block";
+});
+
 
 }
 
@@ -489,6 +531,9 @@ function showPokedexPhase() {
   document.getElementById("pokedexImage").style.display = "block";
   initializePokedex();
 }
+
+
+
 
 // ==================== EVENT LISTENERS ====================
 navButtons.forEach(button => {
@@ -586,7 +631,6 @@ function initializePokedex() {
 }
 
 updateCandyDisplay();
-
 
 
 
