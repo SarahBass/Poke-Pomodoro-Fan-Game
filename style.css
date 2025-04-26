@@ -197,10 +197,34 @@ button.dashed.thin {
   overflow: hidden;
   transition: max-height 0.4s ease, padding 0.4s ease;
   padding: 10px 0;
+  
 }
 
 /* Collapsed state */
 #navMenu.collapsed {
   max-height: 0;
   padding: 0;
+}
+#cookieWrapper {
+  position: relative;
+  width: 120px; /* Or whatever size you want */
+  height: 120px;
+  overflow: hidden; /* Optional: trims edges if sizes mismatch */
+}
+
+#selectedCookie, #hungerColorImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* or whatever specific size */
+  height: auto;
+  z-index: 1;
+}
+
+#selectedCookie {
+  z-index: 22; /* On top */
+}
+
+#hungerColorImage {
+  z-index: 21; /* Behind */
 }
