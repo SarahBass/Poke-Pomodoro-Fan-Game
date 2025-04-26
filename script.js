@@ -38,7 +38,7 @@ document.getElementById("locationSelect").addEventListener("change", function() 
 
   setLocation(user.location);
 });
-
+  const timerTextDiv = document.getElementById("timerText");
 
 document.getElementById("cookieSelect").addEventListener("change", () => {
   const selectedCookie = document.getElementById("cookieSelect").value;
@@ -467,7 +467,9 @@ document.getElementById("pokedexImage").style.display = "none";
    // LocationPath.style.display = "none";
    document.getElementById("selectedCookie").style.display = "none"; 
    document.getElementById("cookieSelectorWrapper").style.display = "none"; 
+   hungerColorImage.style.display = "none";
     clearInterval(animationLoop);
+      timerTextDiv.style.display = "none";
 }
 
 function showStartPhase() {
@@ -484,7 +486,7 @@ function showPomodoroPhase() {
  setLocation(user.location);
    // document.getElementById(".locationImage").style.display = "block";
   document.getElementById("cloyster").style.display = "block";
-
+  timerTextDiv.style.display = "block";
  
  preloadAllAnimations();
 currentAnimationFrames = loadAnimationFrames(user.team[currentPokemonIndex]);
@@ -496,32 +498,39 @@ animationLoop = setInterval(playNextFrame, frameDuration);
 function showCatchPhase() {
   hideAllPhases();
   clearInterval(animationLoop);
-   updateUserCatch(user);
-  document.querySelector(".CatchWrapper").style.display = "block";
- document.getElementById("catchPage").style.display = "block";
- 
- //document.getElementById("cloyster").style.display = "block";
+  updateUserCatch(user);
+ document.querySelector(".CatchWrapper").style.display = "block";
+  document.getElementById("catchPage").style.display = "block";
+  preloadCatchAnimations();
+  
+  animationLoop = setInterval(playNextFrame, frameDuration);
+  document.getElementById("cookieSelectorWrapper").style.display = "block"; 
 
- preloadCatchAnimations();
+  const CookiebasePath = "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/";
+  const cookieSelect = document.getElementById("cookieSelect");
+  const selectedCookie = cookieSelect.value;
+  const cookieImage = document.getElementById("selectedCookie");
 
-animationLoop = setInterval(playNextFrame, frameDuration);
-document.getElementById("cookieSelectorWrapper").style.display = "block"; 
-//document.getElementById("selectedCookie").style.display = "block"; 
-const CookiebasePath = "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/";
-const cookieSelect = document.getElementById("cookieSelect");
-const selectedCookie = cookieSelect.value;
-const cookieImage = document.getElementById("selectedCookie");
-
-cookieImage.src = `${CookiebasePath}${selectedCookie}.png?raw=true`;
-cookieImage.style.display = "block";
-
-cookieSelect.addEventListener("change", function () {
-  const selectedCookie = this.value;
   cookieImage.src = `${CookiebasePath}${selectedCookie}.png?raw=true`;
   cookieImage.style.display = "block";
-});
 
+  // 🛠️ ADD THIS PART TO SET hungerColorImage IMMEDIATELY:
+  const hungerColorImage = document.getElementById("hungerColorImage");
+  const HungermeterPath = "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/";
+  const hungerString = "nonemeter";
 
+  hungerColorImage.src = `${HungermeterPath}${hungerString}.png?raw=true`;
+  hungerColorImage.style.display = "block";
+
+  // ✅ Then still keep the event listener in case they change cookie:
+  cookieSelect.addEventListener("change", function () {
+    const selectedCookie = this.value;
+    cookieImage.src = `${CookiebasePath}${selectedCookie}.png?raw=true`;
+    cookieImage.style.display = "block";
+    
+    hungerColorImage.src = `${HungermeterPath}${hungerString}.png?raw=true`;
+    hungerColorImage.style.display = "block";
+  });
 }
 
 function showPokedexPhase() {
@@ -602,8 +611,8 @@ function startTimer() {
   endHours = endHours % 12 || 12;
   const endTimeFormatted = `${endHours}:${endMinutes} ${endAMPM}`;
 
-  const timerTextDiv = document.getElementById("timerText");
-  timerTextDiv.style.display = "block";
+
+
 
   timerRunning = true;
   elapsedTime = 0;
@@ -614,7 +623,7 @@ function startTimer() {
       timerRunning = false;
     }
     
-    
+      
 
     const timeRemaining = totalDuration - elapsedTime;
     timerTextDiv.innerHTML = `${formatTime(timeRemaining)}<br>Time Start: ${startTimeFormatted}<br>Time End: ${endTimeFormatted}`;
