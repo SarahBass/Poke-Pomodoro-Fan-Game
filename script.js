@@ -2092,6 +2092,7 @@ function showCatchPhase() {
     updateInventory()
     // (Optional) Check if hunger is fully satisfied
     if (user.catch.hunger <= 0) {
+     user.checkAndAddToTeam() ;
       document.getElementById("feedStatus").textContent = "Pokémon caught!"
       // 🛠️ Maybe trigger evolution success or next phase here!
       if (evolutionStage < 2) {
@@ -2120,14 +2121,8 @@ function showCatchPhase() {
     hungerCostGraphic.src =
       "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/catch3.png?raw=true"
   }
-  //} else {
-  // if (evolutionStage < 2) {
-  //  hungerCostGraphic.src = "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/caughtbonus.png?raw=true";
-  //  } else {
-  //   hungerCostGraphic.src = "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/caught.png?raw=true";
-  //  }
-  //}
- user.checkAndAddToTeam();
+ 
+
   // Ensure the graphic is displayed after being updated
   hungerCostGraphic.style.display = "block"
   console.log("Updated hunger graphic:", hungerCostGraphic.src)
