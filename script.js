@@ -128,14 +128,9 @@ class User {
 
   // Method to check and add the Pokemon to the team
   checkAndAddToTeam() {
-    if (this.catch.hunger === 0) {
-      // Clone the caught Pokemon and add it to the team
       const clonedPokemon = this.clonePokemon(this.catch);
       this.team.push(clonedPokemon);
-      console.log(`${clonedPokemon.personalName} has been added to your team!`);
-    } else {
-      console.log(`${this.catch.personalName} still has hunger and cannot join the team.`);
-    }
+      console.log(`Wild ${clonedPokemon.name} has been added to your team!`);
   }
 
   // Method to clone a Pokemon
