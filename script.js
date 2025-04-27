@@ -44,7 +44,7 @@ document.getElementById("cookieSelect").addEventListener("change", () => {
   const selectedCookie = document.getElementById("cookieSelect").value;
   const cookieImageUrl = `${CookiebasePath}${selectedCookie}.png?raw=true`;
 });
-
+const table = document.getElementById("inventoryTable");
 // Function to update the table
 function updateInventory() {
   document.getElementById('berryPoints').innerText = "Berry: " + user.berryPoints;
@@ -482,6 +482,7 @@ document.getElementById("pokedexImage").style.display = "none";
    hungerColorImage.style.display = "none";
     clearInterval(animationLoop);
       timerTextDiv.style.display = "none";
+        table.style.display = "none"; 
 }
 
 function showStartPhase() {
@@ -514,7 +515,7 @@ function showCatchPhase() {
   document.querySelector(".CatchWrapper").style.display = "block";
   document.getElementById("catchPage").style.display = "block";
   preloadCatchAnimations();
-
+  table.style.display = "block"; 
   animationLoop = setInterval(playNextFrame, frameDuration);
   document.getElementById("cookieSelectorWrapper").style.display = "block"; 
 
