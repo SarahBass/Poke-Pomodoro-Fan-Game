@@ -64,10 +64,10 @@ class Pokemon {
 class User {
   constructor(data = {}) {
     this.goalType = data.goalType || "Study";
-    this.pokeball = data.pokeball || 0;
+    this.pokeball = data.pokeball || 10;
     this.bonusPokeball = data.bonusPokeball || 5;
-    this.greatPokeball = data.greatPokeball || 2;
-    this.ultraPokeball = data.ultraPokeball || 3;
+    this.greatPokeball = data.greatPokeball || 5;
+    this.ultraPokeball = data.ultraPokeball || 5;
     this.masterPokeball = data.masterPokeball || 1;
     this.candy = data.candy || 10;
     this.location = data.location || "taupecave";
@@ -438,76 +438,12 @@ function evolvePokemon(index) {
   updatePokedexMenu();
 }
 
-function updateUserCatch(user, pool = wildPokemonPool) {
+ function updateUserCatch(user, pool = wildPokemonPool) {
   const randIndex = Math.floor(Math.random() * pool.length);
   user.catch = clonePokemon(pool[randIndex]);
   console.log("New user.catch:", user.catch);
 }
 
-const useButton = document.getElementById("useButton");
-  let paymentStatus = {
-  pokeballPaid: false,
-  bonusBallPaid: false
-};
-
-function resetPaymentStatus() {
-  paymentStatus.pokeballPaid = false;
-  paymentStatus.bonusBallPaid = false;
-}
-  resetPaymentStatus();
-useButton.addEventListener("click", function () {
-  const selectedCookie = document.getElementById("cookieSelect").value;
-  const evolutionStage = user.catch.evolution;
-
-  if (evolutionStage === 1) {
-    if (selectedCookie === "pokeball" && user.pokeball >= 5) {
-      user.pokeball -= 5;
-      user.catch.hunger -= 5;
-      paymentStatus.pokeballPaid = true;
-      document.getElementById("feedStatus").textContent = "Pokémon fed successfully!";
-    } else {
-      document.getElementById("feedStatus").textContent = "You need 5 Poké Cookies!";
-    }
-  } else if (evolutionStage === 2) {
-    if (!paymentStatus.bonusBallPaid && selectedCookie === "great" && user.greatPokeball >= 1) {
-      user.greatPokeball -= 1;
-      paymentStatus.bonusBallPaid = true;
-      document.getElementById("feedStatus").textContent = "Great Cookie used! Now feed 5 Poké Cookies.";
-    } else if (paymentStatus.bonusBallPaid && selectedCookie === "pokeball" && user.pokeball >= 5) {
-      user.pokeball -= 5;
-      user.catch.hunger -= 5;
-      paymentStatus.pokeballPaid = true;
-      document.getElementById("feedStatus").textContent = "Pokémon fed successfully!";
-    } else if (!paymentStatus.bonusBallPaid) {
-      document.getElementById("feedStatus").textContent = "Use 1 Great Cookie first!";
-    } else {
-      document.getElementById("feedStatus").textContent = "You need 5 Poké Cookies!";
-    }
-  } else if (evolutionStage === 3) {
-    if (!paymentStatus.bonusBallPaid && selectedCookie === "ultra" && user.ultraPokeball >= 1) {
-      user.ultraPokeball -= 1;
-      paymentStatus.bonusBallPaid = true;
-      document.getElementById("feedStatus").textContent = "Ultra Cookie used! Now feed 5 Poké Cookies.";
-    } else if (paymentStatus.bonusBallPaid && selectedCookie === "pokeball" && user.pokeball >= 5) {
-      user.pokeball -= 5;
-      user.catch.hunger -= 5;
-      paymentStatus.pokeballPaid = true;
-      document.getElementById("feedStatus").textContent = "Pokémon fed successfully!";
-    } else if (!paymentStatus.bonusBallPaid) {
-      document.getElementById("feedStatus").textContent = "Use 1 Ultra Cookie first!";
-    } else {
-      document.getElementById("feedStatus").textContent = "You need 5 Poké Cookies!";
-    }
-  }
-
-  updateUserCatch(user); // 🛠️ Refresh the user's display (hunger, items, etc.)
-
-  // (Optional) Check if hunger is fully satisfied
-  if (user.catch.hunger <= 0) {
-    document.getElementById("feedStatus").textContent = "Pokémon caught!";
-    // 🛠️ Maybe trigger evolution success or next phase here!
-  }
-});
 
 
 // ==================== NAVIGATION LOGIC ====================
@@ -601,27 +537,109 @@ function showCatchPhase() {
   const hungerCostGraphic = document.getElementById("hungerCostGraphic");
   const evolutionStage = user.catch.evolution;  // Use the Pokémon's evolution property to determine which graphic to show
   
-  
+ 
+const useButton = document.getElementById("useButton");
+  let paymentStatus = {
+  pokeballPaid: false,
+  bonusBallPaid: false
+};
+
+function resetPaymentStatus() {
+  paymentStatus.pokeballPaid = false;
+  paymentStatus.bonusBallPaid = false;
+}
+  resetPaymentStatus();
+useButton.addEventListener("click", function () {
+  const selectedCookie = document.getElementById("cookieSelect").value;
+  //const evolutionStage = user.catch.evolution;
+console.log("New hunger after feeding:", user.catch.hunger);
+  if (evolutionStage === 1) {
+    if (selectedCookie === "pokeball" && user.pokeball >= 5) {
+      user.pokeball -= 5;
+     user.catch.hunger = 0;
+      paymentStatus.pokeballPaid = true;
+      document.getElementById("feedStatus").textContent = "Pokémon fed successfully!";
+    } else {
+      document.getElementById("feedStatus").textContent = "You need 5 Poké Cookies!";
+    }
+  } else if (evolutionStage === 2) {
+    if (!paymentStatus.bonusBallPaid && selectedCookie === "great" && user.greatPokeball >= 1) {
+      user.greatPokeball -= 1;
+      paymentStatus.bonusBallPaid = true;
+      document.getElementById("feedStatus").textContent = "Great Cookie used! Now feed 5 Poké Cookies.";
+    } else if (paymentStatus.bonusBallPaid && selectedCookie === "pokeball" && user.pokeball >= 5) {
+      user.pokeball -= 5;
+     user.catch.hunger = 0;
+      paymentStatus.pokeballPaid = true;
+      document.getElementById("feedStatus").textContent = "Pokémon fed successfully!";
+    } else if (!paymentStatus.bonusBallPaid) {
+      document.getElementById("feedStatus").textContent = "Use 1 Great Cookie first!";
+    } else {
+      document.getElementById("feedStatus").textContent = "You need 5 Poké Cookies!";
+    }
+  } else if (evolutionStage === 3) {
+    if (!paymentStatus.bonusBallPaid && selectedCookie === "ultra" && user.ultraPokeball >= 1) {
+      user.ultraPokeball -= 1;
+      paymentStatus.bonusBallPaid = true;
+      document.getElementById("feedStatus").textContent = "Ultra Cookie used! Now feed 5 Poké Cookies.";
+    } else if (paymentStatus.bonusBallPaid && selectedCookie === "pokeball" && user.pokeball >= 5) {
+      user.pokeball -= 5;
+      user.catch.hunger = 0;
+      paymentStatus.pokeballPaid = true;
+      document.getElementById("feedStatus").textContent = "Pokémon fed successfully!";
+    } else if (!paymentStatus.bonusBallPaid) {
+      document.getElementById("feedStatus").textContent = "Use 1 Ultra Cookie first!";
+    } else {
+      document.getElementById("feedStatus").textContent = "You need 5 Poké Cookies!";
+    }
+    
+  }
+
+ // updateUserCatch(user); // 🛠️ Refresh the user's display (hunger, items, etc.)
+  console.log("Uodate user.catch:", user.catch);
+    console.log("Update user.pokeball:", user.pokeball);
+ //       console.log("Update user.catch.hunger:", user.catch.hunger);
+   //     console.log("Before updating hunger:", user.catch.hunger);
+//user.catch.hunger = 0; // Reset hunger
+console.log("After updating hunger:", user.catch.hunger);
+  // (Optional) Check if hunger is fully satisfied
+  if (user.catch.hunger <= 0) {
+    document.getElementById("feedStatus").textContent = "Pokémon caught!";
+    // 🛠️ Maybe trigger evolution success or next phase here!
+      if (evolutionStage < 2) {
+    hungerCostGraphic.src = "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/caughtbonus.png?raw=true";
+  } else {
+    hungerCostGraphic.src = "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/caught.png?raw=true";
+  }
+  }
+});
+
   
 const hungerStat = user.catch.hunger; 
-  // Update the hunger cost graphic based on evolution stage
- if (hungerStat > 0) {
- if (evolutionStage === 1) {
+//const evolutionStage = user.catch.evolution;
+console.log("Current hunger:", hungerStat);
+
+// Update the hunger cost graphic based on evolution stage
+//if (hungerStat > 0) {
+  if (evolutionStage === 1) {
     hungerCostGraphic.src = "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/catch1.png?raw=true";
   } else if (evolutionStage === 2) {
     hungerCostGraphic.src = "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/catch2.png?raw=true";
   } else if (evolutionStage === 3) {
     hungerCostGraphic.src = "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/catch3.png?raw=true";
   }
+//} else {
+ // if (evolutionStage < 2) {
+  //  hungerCostGraphic.src = "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/caughtbonus.png?raw=true";
+//  } else {
+ //   hungerCostGraphic.src = "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/caught.png?raw=true";
+//  }
+//}
 
-}else{
-if (evolutionStage < 2){
-hungerCostGraphic.src = "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/caughtbonus.png?raw=true";
-}else{
-hungerCostGraphic.src = "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/caught.png?raw=true";
-}
-}
-  hungerCostGraphic.style.display = "block";
+// Ensure the graphic is displayed after being updated
+hungerCostGraphic.style.display = "block";
+console.log("Updated hunger graphic:", hungerCostGraphic.src);
+
 }
 
 function showPokedexPhase() {
