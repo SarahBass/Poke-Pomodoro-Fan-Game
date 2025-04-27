@@ -228,3 +228,17 @@ button.dashed.thin {
 #hungerColorImage {
   z-index: 21; /* Behind */
 }
+#inventoryTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#inventoryTable td, #inventoryTable th {
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+#inventoryTable th {
+  background-color: #f4f4f4;
+}
