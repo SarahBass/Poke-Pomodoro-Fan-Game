@@ -1637,7 +1637,7 @@ const wildPokemonPool = [
 ]
 
 //----------------------------------------------------------------
-const user = new User()
+const user = new User();
 
 // ==================== DISPLAY UPDATES ====================
 function switchLocation(newLocation) {
