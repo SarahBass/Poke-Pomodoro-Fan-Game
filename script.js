@@ -340,6 +340,7 @@ function preloadAllAnimations() {
         const img = new Image();
         img.src = `${basePath}${pokemon.animationName}${i}.png?raw=true`;
         frames.push(img);
+        
       }
 
       preloadedFrames[key] = frames;
@@ -365,6 +366,7 @@ function preloadCatchAnimations() {
       if (loadedImages === pokemon.animationNumber + 1) { // +1 for the blank image
         preloadedFrames[key] = frames;
         console.log("All frames preloaded");
+         console.log("Preloading frames for Pokémon:", pokemon.name);
       }
     };
 
@@ -391,7 +393,7 @@ function loadAnimationFrames(pokemon) {
   return preloadedFrames[key] || [];
 }
 
-function playNextFrame() {
+function playNextFrame(imageElement) {
   if (currentFrameIndex < currentAnimationFrames.length) {
     imageElement.src = currentAnimationFrames[currentFrameIndex].src;
     currentFrameIndex++;
@@ -402,8 +404,9 @@ function playNextFrame() {
       const nextPokemon = user.team[currentPokemonIndex];
       currentAnimationFrames = loadAnimationFrames(nextPokemon);
       currentFrameIndex = 0;
-      animationLoop = setInterval(playNextFrame, frameDuration);
-    },0 ); // 500ms pause before next Pokémon
+      // Pass the imageElement2 here for the next iteration
+      animationLoop = setInterval(() => playNextFrame(imageElement), frameDuration);
+    }, 0); // 500ms pause before next Pokémon
   }
 }
 
@@ -542,7 +545,7 @@ function showPomodoroPhase() {
  
  preloadAllAnimations();
 currentAnimationFrames = loadAnimationFrames(user.team[currentPokemonIndex]);
-animationLoop = setInterval(playNextFrame, frameDuration);
+animationLoop = setInterval(() => playNextFrame(imageElement), frameDuration);
 
   startTimer();
   
@@ -557,8 +560,10 @@ function showCatchPhase() {
   document.querySelector(".CatchWrapper").style.display = "block";
   document.getElementById("catchPage").style.display = "block";
   preloadCatchAnimations();
+  //console.log(imageElement2.src);
+  document.getElementById("catchThis").style.display = "block";
   table.style.display = "block"; 
-  animationLoop = setInterval(playNextFrame, frameDuration);
+animationLoop = setInterval(() => playNextFrame(imageElement2), frameDuration);
   document.getElementById("cookieSelectorWrapper").style.display = "block"; 
 
   const CookiebasePath = "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/";
