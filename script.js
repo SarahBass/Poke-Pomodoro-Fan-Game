@@ -536,17 +536,27 @@ function showCatchPhase() {
   // Add logic to update the hunger cost graphic based on the Pokémon's evolution
   const hungerCostGraphic = document.getElementById("hungerCostGraphic");
   const evolutionStage = user.catch.evolution;  // Use the Pokémon's evolution property to determine which graphic to show
-
+const hungerStat = user.catch.hunger; 
   // Update the hunger cost graphic based on evolution stage
-  if (evolutionStage === 1) {
+ if (hungerStat > 0) {
+ if (evolutionStage === 1) {
     hungerCostGraphic.src = "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/catch1.png?raw=true";
   } else if (evolutionStage === 2) {
     hungerCostGraphic.src = "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/catch2.png?raw=true";
   } else if (evolutionStage === 3) {
     hungerCostGraphic.src = "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/catch3.png?raw=true";
   }
+
+}else{
+if (evolutionStage < 2){
+hungerCostGraphic.src = "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/caughtbonus.png?raw=true";
+}else{
+hungerCostGraphic.src = "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/caught.png?raw=true";
+}
+}
   hungerCostGraphic.style.display = "block";
 }
+
 function showPokedexPhase() {
   hideAllPhases();
   document.getElementById("pokedexContainer").style.display = "block";  // Show Pokedex explicitly here
