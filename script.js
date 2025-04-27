@@ -464,6 +464,7 @@ document.getElementById("pokedexImage").style.display = "none";
   document.getElementById("Pokedexpage").style.display = "none";  // Hide Pokedex images here
   document.getElementById("cloyster").style.display = "none";
    document.getElementById("catchPage").style.display = "none";
+     hungerCostGraphic.style.display = "none";
    // LocationPath.style.display = "none";
    document.getElementById("selectedCookie").style.display = "none"; 
    document.getElementById("cookieSelectorWrapper").style.display = "none"; 
@@ -499,10 +500,10 @@ function showCatchPhase() {
   hideAllPhases();
   clearInterval(animationLoop);
   updateUserCatch(user);
- document.querySelector(".CatchWrapper").style.display = "block";
+  document.querySelector(".CatchWrapper").style.display = "block";
   document.getElementById("catchPage").style.display = "block";
   preloadCatchAnimations();
-  
+
   animationLoop = setInterval(playNextFrame, frameDuration);
   document.getElementById("cookieSelectorWrapper").style.display = "block"; 
 
@@ -531,8 +532,21 @@ function showCatchPhase() {
     hungerColorImage.src = `${HungermeterPath}${hungerString}.png?raw=true`;
     hungerColorImage.style.display = "block";
   });
-}
 
+  // Add logic to update the hunger cost graphic based on the Pokémon's evolution
+  const hungerCostGraphic = document.getElementById("hungerCostGraphic");
+  const evolutionStage = user.catch.evolution;  // Use the Pokémon's evolution property to determine which graphic to show
+
+  // Update the hunger cost graphic based on evolution stage
+  if (evolutionStage === 1) {
+    hungerCostGraphic.src = "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/catch1.png?raw=true";
+  } else if (evolutionStage === 2) {
+    hungerCostGraphic.src = "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/catch2.png?raw=true";
+  } else if (evolutionStage === 3) {
+    hungerCostGraphic.src = "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/catch3.png?raw=true";
+  }
+  hungerCostGraphic.style.display = "block";
+}
 function showPokedexPhase() {
   hideAllPhases();
   document.getElementById("pokedexContainer").style.display = "block";  // Show Pokedex explicitly here
