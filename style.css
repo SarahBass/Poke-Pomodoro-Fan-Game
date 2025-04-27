@@ -242,3 +242,10 @@ button.dashed.thin {
 #inventoryTable th {
   background-color: #f4f4f4;
 }
+
+#catchThis {
+  position: absolute; /* or 'relative' depending on the layout */
+  z-index: 29; /* A high value to ensure it's on top */
+  top: 0; /* Adjust position if necessary */
+  left: 0; /* Adjust position if necessary */
+}
