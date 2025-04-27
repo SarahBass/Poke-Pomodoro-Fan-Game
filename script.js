@@ -802,7 +802,44 @@ function startTimer() {
       timerRunning = false;
     }
     
-      
+   if (elapsedTime >= totalDuration) {
+  clearInterval(countdownInterval);
+  timerRunning = false;
+
+  // ==================== REWARD PLAYER AFTER 25 MINUTES ====================
+  
+  const BerryValues = {
+    dragon: 35,
+    grass: 33,
+    poison: 32,
+    water: 31,
+    rock: 30,
+    fighting: 27,
+    normal: 28,
+    fire: 27,
+    ghost: 26,
+    psychic: 26,
+    fairy: 26,
+    electric: 25,
+    bug: 24,
+    flying: 24
+  };
+
+  user.team.forEach(pokemon => {
+    [pokemon.item1, pokemon.item2].forEach(item => {
+      if (item === "cookie") {
+        user.pokeball += 1;
+      } else if (item === "candy") {
+        user.candy += 1;
+      } else if (item === "berry") {
+        const score = BerryValues[pokemon.type] || 0;
+        user.berryPoints += score;
+      }
+    });
+  });
+
+  // (Optional: update any UI elements here if needed)
+}   
 
     const timeRemaining = totalDuration - elapsedTime;
     timerTextDiv.innerHTML = `${formatTime(timeRemaining)}<br>Time Start: ${startTimeFormatted}<br>Time End: ${endTimeFormatted}`;
