@@ -132,6 +132,21 @@ class User {
       this.team.push(clonedPokemon);
       console.log(`Wild ${clonedPokemon.name} has been added to your team!`);
   }
+  
+  earnBerryRewards() {
+  if (this.berryPoints >= 500) {
+    this.bonusPokeball += 100;
+  } else if (this.berryPoints >= 400) {
+    this.pokeball += 20;
+  } else if (this.berryPoints >= 300) {
+    this.ultraPokeball += 5;
+  } else if (this.berryPoints >= 200) {
+    this.greatPokeball += 5;
+  } else if (this.berryPoints >= 100) {
+    this.pokeball += 5;
+  }
+  
+}
 
   // Method to clone a Pokemon
   clonePokemon(pokemon) {
@@ -1816,7 +1831,7 @@ function evolvePokemon(index) {
   }
 
   user.candy -= 3
-  updateCandyDisplay()
+  updateCandyDisplay();
 
   const holdName = pokemon.personalName
   const holdEvolutionNumber = pokemon.pokedexNumber + 1
@@ -1928,7 +1943,7 @@ function showPomodoroPhase() {
   currentAnimationFrames = loadAnimationFrames(user.team[currentPokemonIndex])
   animationLoop = setInterval(() => playNextFrame(imageElement), frameDuration)
 
-  startTimer()
+  startTimer();
 
   document.getElementById("teamTable").style.display = "table"
   updateTeamTable(user)
@@ -2193,39 +2208,35 @@ function getCurrentTimeFormatted() {
 }
 
 function startTimer() {
-  if (timerRunning) return
+  if (timerRunning) return;
 
   // Format current time in 12-hour format with AM/PM
-  const now = new Date()
-  let startHours = now.getHours()
-  const startMinutes = String(now.getMinutes()).padStart(2, "0")
-  const startAMPM = startHours >= 12 ? "PM" : "AM"
-  startHours = startHours % 12 || 12
-  const startTimeFormatted = `${startHours}:${startMinutes} ${startAMPM}`
+  const now = new Date();
+  let startHours = now.getHours();
+  const startMinutes = String(now.getMinutes()).padStart(2, "0");
+  const startAMPM = startHours >= 12 ? "PM" : "AM";
+  startHours = startHours % 12 || 12;
+  const startTimeFormatted = `${startHours}:${startMinutes} ${startAMPM}`;
 
   // Calculate and format end time in 12-hour format with AM/PM
-  const endTime = new Date(Date.now() + totalDuration * 1000)
-  let endHours = endTime.getHours()
-  const endMinutes = String(endTime.getMinutes()).padStart(2, "0")
-  const endAMPM = endHours >= 12 ? "PM" : "AM"
-  endHours = endHours % 12 || 12
-  const endTimeFormatted = `${endHours}:${endMinutes} ${endAMPM}`
+  const endTime = new Date(Date.now() + totalDuration * 1000);
+  let endHours = endTime.getHours();
+  const endMinutes = String(endTime.getMinutes()).padStart(2, "0");
+  const endAMPM = endHours >= 12 ? "PM" : "AM";
+  endHours = endHours % 12 || 12;
+  const endTimeFormatted = `${endHours}:${endMinutes} ${endAMPM}`;
 
-  timerRunning = true
-  elapsedTime = 0
+  timerRunning = true;
+  elapsedTime = 0;
 
   countdownInterval = setInterval(() => {
     if (elapsedTime >= totalDuration) {
-      clearInterval(countdownInterval)
-      timerRunning = false
-    }
-
-    if (elapsedTime >= totalDuration) {
-      clearInterval(countdownInterval)
-      timerRunning = false
+      clearInterval(countdownInterval);
+      timerRunning = false;
 
       // ==================== REWARD PLAYER AFTER 25 MINUTES ====================
-
+      
+      // Adding berry points, cookies, candies, and updating user stats
       const BerryValues = {
         dragon: 35,
         grass: 33,
@@ -2241,28 +2252,38 @@ function startTimer() {
         electric: 25,
         bug: 24,
         flying: 24,
-      }
+      };
 
+// Reward logic
       user.team.forEach((pokemon) => {
-        ;[pokemon.item1, pokemon.item2].forEach((item) => {
+        [pokemon.item1, pokemon.item2].forEach((item) => {
           if (item === "cookie") {
-            user.pokeball += 1
+            user.pokeball += 1;
+            console.log("Pokeball increased:", user.pokeball);
           } else if (item === "candy") {
-            user.candy += 1
+            user.candy += 1;
+            console.log("Candy increased:", user.candy);
           } else if (item === "berry") {
-            const score = BerryValues[pokemon.type] || 0
-            user.berryPoints += score
+            const score = BerryValues[pokemon.type] || 0;
+            user.berryPoints += score;
+            console.log("Berry points increased:", user.berryPoints);
           }
-        })
-      })
+        });
+      });
+
+      // Call the reward method
+      user.earnBerryRewards();
+      console.log("Berry rewards earned");
+      updateInventory();
+      updateCandyDisplay(); 
 
       // (Optional: update any UI elements here if needed)
     }
 
-    const timeRemaining = totalDuration - elapsedTime
-    timerTextDiv.innerHTML = `${formatTime(timeRemaining)}<br>Time Start: ${startTimeFormatted}<br>Time End: ${endTimeFormatted}`
-    elapsedTime++
-  }, 1000)
+    const timeRemaining = totalDuration - elapsedTime;
+    timerTextDiv.innerHTML = `${formatTime(timeRemaining)}<br>Time Start: ${startTimeFormatted}<br>Time End: ${endTimeFormatted}`;
+    elapsedTime++;
+  }, 1000);
 }
 
 // ==================== INITIALIZATION ====================
