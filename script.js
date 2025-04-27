@@ -163,9 +163,9 @@ new Pokemon("venomoth", "bug", "berry", "berry", 3, 0, "Enter", 7, 49,"venomoth"
         new Pokemon("charmander", "fire", "berry", "none", 1, 0, "Enter", 5, 4, "charmander", 10),
   ],
   cyanbeach: [
-   new Pokemon("krabby", "water", "berry", "none", 1, 0, "Enter", 5, 99, "crab",9),
+   new Pokemon("krabby", "water", "berry", "none", 1, 0, "Enter", 5, 98, "crab",9),
    new Pokemon("specialcrabby", "water", "candy", "none", 3, 0, "Enter", 5, 899, "specialcrab",9),
-    new Pokemon("kingler", "water", "berry", "berry", 3, 0, "Enter", 5, 100, "king",6),
+    new Pokemon("kingler", "water", "berry", "berry", 3, 0, "Enter", 5, 99, "king",6),
      new Pokemon("lapras", "water", "cookie", "none", 3, 0, "Enter", 5, 131, "lapas",6),
   new Pokemon("pikachu", "electric", "cookie", "none", 1, 0, "Enter", 5, 25, "pika",7),
    new Pokemon("gyarados", "water", "candy", "none", 3, 0, "Enter", 5, 130, "gara",7),
@@ -183,8 +183,8 @@ const BeachPokemonPool = [
     new Pokemon("SquirtleBoss",     "water", "berry", "cookie", 3, 0, "Boss",       5, 505, "squirt", 12),
     new Pokemon("magicarp",         "water", "none",  "none",   1, 0, "Enter",      5, 129, "magi",   7),
     new Pokemon("gyarados",         "water", "candy", "none",   3, 0, "Enter",      5, 130, "gara",   7),
-    new Pokemon("krabby",           "water", "berry", "none",   1, 0, "Enter",      5,  99, "crab",   9),
-    new Pokemon("kingler",          "water", "berry", "berry",  3, 0, "Enter",      5, 100, "king",   6),
+    new Pokemon("krabby",           "water", "berry", "none",   1, 0, "Enter",      5,  98, "crab",   9),
+    new Pokemon("kingler",          "water", "berry", "berry",  3, 0, "Enter",      5, 99, "king",   6),
     new Pokemon("shellder",         "water", "berry", "none",   1, 0, "Enter",      5,  90, "shel",   8),
     new Pokemon("cloyster",         "water", "berry", "cookie", 3, 0, "Enter",      5,  91, "cl",    11),
     new Pokemon("staryu",           "water", "berry", "none",   1, 0, "Enter",      5, 120, "staryu", 6),
@@ -224,8 +224,8 @@ const wildPokemonPool = [
 
     new Pokemon("kangaskhan",     "normal",   "berry", "berry",  3, 0, "Enter",  5, 115, "specialkang",4),
 
-    new Pokemon("krabby",         "water",    "berry", "none",   1, 0, "Enter",  5,  99, "crab",       9),
-    new Pokemon("kingler",        "water",    "berry", "berry",  3, 0, "Enter",  5, 100, "king",       6),
+    new Pokemon("krabby",         "water",    "berry", "none",   1, 0, "Enter",  5,  98, "crab",       9),
+    new Pokemon("kingler",        "water",    "berry", "berry",  3, 0, "Enter",  5, 99, "king",       6),
 
     new Pokemon("omanyte",        "water",    "berry", "none",   1, 0, "Enter",  5, 138, "omanyte",    7),
     new Pokemon("omastar",        "water",    "berry", "cookie", 3, 0, "Enter",  5, 139, "omastar",    4),
