@@ -456,6 +456,43 @@ function evolvePokemon(index) {
   console.log("New user.catch:", user.catch);
 }
 
+//=======================PokeTABLE=========================
+function updateTeamTable(user) {
+  const tableBody = document.getElementById('teamTableBody');
+  tableBody.innerHTML = ""; // Clear any previous rows
+
+  const pokeImagePath = "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/PokeID/";
+
+  user.team.forEach(pokemon => {
+    const row = document.createElement('tr');
+
+    // Pokemon image cell
+    const pokemonCell = document.createElement('td');
+    const img = document.createElement('img');
+    img.src = `${pokeImagePath}${pokemon.pokedexNumber}.PNG?raw=true`;
+    img.alt = pokemon.name;
+    img.width = 40;
+    pokemonCell.appendChild(img);
+
+    // Items cell
+    const itemsCell = document.createElement('td');
+    let itemsText = pokemon.item1;
+    if (pokemon.item2 && pokemon.item2 !== "none") {
+      itemsText += `, ${pokemon.item2}`;
+    }
+    itemsCell.innerText = itemsText;
+
+    // Add cells to row
+    row.appendChild(pokemonCell);
+    row.appendChild(itemsCell);
+
+    // Add row to table
+    tableBody.appendChild(row);
+  });
+
+  // Finally, show the table
+  document.getElementById('teamTable').style.display = "table";
+}
 
 
 // ==================== NAVIGATION LOGIC ====================
@@ -484,6 +521,7 @@ document.getElementById("pokedexImage").style.display = "none";
     clearInterval(animationLoop);
       timerTextDiv.style.display = "none";
         table.style.display = "none"; 
+          document.getElementById('teamTable').style.display = "none";
 }
 
 function showStartPhase() {
@@ -507,6 +545,9 @@ currentAnimationFrames = loadAnimationFrames(user.team[currentPokemonIndex]);
 animationLoop = setInterval(playNextFrame, frameDuration);
 
   startTimer();
+  
+  document.getElementById('teamTable').style.display = "table";
+updateTeamTable(user)
 }
 
 function showCatchPhase() {
