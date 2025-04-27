@@ -531,6 +531,7 @@ function showCatchPhase() {
   const hungerColorImage = document.getElementById("hungerColorImage");
   const HungermeterPath = "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/";
   const hungerString = "nonemeter";
+  
 
   hungerColorImage.src = `${HungermeterPath}${hungerString}.png?raw=true`;
   hungerColorImage.style.display = "block";
@@ -540,10 +541,24 @@ function showCatchPhase() {
     const selectedCookie = this.value;
     cookieImage.src = `${CookiebasePath}${selectedCookie}.png?raw=true`;
     cookieImage.style.display = "block";
-    
-    hungerColorImage.src = `${HungermeterPath}${hungerString}.png?raw=true`;
-    hungerColorImage.style.display = "block";
+   
   });
+  function updateHungerImage() {
+  let hungerString;
+
+  // Check the value of user.catch.hunger and set hungerString accordingly
+  if (user.catch.hunger === 0) {
+    hungerString = "fullmeter"; // If hunger is 0, set hungerString to "fullmeter"
+  } else  {
+    hungerString = "nonemeter"; // If hunger is 5, set hungerString to "nonemeter"
+  } 
+
+  // Update the hungerColorImage source dynamically based on hungerString
+  const HungermeterPath = "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/";
+  hungerColorImage.src = `${HungermeterPath}${hungerString}.png?raw=true`;
+  hungerColorImage.style.display = "block"; // Ensure the image is displayed
+}
+
 
   // Add logic to update the hunger cost graphic based on the Pokémon's evolution
   const hungerCostGraphic = document.getElementById("hungerCostGraphic");
@@ -606,7 +621,7 @@ console.log("New hunger after feeding:", user.catch.hunger);
     }
     
   }
-
+updateHungerImage();
  // updateUserCatch(user); // 🛠️ Refresh the user's display (hunger, items, etc.)
   console.log("Uodate user.catch:", user.catch);
     console.log("Update user.pokeball:", user.pokeball);
