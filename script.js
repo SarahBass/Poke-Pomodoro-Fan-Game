@@ -44,6 +44,18 @@ document.getElementById("cookieSelect").addEventListener("change", () => {
   const selectedCookie = document.getElementById("cookieSelect").value;
   const cookieImageUrl = `${CookiebasePath}${selectedCookie}.png?raw=true`;
 });
+
+// Function to update the table
+function updateInventory() {
+  document.getElementById('berryPoints').innerText = "Berry: " + user.berryPoints;
+  document.getElementById('bonusPokeball').innerText = "Bonus Cookie: " + user.bonusPokeball;
+  document.getElementById('pokeball').innerText = "Poke Cookie: " + user.pokeball;
+  document.getElementById('greatPokeball').innerText = "Great Cookie: " + user.greatPokeball;
+  document.getElementById('masterPokeball').innerText = "Master Cookie: " + user.masterPokeball;
+}
+
+// Call the function to update the table on page load or when needed
+updateInventory();
 // ==================== DATA CLASSES ====================
 class Pokemon {
   constructor(name, type, item1, item2, evolution, rarity, personalName = "Enter", hunger = 5, pokedexNumber = 0, animationName = "", animationNumber = 0) {
