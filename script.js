@@ -54,8 +54,7 @@ function updateInventory() {
   document.getElementById('masterPokeball').innerText = "Master Cookie: " + user.masterPokeball;
 }
 
-// Call the function to update the table on page load or when needed
-updateInventory();
+
 // ==================== DATA CLASSES ====================
 class Pokemon {
   constructor(name, type, item1, item2, evolution, rarity, personalName = "Enter", hunger = 5, pokedexNumber = 0, animationName = "", animationNumber = 0) {
@@ -614,6 +613,7 @@ console.log("New hunger after feeding:", user.catch.hunger);
    //     console.log("Before updating hunger:", user.catch.hunger);
 //user.catch.hunger = 0; // Reset hunger
 console.log("After updating hunger:", user.catch.hunger);
+updateInventory();
   // (Optional) Check if hunger is fully satisfied
   if (user.catch.hunger <= 0) {
     document.getElementById("feedStatus").textContent = "Pokémon caught!";
@@ -761,6 +761,7 @@ function initializePokedex() {
 }
 
 updateCandyDisplay();
-
+// Call the function to update the table on page load or when needed
+updateInventory();
 
 
