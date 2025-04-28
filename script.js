@@ -1884,6 +1884,12 @@ function updateUserCatch(user, pool = wildPokemonPool) {
   console.log("New user.catch:", user.catch)
 }
 
+function updateUserCYANBEACHCatch(user, pool = BeachPokemonPool) {
+  const randIndex = Math.floor(Math.random() * pool.length)
+  user.catch = clonePokemon(pool[randIndex]);
+  console.log("New user.catch:", user.catch)
+}
+
 //=======================PokeTABLE=========================
 function updateTeamTable(user) {
   const tableBody = document.getElementById("teamTableBody")
@@ -1982,7 +1988,9 @@ function showCatchPhase() {
   hideAllPhases();
   clearInterval(animationLoop);
     clearInterval(animationLoop2);
-  updateUserCatch(user)
+    if (user.location == "cyanbeach"){ updateUserCYANBEACHCatch(user); }else{
+  updateUserCatch(user)}
+  
   document.querySelector(".CatchWrapper").style.display = "block";
   document.getElementById("catchPage").style.display = "block";
 
@@ -2329,4 +2337,3 @@ function initializePokedex() {
 updateCandyDisplay()
 // Call the function to update the table on page load or when needed
 updateInventory()
-
