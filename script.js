@@ -103,7 +103,7 @@ class User {
   constructor(data = {}) {
     this.goalType = data.goalType || "Study";
     this.pokeball = data.pokeball || 10;
-    this.bonusPokeball = data.bonusPokeball || 1;
+    this.bonusPokeball = data.bonusPokeball || 0;
     this.greatPokeball = data.greatPokeball || 5;
     this.ultraPokeball = data.ultraPokeball || 5;
     this.masterPokeball = data.masterPokeball || 1;
