@@ -2229,7 +2229,7 @@ evolveButton.addEventListener("click", function () {
 
 // ==================== TIME LISTENERS ====================
 
-const totalDuration = 25 * 60 // 25 minutes in seconds
+const totalDuration = 1 * 60 // x  * minutes in seconds 25 for 25 minutes
 
 function formatTime(seconds) {
   const mins = Math.floor(seconds / 60)
