@@ -10,14 +10,15 @@ const basePath =
   "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/pokemongifs/"
 const CookiebasePath =
   "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/"
-const imageElement = document.getElementById("cloyster")
-const imageElement2 = document.getElementById("catchThis")
+const imageElement = document.getElementById("cloyster");
+const imageElement2 = document.getElementById("catchThis");
 const fps = 6
 const frameDuration = 1000 / fps
 let currentPokemonIndex = 0
 let currentFrameIndex = 0
 let currentAnimationFrames = []
 let animationLoop
+let animationLoop2
 let timerRunning = false
 let countdownInterval
 let elapsedTime = 0
@@ -1786,6 +1787,7 @@ function loadAnimationFrames(pokemon) {
   return preloadedFrames[key] || []
 }
 
+// Function for playing the next frame with imageElement (for main animations)
 function playNextFrame(imageElement) {
   if (currentFrameIndex < currentAnimationFrames.length) {
     imageElement.src = currentAnimationFrames[currentFrameIndex].src
@@ -1797,13 +1799,38 @@ function playNextFrame(imageElement) {
       const nextPokemon = user.team[currentPokemonIndex]
       currentAnimationFrames = loadAnimationFrames(nextPokemon)
       currentFrameIndex = 0
-      // Pass the imageElement2 here for the next iteration
+      // Pass the correct imageElement here for the next iteration
       animationLoop = setInterval(
         () => playNextFrame(imageElement),
         frameDuration,
       )
-    }, 0) // 500ms pause before next Pokémon
+    }, 0) // Pause before moving to next Pokémon
   }
+}
+
+
+function playNextFrame2(imageElement2) {
+  const pokemon = user.catch;  // Single Pokémon for the catch animation
+  const currentCatchAnimationFrames = loadAnimationFrames(pokemon);  // Preloaded frames for catch
+
+  if (currentFrameIndex < currentCatchAnimationFrames.length) {
+    imageElement2.src = currentCatchAnimationFrames[currentFrameIndex].src;
+    currentFrameIndex++;
+  } else {
+    // Reset to the first frame for looping animation
+    currentFrameIndex = 0;
+  }
+}
+
+// Start or reset the animation loop with the correct frame duration
+function startCatchAnimation(imageElement2) {
+  if (animationLoop2) {
+    clearInterval(animationLoop2);  // Clear any existing animation loop
+  }
+  
+  animationLoop2 = setInterval(() => {
+    playNextFrame2(imageElement2);
+  }, frameDuration);  // Ensure the correct frame rate (6 frames per second)
 }
 
 // ==================== FUNCTIONAL ACTIONS ====================
@@ -1853,7 +1880,7 @@ function evolvePokemon(index) {
 
 function updateUserCatch(user, pool = wildPokemonPool) {
   const randIndex = Math.floor(Math.random() * pool.length)
-  user.catch = clonePokemon(pool[0])
+  user.catch = clonePokemon(pool[randIndex]);
   console.log("New user.catch:", user.catch)
 }
 
@@ -1906,33 +1933,35 @@ function setLocation(location) {
 }
 
 function hideAllPhases() {
-  document.querySelectorAll(".phase").forEach((p) => (p.style.display = "none"))
-  document.getElementById("pokedexContainer").style.display = "none" // Hide Pokedex explicitly
-  document.getElementById("LocationPath").style.display = "none"
-  document.getElementById("pokedexImage").style.display = "none"
-  document.getElementById("Pokedexpage").style.display = "none" // Hide Pokedex images here
-  document.getElementById("cloyster").style.display = "none"
-  document.getElementById("catchPage").style.display = "none"
-  hungerCostGraphic.style.display = "none"
-  // LocationPath.style.display = "none";
-  document.getElementById("selectedCookie").style.display = "none"
-  document.getElementById("cookieSelectorWrapper").style.display = "none"
-  hungerColorImage.style.display = "none"
-  clearInterval(animationLoop)
-  timerTextDiv.style.display = "none"
-  table.style.display = "none"
-  document.getElementById("teamTable").style.display = "none"
+  // Hide all phases
+  document.querySelectorAll(".phase").forEach((p) => (p.style.display = "none"));
+  document.getElementById("pokedexContainer").style.display = "none";
+  document.getElementById("LocationPath").style.display = "none";
+  document.getElementById("pokedexImage").style.display = "none";
+  document.getElementById("Pokedexpage").style.display = "none";
+  document.getElementById("cloyster").style.display = "none";
+  document.getElementById("catchPage").style.display = "none";
+  hungerCostGraphic.style.display = "none";
+  document.getElementById("selectedCookie").style.display = "none";
+  document.getElementById("cookieSelectorWrapper").style.display = "none";
+  hungerColorImage.style.display = "none";
+  clearInterval(animationLoop);  // Stop any ongoing animations
+    clearInterval(animationLoop2);  // Stop any ongoing animations
+  timerTextDiv.style.display = "none";
+  table.style.display = "none";
+  document.getElementById("teamTable").style.display = "none";
+  document.getElementById("catchThis").style.display = "none";
 }
 
 function showStartPhase() {
-  hideAllPhases()
+  hideAllPhases();
   document.querySelector(".StartWrapper").style.display = "block"
   document.getElementById("locationSelectorWrapper").style.display = "block"
 }
 
 function showPomodoroPhase() {
-  hideAllPhases()
-  clearInterval(animationLoop)
+  hideAllPhases();
+  clearInterval(animationLoop);
   document.querySelector(".PomodoroWrapper").style.display = "block"
   setLocation(user.location)
   // document.getElementById(".locationImage").style.display = "block";
@@ -1950,17 +1979,20 @@ function showPomodoroPhase() {
 }
 
 function showCatchPhase() {
-  hideAllPhases()
-  clearInterval(animationLoop)
+  hideAllPhases();
+  clearInterval(animationLoop);
+    clearInterval(animationLoop2);
   updateUserCatch(user)
-  document.querySelector(".CatchWrapper").style.display = "block"
-  document.getElementById("catchPage").style.display = "block"
-  preloadCatchAnimations()
+  document.querySelector(".CatchWrapper").style.display = "block";
+  document.getElementById("catchPage").style.display = "block";
+
   //console.log(imageElement2.src);
-  document.getElementById("catchThis").style.display = "block"
-  table.style.display = "block"
-  animationLoop = setInterval(() => playNextFrame(imageElement2), frameDuration)
+  document.getElementById("catchThis").style.display = "block";
   document.getElementById("cookieSelectorWrapper").style.display = "block"
+  table.style.display = "block";
+    preloadCatchAnimations();
+  animationLoop = setInterval(() => playNextFrame2(imageElement2), frameDuration);
+
 
   const CookiebasePath =
     "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/"
@@ -1978,13 +2010,13 @@ function showCatchPhase() {
   const hungerString = "nonemeter"
 
   hungerColorImage.src = `${HungermeterPath}${hungerString}.png?raw=true`
-  hungerColorImage.style.display = "block"
+  hungerColorImage.style.display = "block";
 
   // ✅ Then still keep the event listener in case they change cookie:
   cookieSelect.addEventListener("change", function () {
-    const selectedCookie = this.value
+    const selectedCookie = this.value;
     cookieImage.src = `${CookiebasePath}${selectedCookie}.png?raw=true`
-    cookieImage.style.display = "block"
+    cookieImage.style.display = "block";
   })
   function updateHungerImage() {
     let hungerString
