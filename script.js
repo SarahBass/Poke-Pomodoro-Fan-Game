@@ -2329,3 +2329,4 @@ function initializePokedex() {
 updateCandyDisplay()
 // Call the function to update the table on page load or when needed
 updateInventory()
+
