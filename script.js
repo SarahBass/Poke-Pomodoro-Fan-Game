@@ -1394,7 +1394,7 @@ const wildPokemonPool = [
     5,
     139,
     "omastar",
-    4,
+    6,
   ),
 
   new Pokemon(
