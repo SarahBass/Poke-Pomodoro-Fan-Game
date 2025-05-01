@@ -7,9 +7,9 @@ const navButtons = document.querySelectorAll(".navigationButton")
 const navToggle = document.getElementById("navToggle")
 const navMenu = document.getElementById("navMenu")
 const basePath =
-  "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/pokemongifs/"
+  "https://raw.githubusercontent.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/pokemongifs/"
 const CookiebasePath =
-  "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/"
+  "https://raw.githubusercontent.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/"
 const imageElement = document.getElementById("cloyster");
 const imageElement2 = document.getElementById("catchThis");
 const fps = 6
@@ -31,7 +31,7 @@ navToggle.addEventListener("click", () => {
 const PokedexbasePath =
   "https://raw.githubusercontent.com/SarahBass/Poke-Pomodoro-Fan-Game/main/pokedex/"
 const LocationPathway =
-  "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/staticbackgrounds/"
+  "https://raw.githubusercontent.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/staticbackgrounds/"
 //Menu for Location Selector
 document
   .getElementById("locationSelect")
@@ -1849,12 +1849,12 @@ function preloadAllAnimations() {
       const frames = []
 
       const blank = new Image()
-      blank.src = `${basePath}blank.png?raw=true`
+      blank.src = `${basePath}blank.png`
       frames.push(blank)
 
       for (let i = 1; i <= pokemon.animationNumber; i++) {
         const img = new Image()
-        img.src = `${basePath}${pokemon.animationName}${i}.png?raw=true`
+        img.src = `${basePath}${pokemon.animationName}${i}.png`
         frames.push(img)
       }
 
@@ -1870,7 +1870,7 @@ function preloadCatchAnimations() {
   if (!preloadedFrames[key]) {
     const frames = []
     const blank = new Image()
-    blank.src = `${basePath}blank.png?raw=true`
+    blank.src = `${basePath}blank.png`
     frames.push(blank)
 
     let loadedImages = 0
@@ -1889,7 +1889,7 @@ function preloadCatchAnimations() {
     // Preload each frame
     for (let i = 1; i <= pokemon.animationNumber; i++) {
       const img = new Image()
-      img.src = `${basePath}${pokemon.animationName}${i}.png?raw=true`
+      img.src = `${basePath}${pokemon.animationName}${i}.png`
       img.onload = checkImagesLoaded // Increment when each image is loaded
       frames.push(img)
     }
