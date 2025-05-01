@@ -177,7 +177,7 @@ class User {
       new Pokemon("onix", "rock", "candy", "none", 3, 1, "Enter", 20, 95, "o", 11),
       new Pokemon("gastly", "ghost", "berry", "none", 1, 0, "Enter", 7, 92, "gastly", 7),
       new Pokemon("caterpie", "bug", "berry", "none", 1, 0, "Enter", 5, 10, "ca", 7),
-      new Pokemon("krabby", "water", "berry", "none", 1, 0, "Enter", 5, 99, "crab", 7)
+      new Pokemon("krabby", "water", "berry", "none", 1, 0, "Enter", 5, 98, "crab", 7)
     ];
   }
 }
@@ -1526,8 +1526,8 @@ const wildPokemonPool = [
     "Enter",
     5,
     76,
-    "gol",
-    7,
+    "golem",
+    10,
   ),
 
   new Pokemon(
