@@ -51,7 +51,7 @@ const timerTextDiv = document.getElementById("timerText")
 
 document.getElementById("cookieSelect").addEventListener("change", () => {
   const selectedCookie = document.getElementById("cookieSelect").value
-  const cookieImageUrl = `${CookiebasePath}${selectedCookie}.png?raw=true`
+  const cookieImageUrl = `${CookiebasePath}${selectedCookie}.png`
 })
 const table = document.getElementById("inventoryTable")
 // Function to update the table
@@ -2050,7 +2050,7 @@ function updateTeamTable(user) {
   tableBody.innerHTML = ""; // Clear any previous rows
 
   const pokeImagePath =
-    "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/PokeID/";
+   "https://raw.githubusercontent.com/SarahBass/Poke-Pomodoro-Fan-Game/main/PokeID/";
 
   user.team.forEach((pokemon, index) => {
     const row = document.createElement("tr");
@@ -2060,7 +2060,7 @@ function updateTeamTable(user) {
     // Pokémon image cell
     const pokemonCell = document.createElement("td");
     const img = document.createElement("img");
-    img.src = `${pokeImagePath}${pokemon.pokedexNumber}.PNG?raw=true`;
+    img.src = `${pokeImagePath}${pokemon.pokedexNumber}.PNG`;
     img.alt = pokemon.name;
     img.width = 40;
     pokemonCell.appendChild(img);
@@ -2125,7 +2125,7 @@ function updateTeamTable(user) {
 function setLocation(location) {
   const locationImage = document.getElementById("LocationPath")
   if (locationImage) {
-    locationImage.src = `${LocationPathway}${location}.PNG?raw=true`
+    locationImage.src = `${LocationPathway}${location}.PNG?`
     locationImage.style.display = "block"
   }
 }
@@ -2232,27 +2232,27 @@ function showCatchPhase() {
    updateFeedStatus();
 
   const CookiebasePath =
-    "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/"
+    "https://raw.githubusercontent.com/SarahBass/Poke-Pomodoro-Fan-Game/main/catchEM/"
   const cookieSelect = document.getElementById("cookieSelect")
   const selectedCookie = cookieSelect.value
   const cookieImage = document.getElementById("selectedCookie")
 
-  cookieImage.src = `${CookiebasePath}${selectedCookie}.png?raw=true`
+  cookieImage.src = `${CookiebasePath}${selectedCookie}.png?raw`
   cookieImage.style.display = "block"
 
   // 🛠️ ADD THIS PART TO SET hungerColorImage IMMEDIATELY:
   const hungerColorImage = document.getElementById("hungerColorImage")
   const HungermeterPath =
-    "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/"
+    "https://raw.githubusercontent.com/SarahBass/Poke-Pomodoro-Fan-Game/main/catchEM/"
   const hungerString = "nonemeter"
 
-  hungerColorImage.src = `${HungermeterPath}${hungerString}.png?raw=true`
+  hungerColorImage.src = `${HungermeterPath}${hungerString}.png?`
   hungerColorImage.style.display = "block";
 
   // ✅ Then still keep the event listener in case they change cookie:
   cookieSelect.addEventListener("change", function () {
     const selectedCookie = this.value;
-    cookieImage.src = `${CookiebasePath}${selectedCookie}.png?raw=true`
+    cookieImage.src = `${CookiebasePath}${selectedCookie}.png?`
     cookieImage.style.display = "block";
   })
   function updateHungerImage() {
@@ -2267,8 +2267,8 @@ function showCatchPhase() {
 
     // Update the hungerColorImage source dynamically based on hungerString
     const HungermeterPath =
-      "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/"
-    hungerColorImage.src = `${HungermeterPath}${hungerString}.png?raw=true`
+      "https://raw.githubusercontent.com/SarahBass/Poke-Pomodoro-Fan-Game/main/catchEM/"
+    hungerColorImage.src = `${HungermeterPath}${hungerString}.png?`
     hungerColorImage.style.display = "block" // Ensure the image is displayed
   }
 
@@ -2378,10 +2378,10 @@ function showCatchPhase() {
 //Show RARE vs COMMON Update
       if (evolutionStage < 2) {
         hungerCostGraphic.src =
-          "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/caughtbonus.png?raw=true"
+          "https://raw.githubusercontent.com/SarahBass/Poke-Pomodoro-Fan-Game/main/catchEM/caughtbonus.png"
       } else {
         hungerCostGraphic.src =
-          "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/caught.png?raw=true"
+          "https://raw.githubusercontent.com/SarahBass/Poke-Pomodoro-Fan-Game/main/catchEM/caught.png"
       }
     }
   })
@@ -2394,13 +2394,13 @@ function showCatchPhase() {
   //if (hungerStat > 0) {
   if (evolutionStage === 1) {
     hungerCostGraphic.src =
-      "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/catch1.png?raw=true"
+      "https://raw.githubusercontent.com/SarahBass/Poke-Pomodoro-Fan-Game/main/catchEM/catch1.png"
   } else if (evolutionStage === 2) {
     hungerCostGraphic.src =
-      "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/catch2.png?raw=true"
+     "https://raw.githubusercontent.com/SarahBass/Poke-Pomodoro-Fan-Game/main/catchEM/catch2.png"
   } else if (evolutionStage === 3) {
     hungerCostGraphic.src =
-      "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/catch3.png?raw=true"
+      "https://raw.githubusercontent.com/SarahBass/Poke-Pomodoro-Fan-Game/main/catchEM/catch3.png"
   }
  
 
