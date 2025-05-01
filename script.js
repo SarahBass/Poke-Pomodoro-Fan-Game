@@ -1913,6 +1913,19 @@ function alreadyCaught(user, pokemonToCheck) {
     paymentStatus.pokeballPaid = false
     paymentStatus.bonusBallPaid = false
   }
+  
+  function updateFeedStatus() {
+  if (user.catch.hunger <= 0) {
+    if (!alreadyCaught(user, user.catch)) {
+      user.checkAndAddToTeam();
+      document.getElementById("feedStatus").textContent = "Pokémon caught!";
+    } else {
+      document.getElementById("feedStatus").textContent = "You already caught this Pokémon!";
+    }
+  } else {
+    document.getElementById("feedStatus").textContent = ""; // optional clear
+  }
+}
 
 //=======================PokeTABLE=========================
 function updateTeamTable(user) {
@@ -2099,7 +2112,7 @@ function showCatchPhase() {
   table.style.display = "block";
     preloadCatchAnimations();
   animationLoop = setInterval(() => playNextFrame2(imageElement2), frameDuration);
-
+   updateFeedStatus();
 
   const CookiebasePath =
     "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/"
@@ -2240,11 +2253,9 @@ function showCatchPhase() {
     // (Optional) Check if hunger is fully satisfied
    if (user.catch.hunger <= 0) {
   if (!alreadyCaught(user, user.catch)) {
-    user.checkAndAddToTeam();
-    document.getElementById("feedStatus").textContent = "Pokémon caught!";
-  } else {
-    document.getElementById("feedStatus").textContent = "You already caught this Pokémon!";
-  }
+    user.checkAndAddToTeam();}
+   updateFeedStatus();
+  
 
 
 //Show RARE vs COMMON Update
