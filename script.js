@@ -1961,9 +1961,8 @@ function hideAllPhases() {
     "teamTable",
     "catchThis",
     "timerSelect",
-    "hungerCostGraphic"
   ];
-
+ hungerCostGraphic.style.display = "none";
   elementsToHide.forEach(id => {
     const el = document.getElementById(id);
     if (el) {
