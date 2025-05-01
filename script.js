@@ -7,9 +7,9 @@ const navButtons = document.querySelectorAll(".navigationButton")
 const navToggle = document.getElementById("navToggle")
 const navMenu = document.getElementById("navMenu")
 const basePath =
-  "https://raw.githubusercontent.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/pokemongifs/"
+  "https://raw.githubusercontent.com/SarahBass/Poke-Pomodoro-Fan-Game/main/pokemongifs/"
 const CookiebasePath =
-  "https://raw.githubusercontent.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/"
+  "https://raw.githubusercontent.com/SarahBass/Poke-Pomodoro-Fan-Game/main/catchEM/"
 const imageElement = document.getElementById("cloyster");
 const imageElement2 = document.getElementById("catchThis");
 const fps = 6
@@ -31,7 +31,7 @@ navToggle.addEventListener("click", () => {
 const PokedexbasePath =
   "https://raw.githubusercontent.com/SarahBass/Poke-Pomodoro-Fan-Game/main/pokedex/"
 const LocationPathway =
-  "https://raw.githubusercontent.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/staticbackgrounds/"
+  "https://raw.githubusercontent.com/SarahBass/Poke-Pomodoro-Fan-Game/main/staticbackgrounds/"
 //Menu for Location Selector
 document
   .getElementById("locationSelect")
