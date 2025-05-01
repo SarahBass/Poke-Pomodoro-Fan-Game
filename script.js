@@ -1892,6 +1892,19 @@ function updateUserCYANBEACHCatch(user, pool = BeachPokemonPool) {
   console.log("New user.catch:", user.catch)
 }
 
+function alreadyCaught(user, pokemonToCheck) {
+  // Check if the Pokémon is already in the team by comparing names or other unique identifiers (e.g., pokedexNumber)
+  const isAlreadyCaught = user.team.some(pokemon => pokemon.pokedexNumber === pokemonToCheck.pokedexNumber);
+
+  if (isAlreadyCaught) {
+    console.log(`${pokemonToCheck.name} has already been caught and is in your team!`);
+    return true; // Pokémon has already been caught
+  } else {
+    console.log(`${pokemonToCheck.name} has not been caught yet.`);
+    return false; // Pokémon has not been caught
+  }
+}
+
 //=======================PokeTABLE=========================
 function updateTeamTable(user) {
   const tableBody = document.getElementById("teamTableBody");
@@ -2220,10 +2233,16 @@ function showCatchPhase() {
     console.log("After updating hunger:", user.catch.hunger)
     updateInventory()
     // (Optional) Check if hunger is fully satisfied
-    if (user.catch.hunger <= 0) {
-     user.checkAndAddToTeam() ;
-      document.getElementById("feedStatus").textContent = "Pokémon caught!"
-      // 🛠️ Maybe trigger evolution success or next phase here!
+   if (user.catch.hunger <= 0) {
+  if (!alreadyCaught(user, user.catch)) {
+    user.checkAndAddToTeam();
+    document.getElementById("feedStatus").textContent = "Pokémon caught!";
+  } else {
+    document.getElementById("feedStatus").textContent = "You already caught this Pokémon!";
+  }
+
+
+//Show RARE vs COMMON Update
       if (evolutionStage < 2) {
         hungerCostGraphic.src =
           "https://github.com/SarahBass/Poke-Pomodoro-Fan-Game/blob/main/catchEM/caughtbonus.png?raw=true"
