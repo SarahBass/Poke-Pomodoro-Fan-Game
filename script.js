@@ -1960,7 +1960,8 @@ function hideAllPhases() {
     "hungerColorImage",
     "teamTable",
     "catchThis",
-    "timerSelect"
+    "timerSelect",
+    "hungerCostGraphic"
   ];
 
   elementsToHide.forEach(id => {
