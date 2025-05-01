@@ -101,7 +101,7 @@ class Pokemon {
 
 class User {
   constructor(data = {}) {
-    this.goalType = data.goalType || "Study";
+    this.goalTime = data.goalTime || 1;
     this.pokeball = data.pokeball || 10;
     this.bonusPokeball = data.bonusPokeball || 0;
     this.greatPokeball = data.greatPokeball || 5;
@@ -1656,6 +1656,8 @@ const wildPokemonPool = [
 const user = new User();
 
 // ==================== DISPLAY UPDATES ====================
+
+
 function switchLocation(newLocation) {
   // Save current team to teamsByLocation for the current location
   if (user.location) {
@@ -1940,29 +1942,63 @@ function setLocation(location) {
 
 function hideAllPhases() {
   // Hide all phases
-  document.querySelectorAll(".phase").forEach((p) => (p.style.display = "none"));
-  document.getElementById("pokedexContainer").style.display = "none";
-  document.getElementById("LocationPath").style.display = "none";
-  document.getElementById("pokedexImage").style.display = "none";
-  document.getElementById("Pokedexpage").style.display = "none";
-  document.getElementById("cloyster").style.display = "none";
-  document.getElementById("catchPage").style.display = "none";
-  hungerCostGraphic.style.display = "none";
-  document.getElementById("selectedCookie").style.display = "none";
-  document.getElementById("cookieSelectorWrapper").style.display = "none";
-  hungerColorImage.style.display = "none";
-  clearInterval(animationLoop);  // Stop any ongoing animations
-    clearInterval(animationLoop2);  // Stop any ongoing animations
-  timerTextDiv.style.display = "none";
-  table.style.display = "none";
-  document.getElementById("teamTable").style.display = "none";
-  document.getElementById("catchThis").style.display = "none";
-}
+  document.querySelectorAll(".phase").forEach((p) => {
+   // console.log("Hiding phase: ", p);  // Debug log
+    p.style.display = "none";
+  });
 
+  // List of elements to hide
+  const elementsToHide = [
+    "pokedexContainer",
+    "LocationPath",
+    "pokedexImage",
+    "Pokedexpage",
+    "cloyster",
+    "catchPage",
+    "selectedCookie",
+    "cookieSelectorWrapper",
+    "hungerColorImage",
+    "teamTable",
+    "catchThis",
+    "timerSelect"
+  ];
+
+  elementsToHide.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      console.log("Hiding element:", id);  // Debug log
+      el.style.display = "none";
+    } else {
+      console.log("Element not found:", id);  // Debug log
+    }
+  });
+
+  // Clear animation loops (ensure they're set first)
+  if (typeof animationLoop !== "undefined") {
+    console.log("Stopping animationLoop");
+    clearInterval(animationLoop);
+  }
+  if (typeof animationLoop2 !== "undefined") {
+    console.log("Stopping animationLoop2");
+    clearInterval(animationLoop2);
+  }
+
+  // Hide table and timer text
+  if (timerTextDiv) {
+    console.log("Hiding timerTextDiv");
+    timerTextDiv.style.display = "none";
+  }
+
+  if (table) {
+    console.log("Hiding table");
+    table.style.display = "none";
+  }
+}
 function showStartPhase() {
   hideAllPhases();
-  document.querySelector(".StartWrapper").style.display = "block"
-  document.getElementById("locationSelectorWrapper").style.display = "block"
+  document.querySelector(".StartWrapper").style.display = "block";
+  document.getElementById("locationSelectorWrapper").style.display = "block";
+  document.getElementById("timerSelect").style.display = "block";
 }
 
 function showPomodoroPhase() {
@@ -2228,8 +2264,14 @@ evolveButton.addEventListener("click", function () {
 })
 
 // ==================== TIME LISTENERS ====================
+let totalDuration = user.goalTime * 60;
 
-const totalDuration = 1 * 60 // x  * minutes in seconds 25 for 25 minutes
+document.getElementById("timerSelect").addEventListener("change", function () {
+  const selectedValue = parseInt(this.value, 10);
+  user.goalTime = selectedValue;
+  totalDuration = user.goalTime * 60; // ✅ just assign, don’t redeclare
+  console.log("Updated duration:", totalDuration);
+});
 
 function formatTime(seconds) {
   const mins = Math.floor(seconds / 60)
