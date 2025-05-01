@@ -1905,6 +1905,15 @@ function alreadyCaught(user, pokemonToCheck) {
   }
 }
 
+  let paymentStatus = {
+    pokeballPaid: false,
+    bonusBallPaid: false,
+  }
+  function resetPaymentStatus() {
+    paymentStatus.pokeballPaid = false
+    paymentStatus.bonusBallPaid = false
+  }
+
 //=======================PokeTABLE=========================
 function updateTeamTable(user) {
   const tableBody = document.getElementById("teamTableBody");
@@ -2071,6 +2080,9 @@ function showPomodoroPhase() {
   updateTeamTable(user)
 }
 
+
+
+
 function showCatchPhase() {
   hideAllPhases();
   clearInterval(animationLoop);
@@ -2135,15 +2147,8 @@ function showCatchPhase() {
   const evolutionStage = user.catch.evolution // Use the Pokémon's evolution property to determine which graphic to show
 
   const useButton = document.getElementById("useButton")
-  let paymentStatus = {
-    pokeballPaid: false,
-    bonusBallPaid: false,
-  }
 
-  function resetPaymentStatus() {
-    paymentStatus.pokeballPaid = false
-    paymentStatus.bonusBallPaid = false
-  }
+
   resetPaymentStatus()
   useButton.addEventListener("click", function () {
     const selectedCookie = document.getElementById("cookieSelect").value
