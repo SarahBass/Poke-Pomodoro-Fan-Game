@@ -492,7 +492,7 @@ const teamsByLocation = {
         new Pokemon(
       "ponyta",
       "fire",
-      "cany",
+      "candy",
       "none",
       1,
       0,
@@ -1102,7 +1102,7 @@ const BeachPokemonPool = [
     new Pokemon(
       "ponyta",
       "fire",
-      "cany",
+      "candy",
       "none",
       1,
       0,
@@ -1115,7 +1115,7 @@ const BeachPokemonPool = [
       new Pokemon(
       "rapidash",
       "fire",
-      "cany",
+      "candy",
       "candy",
       3,
       0,
@@ -1128,7 +1128,7 @@ const BeachPokemonPool = [
    new Pokemon(
       "magmar",
       "fire",
-      "cany",
+      "candy",
       "none",
       3,
       0,
@@ -1731,7 +1731,7 @@ const wildPokemonPool = [
     new Pokemon(
       "ponyta",
       "fire",
-      "cany",
+      "candy",
       "none",
       1,
       0,
@@ -1744,7 +1744,7 @@ const wildPokemonPool = [
       new Pokemon(
       "rapidash",
       "fire",
-      "cany",
+      "candy",
       "candy",
       3,
       0,
@@ -1757,7 +1757,7 @@ const wildPokemonPool = [
    new Pokemon(
       "magmar",
       "fire",
-      "cany",
+      "candy",
       "none",
       3,
       0,
