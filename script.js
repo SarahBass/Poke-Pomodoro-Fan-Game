@@ -1137,7 +1137,20 @@ const BeachPokemonPool = [
       126,
       "magmar",
       9,
-    )
+    ), 
+     new Pokemon(
+      "SpecialDiglett",
+      "ground",
+      "candy",
+      "none",
+      3,
+      0,
+      "Enter",
+      5,
+      50,
+      "dig",
+      9,
+    ),
 ]
 
 const wildPokemonPool = [
@@ -1765,6 +1778,19 @@ const wildPokemonPool = [
       5,
       126,
       "magmar",
+      9,
+    ),
+   new Pokemon(
+      "SpecialDiglett",
+      "ground",
+      "candy",
+      "none",
+      3,
+      0,
+      "Enter",
+      5,
+      50,
+      "dig",
       9,
     ),
 ]
