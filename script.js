@@ -489,6 +489,19 @@ const teamsByLocation = {
       "molt",
       8,
     ),
+        new Pokemon(
+      "ponyta",
+      "fire",
+      "cany",
+      "none",
+      1,
+      0,
+      "Enter",
+      5,
+      77,
+      "pony",
+      8,
+    ),
   ],
   indigocity: [
     new Pokemon(
@@ -555,20 +568,7 @@ const teamsByLocation = {
       333,
       "meowth",
       8,
-    ),
-    new Pokemon(
-      "SpecialCubone",
-      "ground",
-      "berry",
-      "berry",
-      3,
-      0,
-      "Rocket Cubone",
-      3,
-      334,
-      "cubone",
-      9,
-    ),
+    )
   ],
   forestlight: [
     new Pokemon(
