@@ -739,7 +739,7 @@ const teamsByLocation = {
       " Boss",
       5,
       505,
-      "squirt",
+      "boss",
       12,
     ),
     new Pokemon(
