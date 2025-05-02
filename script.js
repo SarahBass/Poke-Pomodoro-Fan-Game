@@ -1096,8 +1096,8 @@ const BeachPokemonPool = [
       "Rocket Cubone",
       5,
       334,
-      "cubone",
-      9,
+      "cub",
+      11,
     ),
     new Pokemon(
       "ponyta",
@@ -1725,8 +1725,8 @@ const wildPokemonPool = [
       "Rocket Cubone",
       5,
       334,
-      "cubone",
-      9,
+      "cub",
+      11,
     ),
     new Pokemon(
       "ponyta",
